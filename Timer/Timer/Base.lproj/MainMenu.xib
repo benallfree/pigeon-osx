@@ -30,21 +30,21 @@
                         <action selector="menuClicked:" target="Voe-Tx-rLC" id="MNC-jC-zMT"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Report" id="iuy-Mf-Qmp">
+                <menuItem title="Report..." id="iuy-Mf-Qmp">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="menuClicked:" target="Voe-Tx-rLC" id="pfQ-Th-Hnt"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="8wn-iv-biw"/>
-                <menuItem title="Enter Logs" id="AkJ-o0-SAr">
+                <menuItem title="Enter logs..." id="AkJ-o0-SAr">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="menuClicked:" target="Voe-Tx-rLC" id="AOM-w2-oPY"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="T0z-jR-36R"/>
-                <menuItem title="Preferences" id="P4U-xX-t30">
+                <menuItem title="Preferences..." id="P4U-xX-t30">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="menuClicked:" target="Voe-Tx-rLC" id="wev-EL-0wW"/>
