@@ -17,6 +17,7 @@
     // Insert code here to initialize your application
     [self setupStatusItem];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:600 target:self selector:@selector(alertMemoBox) userInfo:nil repeats:YES];
+    [self alertMemoBox];
 
 }
 
