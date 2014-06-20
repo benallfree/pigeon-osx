@@ -13,7 +13,10 @@
         <customObject id="-3" userLabel="Application"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
+                <outlet property="Preferences" destination="P4U-xX-t30" id="WfF-7E-Rz3"/>
                 <outlet property="active" destination="vth-Mb-hvs" id="Wr8-Js-3Qz"/>
+                <outlet property="enterLog" destination="AkJ-o0-SAr" id="y8u-Cr-EQG"/>
+                <outlet property="quit" destination="ebA-XR-qea" id="wfx-WG-bFt"/>
                 <outlet property="report" destination="iuy-Mf-Qmp" id="F6r-rt-Mbd"/>
                 <outlet property="timerStatusMenu" destination="pam-P4-OCF" id="p8X-YS-BGw"/>
             </connections>
@@ -31,6 +34,27 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="menuClicked:" target="Voe-Tx-rLC" id="pfQ-Th-Hnt"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="8wn-iv-biw"/>
+                <menuItem title="Enter Logs" id="AkJ-o0-SAr">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="menuClicked:" target="Voe-Tx-rLC" id="AOM-w2-oPY"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="T0z-jR-36R"/>
+                <menuItem title="Preferences" id="P4U-xX-t30">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="menuClicked:" target="Voe-Tx-rLC" id="wev-EL-0wW"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="oIv-Ce-vwf"/>
+                <menuItem title="Quit" id="ebA-XR-qea">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="menuClicked:" target="Voe-Tx-rLC" id="axi-dw-IDs"/>
                     </connections>
                 </menuItem>
             </items>

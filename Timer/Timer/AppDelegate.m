@@ -16,11 +16,27 @@
 {
     // Insert code here to initialize your application
     [self setupStatusItem];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:600 target:self selector:@selector(alertMemoBox) userInfo:nil repeats:YES];
+    NSNumber *number = [[NSUserDefaults standardUserDefaults] objectForKey:@"timeInterval"];
+    if (!number)
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:10] forKey:@"timeInterval"];
+    }
     [self alertMemoBox];
 
 }
 
+- (void) startTimer
+{
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(alertMemoBox) userInfo:nil repeats:NO];
+    
+}
+- (void) uncheckActive
+{
+    
+    [self.timer invalidate];
+    [self.active setState:NSOffState];
+   
+}
 
 -(void) menuClicked:(id)sender
 {
@@ -34,12 +50,11 @@
         else
         {
             [self.active setState:NSOnState];
-            self.timer = [NSTimer scheduledTimerWithTimeInterval:600 target:self selector:@selector(alertMemoBox) userInfo:nil repeats:YES];
             [self alertMemoBox];
 
         }
     }
-    else
+    else if (sender == self.report)
     {
         NSSavePanel *save = [NSSavePanel savePanel];
       
@@ -62,6 +77,28 @@
         }
 
     }
+    else if (sender == self.enterLog)
+    {
+        [self alertMemoBox];
+    }
+    else if (sender == self.Preferences)
+    {
+        if (!self.pref_window)
+        {
+            
+            NSWindowController * controller = [[NSWindowController alloc] initWithWindowNibName:@"Preferences" ];
+            self.pref_window = (NSWindow *)controller.window;
+        }
+        [self.pref_window center];
+        [self.pref_window makeKeyAndOrderFront:self];
+        [self.pref_window setLevel:NSFloatingWindowLevel];
+        [NSApp activateIgnoringOtherApps:YES];
+
+    }
+    else
+    {
+        [[NSApplication sharedApplication] terminate:self];
+    }
 }
 
 
@@ -70,25 +107,25 @@
     if (sender == self.window)
     {
         self.window = nil;
-
     }
+    
+    
 }
 
 - (void) alertMemoBox
 {
-    if ([self.active state] == NSOnState)
-    {
         if (!self.window)
         {
             self.windowctrl =  [MemoWindow loadMemoWindow];
             
             self.window = self.windowctrl.window;
         }
+        ((MemoWindow *)self.window).clients = (NSMutableArray *) [[TimerDatabase sharedInstance] getClients];
         [self.window center];
         [self.window makeKeyAndOrderFront:self];
+        [self.window setLevel:NSFloatingWindowLevel];
         [NSApp activateIgnoringOtherApps:YES];
 
-    }
 }
 
 -(void) popup:(id)sender

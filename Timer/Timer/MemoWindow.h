@@ -18,7 +18,7 @@
 @property(strong, atomic) NSString *selectedLog;
 @property(strong, atomic) NSMutableArray *previousLogs;
 @property(strong, atomic) NSString *memo;
-
+@property(strong, atomic) IBOutlet NSButton *okbutton;
 -(IBAction)clientChanged:(id)sender;
 -(IBAction)memoChanged:(id)sender;
 -(IBAction)Cancel:(id)sender;

@@ -25,6 +25,8 @@
 		A68FE133195441BD004B98AA /* TimerDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = A68FE132195441BD004B98AA /* TimerDatabase.m */; };
 		A68FE13719548CA8004B98AA /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = A68FE13619548CA8004B98AA /* Utilities.m */; };
 		A68FE139195492A4004B98AA /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A68FE138195492A4004B98AA /* libsqlite3.dylib */; };
+		A68FE13C1954B1E9004B98AA /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = A68FE13B1954B1E9004B98AA /* Preferences.xib */; };
+		A68FE13F1954B28A004B98AA /* NSFormatter+NumberOnlyFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A68FE13E1954B28A004B98AA /* NSFormatter+NumberOnlyFormatter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,9 @@
 		A68FE13519548CA8004B98AA /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		A68FE13619548CA8004B98AA /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		A68FE138195492A4004B98AA /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		A68FE13B1954B1E9004B98AA /* Preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
+		A68FE13D1954B28A004B98AA /* NSFormatter+NumberOnlyFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSFormatter+NumberOnlyFormatter.h"; path = "Timer/NSFormatter+NumberOnlyFormatter.h"; sourceTree = "<group>"; };
+		A68FE13E1954B28A004B98AA /* NSFormatter+NumberOnlyFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSFormatter+NumberOnlyFormatter.m"; path = "Timer/NSFormatter+NumberOnlyFormatter.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +99,7 @@
 		A68FE0E61953D45A004B98AA = {
 			isa = PBXGroup;
 			children = (
+				A68FE13A1954B1D7004B98AA /* Preferences */,
 				A68FE13419548C94004B98AA /* Utilities */,
 				A68FE13019543D71004B98AA /* TimerDatabase */,
 				A68FE12A1953DCEB004B98AA /* MemoWindow */,
@@ -206,6 +212,16 @@
 			name = Utilities;
 			sourceTree = "<group>";
 		};
+		A68FE13A1954B1D7004B98AA /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				A68FE13B1954B1E9004B98AA /* Preferences.xib */,
+				A68FE13D1954B28A004B98AA /* NSFormatter+NumberOnlyFormatter.h */,
+				A68FE13E1954B28A004B98AA /* NSFormatter+NumberOnlyFormatter.m */,
+			);
+			name = Preferences;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -284,6 +300,7 @@
 			files = (
 				A68FE0FD1953D45A004B98AA /* InfoPlist.strings in Resources */,
 				A68FE10B1953D45A004B98AA /* Images.xcassets in Resources */,
+				A68FE13C1954B1E9004B98AA /* Preferences.xib in Resources */,
 				A68FE1031953D45A004B98AA /* Credits.rtf in Resources */,
 				A68FE1271953D48E004B98AA /* timer.icns in Resources */,
 				A68FE1091953D45A004B98AA /* MainMenu.xib in Resources */,
@@ -308,6 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A68FE133195441BD004B98AA /* TimerDatabase.m in Sources */,
+				A68FE13F1954B28A004B98AA /* NSFormatter+NumberOnlyFormatter.m in Sources */,
 				A68FE1061953D45A004B98AA /* AppDelegate.m in Sources */,
 				A68FE0FF1953D45A004B98AA /* main.m in Sources */,
 				A68FE12F1953DEC4004B98AA /* MemoWindow.m in Sources */,
@@ -524,6 +542,7 @@
 				A68FE1221953D45A004B98AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A68FE1231953D45A004B98AA /* Build configuration list for PBXNativeTarget "TimerTests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +551,7 @@
 				A68FE1251953D45A004B98AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

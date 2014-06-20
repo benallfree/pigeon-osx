@@ -18,8 +18,12 @@
 @property (atomic, strong) IBOutlet NSMenu               *timerStatusMenu;
 @property (atomic, strong) IBOutlet NSMenuItem               *active;
 @property (atomic, strong) IBOutlet NSMenuItem               *report;
+@property (atomic, strong) IBOutlet NSMenuItem               *enterLog;
+@property (atomic, strong) IBOutlet NSMenuItem               *Preferences;
+@property (atomic, strong) IBOutlet NSMenuItem               *quit;
 
 @property (atomic, strong)  NSWindow *window;
+@property (atomic, strong)  NSWindow *pref_window;
 @property (atomic, strong)  NSWindowController *windowctrl;
 @property (atomic, strong)  NSTimer *timer;
 
@@ -27,8 +31,9 @@
 
 //setsup status item related stuff.
 - (void) setupStatusItem;
--(IBAction) menuClicked:(id)sender;
--(void) windowClosed:(id)sender;
+- (IBAction) menuClicked:(id)sender;
+- (void) windowClosed:(id)sender;
 - (void) alertMemoBox;
-
+- (void) startTimer;
+- (void) uncheckActive;
 @end

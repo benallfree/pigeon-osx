@@ -19,17 +19,21 @@
     MemoWindow * item = (MemoWindow *)controller.window;
     item.clients = (NSMutableArray *)[[TimerDatabase sharedInstance] getClients];
     item.windowController = controller;
+  //  [item.okbutton highlight:YES];
     return controller;
 }
 
 
 -(IBAction)Cancel:(id)sender
 {
+    AppDelegate *delegate = (AppDelegate *) [NSApp delegate];
+ 
+    [delegate uncheckActive];
     [self close];
 }
 -(IBAction)OK:(id)sender
 {
-    if (([self.nClient length] <= 0 &&  [self.selectedClient length] <=0) ||
+    if ([self.selectedClient length] <=0 ||
         [self.memo length] <= 0)
     {
         NSAlert *alert = [[NSAlert alloc] init];
@@ -40,21 +44,21 @@
     
     NSString *client =  nil;
     
-   if ( [self.nClient length] <= 0)
-       client = self.selectedClient;
-    else
-        client = self.nClient;
-    
+ 
+    client = self.selectedClient;
     [[TimerDatabase sharedInstance] insertClient:client];
     [[TimerDatabase sharedInstance] insertLog:self.memo forClient:client];
     
     [self close];
+    AppDelegate *delegate = (AppDelegate *) [NSApp delegate];
+    
+    [delegate startTimer];
 }
 
 -(void) close
 {
     AppDelegate *delegate = (AppDelegate *) [NSApp delegate];
-    [delegate windowClosed:self];
+  //  [delegate windowClosed:self];
     [super close];
 }
 
