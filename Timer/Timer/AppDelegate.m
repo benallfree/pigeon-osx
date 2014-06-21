@@ -146,7 +146,7 @@
     //user made a selection
     if (result == NSOKButton){
         NSError *err;
-        NSString *selectedFile = [[[save URL] path] stringByAppendingPathExtension:@".csv"];
+        NSString *selectedFile = [[[save URL] path] stringByAppendingPathExtension:@"csv"];
         
         
         //get the CSV string from database
