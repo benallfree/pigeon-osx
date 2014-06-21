@@ -9,7 +9,7 @@
 #import "TimerDatabase.h"
 #import "Utilities.h"
 
-#define DB_VER @"1.0"
+#define DB_VER @"2.0"
 
 @implementation TimerDatabase
 
@@ -17,7 +17,7 @@ static TimerDatabase *m_sharedInstance = nil;
 
 
 /**
- *  initializes egnyte database object.
+ *  initializes timer database object.
  *
  *  @return TimerDatabase object
  */
@@ -57,7 +57,11 @@ static TimerDatabase *m_sharedInstance = nil;
     
 }
 
-
+/**
+ *  insert db schema version
+ *
+ *  @return YES for success otherwise NO.
+ */
 
 - (BOOL) insertTimerDBVersion
 {
@@ -88,7 +92,7 @@ static TimerDatabase *m_sharedInstance = nil;
  *  @return YES for success otherwise NO
  */
 
--(BOOL) createEgnyteDB:(NSString *)dbPath
+-(BOOL) createTimerDB:(NSString *)dbPath
 {
     
     int res = 0;
@@ -106,8 +110,7 @@ static TimerDatabase *m_sharedInstance = nil;
             return NO;
         }
         
-        //Create EgnyteUploadQueue Table.
-        if ((res = sqlite3_exec(m_dbHandle, "CREATE TABLE LOGS (Client TEXT, COUNT NUMERIC, MEMO TEXT);",
+        if ((res = sqlite3_exec(m_dbHandle, "CREATE TABLE LOGS (Client TEXT, COUNT NUMERIC, MEMO TEXT, DATE_REPORTED NUMERIC);",
                                 NULL, NULL, NULL)) != SQLITE_OK)
         {
             return NO;
@@ -152,17 +155,21 @@ static TimerDatabase *m_sharedInstance = nil;
             sqlite3_close(m_dbHandle);
             remove([dbPath UTF8String]);
             NSLog(@"recreating database for dbversion expected = %@ - failed = %@", DB_VER, dbVersion);
-            [self createEgnyteDB:dbPath];
+            [self createTimerDB:dbPath];
         }
 	}
     else
     {
-        return [self createEgnyteDB:dbPath];
+        return [self createTimerDB:dbPath];
     }
 	
 	return YES;
 }
-
+/**
+ *  get the db version value from database
+ *
+ *  @return DB version saved in database.
+ */
 
 - (NSString *) TimerDbVersion
 {
@@ -190,6 +197,13 @@ static TimerDatabase *m_sharedInstance = nil;
     
 
 }
+/**
+ *  inserts a client into database
+ *
+ *  @param Client Client name
+ *
+ *  @return YES if done successfuly otherwise NO
+ */
 -(BOOL) insertClient:(NSString *)Client;
 {
     NSString *insertSql = [[NSString alloc] initWithFormat:@"insert or replace into Clients values(?);"];
@@ -264,7 +278,7 @@ static TimerDatabase *m_sharedInstance = nil;
                                       
                                       _text,
                                       
-                                      strlen([text UTF8String]),
+                                      (int)strlen([text UTF8String]),
                                       
                                       SQLITE_STATIC
                                       
@@ -289,10 +303,17 @@ static TimerDatabase *m_sharedInstance = nil;
     
 }
 
-
+/**
+ *  inserts a log into database
+ *
+ *  @param logs   log string
+ *  @param client client name
+ *
+ *  @return <#return value description#>
+ */
 -(BOOL) insertLog:(NSString *)logs forClient:(NSString *)client
 {
-    NSString *insertSql = [[NSString alloc] initWithFormat:@"insert into LOGS(Client, Count, Memo) values(?, 1, ?);"];
+    NSString *insertSql = [[NSString alloc] initWithFormat:@"insert into LOGS(Client, Count, Memo, DATE_REPORTED) values(?, 1, ?, 0);"];
     sqlite3_stmt *statement;
     @synchronized(self)
     {
@@ -326,6 +347,11 @@ static TimerDatabase *m_sharedInstance = nil;
     return YES;
 }
 
+/**
+ *  get list of clients from database
+ *
+ *  @return NSArray containing client names
+ */
 -(NSArray *) getClients
 {
     NSString *select = [NSString stringWithFormat:@"select * from Clients;"];
@@ -354,6 +380,13 @@ static TimerDatabase *m_sharedInstance = nil;
 
 }
 
+/**
+ *  gets logs for a given client name
+ *
+ *  @param client client name
+ *
+ *  @return Array containing the logs
+ */
 -(NSArray *) getLogsForClient:(NSString *)client
 {
     NSString *select = [NSString stringWithFormat:@"select distinct Memo from Logs where Client = ?;"];
@@ -389,9 +422,12 @@ static TimerDatabase *m_sharedInstance = nil;
 
 }
 
+/**
+ *  removes logs from database
+ */
 -(void) removeLogs
 {
-    NSString *delete = [NSString stringWithFormat:@"delete from logs;"];
+    NSString *delete = [NSString stringWithFormat:@"update logs set DATE_REPORTED = %ld where DATE_REPORTED = 0;", time(0)];
     sqlite3_stmt *statement;
     @synchronized(self)
     {
@@ -405,11 +441,16 @@ static TimerDatabase *m_sharedInstance = nil;
  
 }
 
--(NSString *) getLogsAsCSV
+/**
+ *  converts logs in database to a CSV string
+ *
+ *  @return CSV string
+ */
+-(NSArray *) getLogsAsCSV
 {
-    NSString *select = [NSString stringWithFormat:@"select client,sum(count),memo from logs group by client,memo order by client;"];
+    NSString *select = [NSString stringWithFormat:@"select client,sum(count),memo from logs where DATE_REPORTED = 0 group by client,memo order by client;"];
     sqlite3_stmt *statement;
-    NSString *arr = @"";
+    NSMutableArray *arr = [[NSMutableArray alloc] init];
     @synchronized(self)
     {
 		if (sqlite3_prepare_v2(m_dbHandle, [select cStringUsingEncoding:NSUTF8StringEncoding], -1, &statement, NULL) == SQLITE_OK)
@@ -423,7 +464,10 @@ static TimerDatabase *m_sharedInstance = nil;
                 
                 if (log && client)
                 {
-                    arr = [arr stringByAppendingString:[NSString stringWithFormat:@"%s,%d,%s\n", client,sum,log]];
+                    NSArray *line = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%s", client],
+                                     [NSString stringWithFormat:@"%d", sum],
+                                     [NSString stringWithFormat:@"%s", log], nil];
+                    [arr addObject:line];
                 }
                 
             }

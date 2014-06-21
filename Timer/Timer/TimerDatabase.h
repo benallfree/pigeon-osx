@@ -31,7 +31,7 @@
 -(NSArray *) getClients;
 
 -(NSArray *) getLogsForClient:(NSString *)client;
--(NSString *) getLogsAsCSV;
+-(NSArray *) getLogsAsCSV;
 -(int) bindVariable:(int)index textValue:(NSString *)text int64Value:(long long)intValue context: (sqlite3_stmt *)statement useText:(BOOL)flag useFSR:(BOOL)fsFlag;
 -(void) removeLogs;
 

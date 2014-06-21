@@ -59,7 +59,7 @@ DQ
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sGd-th-qU2">
                         <rect key="frame" x="25" y="19" width="180" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="AXa-dp-y5a">
+                        <buttonCell key="cell" type="push" title="Snooz" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="AXa-dp-y5a">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -70,10 +70,18 @@ DQ
                     <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IUM-wJ-XLU">
                         <rect key="frame" x="26" y="140" width="361" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Previous logs for this client" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="T6z-GK-ZZj">
+                        <comboBoxCell key="cell" lineBreakMode="truncatingMiddle" truncatesLastVisibleLine="YES" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Previous logs for this client" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="T6z-GK-ZZj">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <connections>
+                                <binding destination="-2" name="value" keyPath="self.window.memo" id="JVE-5N-Xjp">
+                                    <dictionary key="options">
+                                        <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                        <string key="NSNullPlaceholder">Previous logs for this client</string>
+                                    </dictionary>
+                                </binding>
+                            </connections>
                         </comboBoxCell>
                         <connections>
                             <action selector="memoChanged:" target="QvC-M9-y7g" id="4CW-b6-KQZ"/>
@@ -90,25 +98,47 @@ DQ
                             </binding>
                         </connections>
                     </comboBox>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jdf-ao-3cj">
-                        <rect key="frame" x="26" y="64" width="358" height="66"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Memo" drawsBackground="YES" id="FHa-RZ-tYO">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                        <connections>
-                            <binding destination="-2" name="value" keyPath="self.window.memo" id="vdy-Gq-PBd">
-                                <dictionary key="options">
-                                    <bool key="NSContinuouslyUpdatesValue" value="YES"/>
-                                    <string key="NSNullPlaceholder">Memo</string>
-                                </dictionary>
-                            </binding>
-                        </connections>
-                    </textField>
+                    <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nf7-vB-syY">
+                        <rect key="frame" x="26" y="62" width="358" height="66"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <clipView key="contentView" ambiguous="YES" misplaced="YES" id="fKh-pt-45q">
+                            <rect key="frame" x="1" y="1" width="356" height="64"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <textView ambiguous="YES" importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="nDh-uA-AyS" customClass="SelectableTextView">
+                                    <rect key="frame" x="0.0" y="0.0" width="356" height="64"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <size key="minSize" width="356" height="64"/>
+                                    <size key="maxSize" width="463" height="10000000"/>
+                                    <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <size key="minSize" width="356" height="64"/>
+                                    <size key="maxSize" width="463" height="10000000"/>
+                                    <connections>
+                                        <binding destination="-2" name="attributedString" keyPath="self.window.memoStr" id="5Xe-Al-7WA">
+                                            <dictionary key="options">
+                                                <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                            </dictionary>
+                                        </binding>
+                                    </connections>
+                                </textView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </clipView>
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="PcW-YR-9Z6">
+                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="p3p-3W-9wG">
+                            <rect key="frame" x="341" y="1" width="16" height="64"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                    </scrollView>
                 </subviews>
             </view>
+            <connections>
+                <outlet property="box" destination="IUM-wJ-XLU" id="FJt-tu-YiN"/>
+            </connections>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="5dX-Bc-rsa"/>
         <arrayController id="elT-NF-2ob">

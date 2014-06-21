@@ -27,6 +27,10 @@
 		A68FE139195492A4004B98AA /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A68FE138195492A4004B98AA /* libsqlite3.dylib */; };
 		A68FE13C1954B1E9004B98AA /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = A68FE13B1954B1E9004B98AA /* Preferences.xib */; };
 		A68FE13F1954B28A004B98AA /* NSFormatter+NumberOnlyFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A68FE13E1954B28A004B98AA /* NSFormatter+NumberOnlyFormatter.m */; };
+		A6CD25CC1955784F001D3A79 /* SelectableTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD25CB1955784F001D3A79 /* SelectableTextView.m */; };
+		A6CD25CE19557D07001D3A79 /* red.icns in Resources */ = {isa = PBXBuildFile; fileRef = A6CD25CD19557D07001D3A79 /* red.icns */; };
+		A6CD25D119557DD5001D3A79 /* PreferenceWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD25D019557DD5001D3A79 /* PreferenceWindow.m */; };
+		A6CD25D4195582BF001D3A79 /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD25D3195582BF001D3A79 /* CHCSVParser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +76,13 @@
 		A68FE13B1954B1E9004B98AA /* Preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
 		A68FE13D1954B28A004B98AA /* NSFormatter+NumberOnlyFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSFormatter+NumberOnlyFormatter.h"; path = "Timer/NSFormatter+NumberOnlyFormatter.h"; sourceTree = "<group>"; };
 		A68FE13E1954B28A004B98AA /* NSFormatter+NumberOnlyFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSFormatter+NumberOnlyFormatter.m"; path = "Timer/NSFormatter+NumberOnlyFormatter.m"; sourceTree = "<group>"; };
+		A6CD25CA1955784F001D3A79 /* SelectableTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectableTextView.h; sourceTree = "<group>"; };
+		A6CD25CB1955784F001D3A79 /* SelectableTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectableTextView.m; sourceTree = "<group>"; };
+		A6CD25CD19557D07001D3A79 /* red.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = red.icns; path = Timer/red.icns; sourceTree = "<group>"; };
+		A6CD25CF19557DD5001D3A79 /* PreferenceWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceWindow.h; sourceTree = "<group>"; };
+		A6CD25D019557DD5001D3A79 /* PreferenceWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceWindow.m; sourceTree = "<group>"; };
+		A6CD25D2195582BF001D3A79 /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = SOURCE_ROOT; };
+		A6CD25D3195582BF001D3A79 /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +110,7 @@
 		A68FE0E61953D45A004B98AA = {
 			isa = PBXGroup;
 			children = (
+				A6CD25CD19557D07001D3A79 /* red.icns */,
 				A68FE13A1954B1D7004B98AA /* Preferences */,
 				A68FE13419548C94004B98AA /* Utilities */,
 				A68FE13019543D71004B98AA /* TimerDatabase */,
@@ -145,6 +157,8 @@
 		A68FE0F81953D45A004B98AA /* Timer */ = {
 			isa = PBXGroup;
 			children = (
+				A6CD25D2195582BF001D3A79 /* CHCSVParser.h */,
+				A6CD25D3195582BF001D3A79 /* CHCSVParser.m */,
 				A68FE1041953D45A004B98AA /* AppDelegate.h */,
 				A68FE1051953D45A004B98AA /* AppDelegate.m */,
 				A68FE1071953D45A004B98AA /* MainMenu.xib */,
@@ -187,9 +201,11 @@
 		A68FE12A1953DCEB004B98AA /* MemoWindow */ = {
 			isa = PBXGroup;
 			children = (
-				A68FE12B1953DD04004B98AA /* MemoWindow.xib */,
 				A68FE12D1953DEC4004B98AA /* MemoWindow.h */,
 				A68FE12E1953DEC4004B98AA /* MemoWindow.m */,
+				A68FE12B1953DD04004B98AA /* MemoWindow.xib */,
+				A6CD25CA1955784F001D3A79 /* SelectableTextView.h */,
+				A6CD25CB1955784F001D3A79 /* SelectableTextView.m */,
 			);
 			name = MemoWindow;
 			sourceTree = "<group>";
@@ -218,6 +234,8 @@
 				A68FE13B1954B1E9004B98AA /* Preferences.xib */,
 				A68FE13D1954B28A004B98AA /* NSFormatter+NumberOnlyFormatter.h */,
 				A68FE13E1954B28A004B98AA /* NSFormatter+NumberOnlyFormatter.m */,
+				A6CD25CF19557DD5001D3A79 /* PreferenceWindow.h */,
+				A6CD25D019557DD5001D3A79 /* PreferenceWindow.m */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";
@@ -303,6 +321,7 @@
 				A68FE13C1954B1E9004B98AA /* Preferences.xib in Resources */,
 				A68FE1031953D45A004B98AA /* Credits.rtf in Resources */,
 				A68FE1271953D48E004B98AA /* timer.icns in Resources */,
+				A6CD25CE19557D07001D3A79 /* red.icns in Resources */,
 				A68FE1091953D45A004B98AA /* MainMenu.xib in Resources */,
 				A68FE1291953D626004B98AA /* timer.png in Resources */,
 				A68FE12C1953DD04004B98AA /* MemoWindow.xib in Resources */,
@@ -327,9 +346,12 @@
 				A68FE133195441BD004B98AA /* TimerDatabase.m in Sources */,
 				A68FE13F1954B28A004B98AA /* NSFormatter+NumberOnlyFormatter.m in Sources */,
 				A68FE1061953D45A004B98AA /* AppDelegate.m in Sources */,
+				A6CD25CC1955784F001D3A79 /* SelectableTextView.m in Sources */,
+				A6CD25D119557DD5001D3A79 /* PreferenceWindow.m in Sources */,
 				A68FE0FF1953D45A004B98AA /* main.m in Sources */,
 				A68FE12F1953DEC4004B98AA /* MemoWindow.m in Sources */,
 				A68FE13719548CA8004B98AA /* Utilities.m in Sources */,
+				A6CD25D4195582BF001D3A79 /* CHCSVParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

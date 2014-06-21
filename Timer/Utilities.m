@@ -12,7 +12,7 @@
 
 
 /**
- *  finds or create application support folder for EgnyteDrive
+ *  finds or create application support folder
  *
  *  @param searchPathDirectory search path directory
  *  @param domainMask          domain mask
@@ -73,9 +73,6 @@
 
 
 
-/**
- *  returns the path to the egnyte drive database file.
- */
 
 + (NSString *) TimerDbFilePath
 {

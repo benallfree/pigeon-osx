@@ -27,6 +27,7 @@
 @property (atomic, strong)  NSWindowController *windowctrl;
 @property (atomic, strong)  NSTimer *timer;
 
+@property (retain) id eventMonitor;
 
 
 //setsup status item related stuff.
