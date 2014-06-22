@@ -26,13 +26,14 @@
 -(BOOL) createTimerDB:(NSString *)path;
 - (NSString *) TimerDbVersion;
 - (BOOL) insertTimerDBVersion;
--(BOOL) insertClient:(NSString *)file;
--(BOOL) insertLog:(NSString *)log forClient:(NSString *)client;
+-(BOOL) insertClient:(NSString *)Client;
+-(BOOL) insertLog:(NSString *)logs forClient:(long long)client;
+-(long long) getClientID:(NSString *)clientname;
 -(NSArray *) getClients;
 
--(NSArray *) getLogsForClient:(NSString *)client;
+-(NSArray *) getLogsForClient:(long long)client;
 -(NSArray *) getLogsAsCSV;
 -(int) bindVariable:(int)index textValue:(NSString *)text int64Value:(long long)intValue context: (sqlite3_stmt *)statement useText:(BOOL)flag useFSR:(BOOL)fsFlag;
 -(void) removeLogs;
-
+-(BOOL) LogsAvailableToReport;
 @end

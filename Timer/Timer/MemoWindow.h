@@ -12,11 +12,11 @@
 
 + (NSWindowController*) loadMemoWindow;
 
-@property(strong, atomic) NSAttributedString *memoStr;
 
 @property(strong, atomic) NSMutableArray *clients;
 @property(strong, atomic) NSString *nClient;
 @property(strong, atomic) NSString *selectedClient;
+@property(strong, atomic) NSString *previousClient;
 @property(strong, atomic) NSString *selectedLog;
 @property(strong, atomic) NSMutableArray *previousLogs;
 @property(strong, atomic) NSString *memo;

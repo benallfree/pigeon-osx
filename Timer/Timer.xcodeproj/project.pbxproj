@@ -31,6 +31,7 @@
 		A6CD25CE19557D07001D3A79 /* red.icns in Resources */ = {isa = PBXBuildFile; fileRef = A6CD25CD19557D07001D3A79 /* red.icns */; };
 		A6CD25D119557DD5001D3A79 /* PreferenceWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD25D019557DD5001D3A79 /* PreferenceWindow.m */; };
 		A6CD25D4195582BF001D3A79 /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD25D3195582BF001D3A79 /* CHCSVParser.m */; };
+		A6CD25DE1956C8E2001D3A79 /* MemoWindowButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD25DD1956C8E2001D3A79 /* MemoWindowButtonView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,8 @@
 		A6CD25D019557DD5001D3A79 /* PreferenceWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceWindow.m; sourceTree = "<group>"; };
 		A6CD25D2195582BF001D3A79 /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = SOURCE_ROOT; };
 		A6CD25D3195582BF001D3A79 /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = SOURCE_ROOT; };
+		A6CD25DC1956C8E2001D3A79 /* MemoWindowButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoWindowButtonView.h; sourceTree = "<group>"; };
+		A6CD25DD1956C8E2001D3A79 /* MemoWindowButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoWindowButtonView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +209,8 @@
 				A68FE12B1953DD04004B98AA /* MemoWindow.xib */,
 				A6CD25CA1955784F001D3A79 /* SelectableTextView.h */,
 				A6CD25CB1955784F001D3A79 /* SelectableTextView.m */,
+				A6CD25DC1956C8E2001D3A79 /* MemoWindowButtonView.h */,
+				A6CD25DD1956C8E2001D3A79 /* MemoWindowButtonView.m */,
 			);
 			name = MemoWindow;
 			sourceTree = "<group>";
@@ -351,6 +356,7 @@
 				A68FE0FF1953D45A004B98AA /* main.m in Sources */,
 				A68FE12F1953DEC4004B98AA /* MemoWindow.m in Sources */,
 				A68FE13719548CA8004B98AA /* Utilities.m in Sources */,
+				A6CD25DE1956C8E2001D3A79 /* MemoWindowButtonView.m in Sources */,
 				A6CD25D4195582BF001D3A79 /* CHCSVParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

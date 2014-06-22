@@ -33,12 +33,16 @@
     //added esc key controller
     NSEvent* (^handler)(NSEvent*) = ^(NSEvent *theEvent) {
         NSWindow *targetWindow = theEvent.window;
-        if (targetWindow == self.window) {
-            if (theEvent.keyCode == 53) {
+        if (theEvent.keyCode == 53) {
+            if (targetWindow == self.window) {
                 [self.active setState:NSOnState];
                 [self.window close];
                     return theEvent;
                 }
+            else if (targetWindow == self.pref_window)
+            {
+                [self.pref_window orderOut:self];
+            }
             }
 
     
@@ -84,6 +88,7 @@
 {
     
     [self.timer invalidate];
+    self.timer = nil;
     [self.active setState:NSOffState];
     
     //Allocates and loads the images into the application which will be used for our NSStatusItem
@@ -141,12 +146,21 @@
     //popup save panel.
     NSSavePanel *save = [NSSavePanel savePanel];
     
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY-MM-dd hh:mma"];
+    
+    //Optionally for time zone converstions
+    [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"..."]];
+    
+    NSString *stringFromDate = [formatter stringFromDate:[NSDate date]];
+
+    [save setNameFieldStringValue:[NSString stringWithFormat:@"Activity Report %@", stringFromDate]];
     long result = [save runModal];
     
     //user made a selection
     if (result == NSOKButton){
         NSError *err;
-        NSString *selectedFile = [[[save URL] path] stringByAppendingPathExtension:@".csv"];
+        NSString *selectedFile = [[[save URL] path] stringByAppendingPathExtension:@"csv"];
         
         
         //get the CSV string from database
@@ -260,10 +274,11 @@
     if (((MemoWindow *)self.window).selectedClient &&
         [((MemoWindow *)self.window).selectedClient length] > 0)
     {
-        ((MemoWindow *)self.window).previousLogs = (NSMutableArray *) [[TimerDatabase sharedInstance] getLogsForClient:((MemoWindow *)self.window).selectedClient];
+        long long ID = [[TimerDatabase sharedInstance] getClientID:((MemoWindow *)self.window).selectedClient];
+        ((MemoWindow *)self.window).previousLogs = (NSMutableArray *) [[TimerDatabase sharedInstance] getLogsForClient:ID];
     }
 
-    ((MemoWindow *)self.window).memoStr = [[NSAttributedString alloc] initWithString:@""];
+    ((MemoWindow *)self.window).memo = @"";
         [self.window center];
         [self.window makeKeyAndOrderFront:self];
         [self.window setLevel:NSFloatingWindowLevel];
@@ -277,7 +292,17 @@
  */
 -(void) popup:(id)sender
 {
-    self.window = nil;
+  //  self.window = nil;
+    
+    if (![[TimerDatabase sharedInstance] LogsAvailableToReport])
+    {
+        [self.report setAction:nil];
+    }
+    else
+    {
+        [self.report setAction:@selector(menuClicked:)];
+
+    }
    [self.timerStatusItem popUpStatusItemMenu:self.timerStatusMenu];
    
 }
@@ -301,8 +326,9 @@
     
     
  	//Tells the NSStatusItem what menu to load
-	[self.timerStatusItem setMenu:self.timerStatusMenu];
-    
+	//[self.timerStatusItem setMenu:self.timerStatusMenu];
+    [self.timerStatusItem setTarget:self];
+    [self.timerStatusItem setAction:@selector(popup:)];
  	//Sets the tooptip for our item
     NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
     NSString* version = [infoDict objectForKey:@"CFBundleVersion"];

@@ -7,12 +7,23 @@
 //
 
 #import "PreferenceWindow.h"
+#import "AppDelegate.h"
 
 @implementation PreferenceWindow
 
--(void) close
+-(void) OK:(id)sender
 {
-    [[NSUserDefaults standardUserDefaults] setObject:self.value forKey:@"timeInterval"];
+    AppDelegate *app = (AppDelegate *)[NSApp delegate];
+   
+    self.value = [[NSUserDefaults standardUserDefaults] objectForKey:@"timeInterval"];
+    if ([app.active state] == NSOnState)
+    {
+        if (app.timer){
+            [app.timer invalidate];
+            app.timer = [NSTimer scheduledTimerWithTimeInterval:[self.value  intValue] target:app selector:@selector(alertMemoBox) userInfo:nil repeats:NO];
+        }
+    }
     [self orderOut:self];
 }
 @end
+ 

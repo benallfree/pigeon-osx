@@ -707,7 +707,7 @@ DQ
 </string>
                         </buttonCell>
                         <connections>
-                            <action selector="orderOut:" target="F0z-JX-Cv5" id="GnQ-HM-LdJ"/>
+                            <action selector="OK:" target="F0z-JX-Cv5" id="brr-cz-bR6"/>
                         </connections>
                     </button>
                 </subviews>

@@ -69,9 +69,10 @@
  */
 -(IBAction)OK:(id)sender
 {
+    if (![sender isKindOfClass:[NSButton class]]) return;
     //checking if all required fields are filled.
     if ([self.selectedClient length] <=0 ||
-        [[self.memoStr string] length] <= 0)
+        ([self.memo length] <= 0 && [self.selectedLog length] <=0))
     {
         NSAlert *alert = [[NSAlert alloc] init];
         [alert setMessageText:@"Input are missings. Please review"];
@@ -82,13 +83,20 @@
     NSString *client =  nil;
     client = self.selectedClient;
     
-    self.memo = [self.memoStr string];
+    if ([self.memo length] <= 0)
+        self.memo = self.selectedLog;
     
-    //insert or updateclient.
-    [[TimerDatabase sharedInstance] insertClient:client];
+    long long clientID = [[TimerDatabase sharedInstance] getClientID:client];
+    
+    if (clientID <= 0)
+    {   //insert or updateclient.
+        [[TimerDatabase sharedInstance] insertClient:client];
+        clientID = [[TimerDatabase sharedInstance] getClientID:client];
+    }
     //insert log into database
-    [[TimerDatabase sharedInstance] insertLog:self.memo forClient:client];
+    [[TimerDatabase sharedInstance] insertLog:self.memo forClient:clientID];
     
+    self.selectedLog = self.memo;
     //close window.
     [self orderOut:sender];
     
@@ -107,9 +115,12 @@
     NSLog(@"client changed");
     [self.windowController willChangeValueForKey:@"window.previousLogs"];
     //get previous logs for the selected client.
-    self.previousLogs = (NSMutableArray *)[[TimerDatabase sharedInstance] getLogsForClient:[sender stringValue]];
-    self.selectedLog = nil;
+    long long ID = [[TimerDatabase sharedInstance] getClientID:[sender stringValue]];
+    self.previousLogs = (NSMutableArray *)[[TimerDatabase sharedInstance] getLogsForClient:ID];
+    if (![self.previousClient isEqualToString:[sender stringValue]])
+        self.selectedLog = nil;
     [self.windowController didChangeValueForKey:@"window.previousLogs"];
+    self.previousClient = [sender stringValue];
     
 }
 
@@ -126,12 +137,7 @@
  
   self.memo = [arr objectAtIndex:0];
     
-    int index = [self.box indexOfSelectedItem];
     
-    if (index < [self.previousLogs count])
-        self.memoStr = [[NSAttributedString alloc] initWithString:[self.previousLogs objectAtIndex:index] ];
-    else
-        self.memoStr = [[NSAttributedString alloc] initWithString:[sender stringValue] ];
 }
 
 
@@ -142,21 +148,36 @@
     {
         
  
-        //self.memoStr = [[NSAttributedString alloc] initWithString:self.memo];
     }
     else    if ([keyPath isEqualTo:@"window.selectedLog"] )
     {
         
-        if (self.selectedLog && context != nil){
-            int index = [self.box indexOfSelectedItem];
-            
-            if (index < [self.previousLogs count])
-                self.memoStr = [[NSAttributedString alloc] initWithString:[self.previousLogs objectAtIndex:index] ];
-            else
-                self.memoStr = [[NSAttributedString alloc] initWithString:self.selectedLog ];
-        }
+        if (self.selectedLog)
+            self.memo = self.selectedLog;
+  
     }
 
 }
 
+- (BOOL)control:(NSControl*)control textView:(NSTextView*)textView doCommandBySelector:(SEL)commandSelector
+{
+    BOOL result = NO;
+    
+    if (commandSelector == @selector(insertNewline:))
+    {
+        // new line action:
+        // always insert a line-break character and don’t cause the receiver to end editing
+        [textView insertNewlineIgnoringFieldEditor:self];
+        result = YES;
+    }
+    else if (commandSelector == @selector(insertTab:))
+    {
+        // tab action:
+        // always insert a tab character and don’t cause the receiver to end editing
+        [textView insertTabIgnoringFieldEditor:self];
+        result = YES;
+    }
+    
+    return result;
+}
 @end

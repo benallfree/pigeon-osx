@@ -12,4 +12,5 @@
 
 @property (strong, atomic) NSNumber *value;
 
+-(IBAction) OK:(id)sender;
 @end
