@@ -110,7 +110,7 @@ static TimerDatabase *m_sharedInstance = nil;
             return NO;
         }
         
-        if ((res = sqlite3_exec(m_dbHandle, "CREATE TABLE logs (id INTEGER PRIMARY KEY AUTOINCREMENT, client_id INTEGER, memo TEXT, created_at INTEGER, reported_at INTEGER);",
+        if ((res = sqlite3_exec(m_dbHandle, "CREATE TABLE logs (id INTEGER PRIMARY KEY AUTOINCREMENT, client_id INTEGER, memo TEXT, created_at INTEGER, exported_at INTEGER);",
                                 NULL, NULL, NULL)) != SQLITE_OK)
         {
             return NO;
@@ -449,7 +449,7 @@ static TimerDatabase *m_sharedInstance = nil;
  */
 -(void) removeLogs
 {
-    NSString *delete = [NSString stringWithFormat:@"update logs set reported_at = %ld where reported_at is NULL;", time(0)];
+    NSString *delete = [NSString stringWithFormat:@"update logs set exported_at = %ld where exported_at is NULL;", time(0)];
     sqlite3_stmt *statement;
     @synchronized(self)
     {
@@ -472,7 +472,7 @@ static TimerDatabase *m_sharedInstance = nil;
 {
     NSString *select = [NSString stringWithFormat:@"select c.name, count(l.client_id) as count, memo from \
                         clients c join logs l on c.id = l.client_id \
-                        where l.reported_at is null \
+                        where l.exported_at is null \
                         group by  l.memo \
                         order by c.name, l.created_at;"];
     sqlite3_stmt *statement;
@@ -508,7 +508,7 @@ static TimerDatabase *m_sharedInstance = nil;
 -(BOOL) LogsAvailableToReport
 {
     NSString *select = [NSString stringWithFormat:@"select count(*) from logs where \
-                        reported_at is null;"];
+                        exported_at is null;"];
     sqlite3_stmt *statement;
     BOOL retVal = NO;
     @synchronized(self)
