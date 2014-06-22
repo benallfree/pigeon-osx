@@ -14,7 +14,7 @@
 -(void) OK:(id)sender
 {
     AppDelegate *app = (AppDelegate *)[NSApp delegate];
-   
+    
     self.value = [[NSUserDefaults standardUserDefaults] objectForKey:@"timeInterval"];
     if ([app.active state] == NSOnState)
     {
@@ -23,6 +23,12 @@
             app.timer = [NSTimer scheduledTimerWithTimeInterval:[self.value  intValue] target:app selector:@selector(alertMemoBox) userInfo:nil repeats:NO];
         }
     }
+    [self orderOut:self];
+}
+
+-(void) close
+{
+    [[NSUserDefaults standardUserDefaults] setObject:self.value forKey:@"timeInterval"];
     [self orderOut:self];
 }
 @end
