@@ -9,7 +9,7 @@
 #import "TimerDatabase.h"
 #import "Utilities.h"
 
-#define DB_VER @"2.1"
+#define DB_VER @"2.2"
 
 @implementation TimerDatabase
 
@@ -104,13 +104,13 @@ static TimerDatabase *m_sharedInstance = nil;
         sqlite3_exec(m_dbHandle, "BEGIN TRANSACTION;", NULL, NULL, NULL);
         
         //create File Table
-        if ((res = sqlite3_exec(m_dbHandle, "CREATE TABLE Clients ( ClientID INTEGER PRIMARY KEY AUTOINCREMENT, ClientName TEXT);",
+        if ((res = sqlite3_exec(m_dbHandle, "CREATE TABLE clients ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT);",
                                 NULL, NULL, NULL )) != SQLITE_OK)
         {
             return NO;
         }
         
-        if ((res = sqlite3_exec(m_dbHandle, "CREATE TABLE LOGS (ClientID INTEGER, MEMO TEXT, created_at NUMERIC, reported_at NUMERIC);",
+        if ((res = sqlite3_exec(m_dbHandle, "CREATE TABLE logs (id INTEGER PRIMARY KEY AUTOINCREMENT, client_id INTEGER, memo TEXT, created_at INTEGER, reported_at INTEGER);",
                                 NULL, NULL, NULL)) != SQLITE_OK)
         {
             return NO;
@@ -206,7 +206,7 @@ static TimerDatabase *m_sharedInstance = nil;
  */
 -(BOOL) insertClient:(NSString *)Client;
 {
-    NSString *insertSql = [[NSString alloc] initWithFormat:@"insert into Clients(ClientName) values(?);"];
+    NSString *insertSql = [[NSString alloc] initWithFormat:@"insert into clients(name) values(?);"];
     sqlite3_stmt *statement;
     @synchronized(self)
     {
@@ -306,13 +306,13 @@ static TimerDatabase *m_sharedInstance = nil;
 /**
  *  retrieve a clients id
  *
- *  @param clientname client name
+ *  @param name client name
  *
  *  @return client id if found otherwise 0
  */
--(long long) getClientID:(NSString *)clientname
+-(long long) getClientID:(NSString *)name
 {
-    NSString *select = [NSString stringWithFormat:@"select ClientID from Clients where ClientName = ?;"];
+    NSString *select = [NSString stringWithFormat:@"select id from clients where name = ?;"];
     sqlite3_stmt *statement;
     long long retVal = 0;
     
@@ -320,7 +320,7 @@ static TimerDatabase *m_sharedInstance = nil;
     {
 		if (sqlite3_prepare_v2(m_dbHandle, [select cStringUsingEncoding:NSUTF8StringEncoding], -1, &statement, NULL) == SQLITE_OK)
 		{
-            if ([self bindVariable:1 textValue:clientname int64Value:0 context:statement useText:YES  useFSR:YES] != SQLITE_OK)
+            if ([self bindVariable:1 textValue:name int64Value:0 context:statement useText:YES  useFSR:YES] != SQLITE_OK)
             {
                 //throw an error - will do later not enough time for now
                 sqlite3_finalize(statement);
@@ -348,7 +348,7 @@ static TimerDatabase *m_sharedInstance = nil;
  */
 -(BOOL) insertLog:(NSString *)logs forClient:(long long)client
 {
-    NSString *insertSql = [[NSString alloc] initWithFormat:@"insert into LOGS(ClientID, Memo, created_at) values(%lld, ?, %ld);", client, time(0)];
+    NSString *insertSql = [[NSString alloc] initWithFormat:@"insert into logs(client_id, memo, created_at) values(%lld, ?, %ld);", client, time(0)];
     sqlite3_stmt *statement;
     @synchronized(self)
     {
@@ -383,7 +383,7 @@ static TimerDatabase *m_sharedInstance = nil;
  */
 -(NSArray *) getClients
 {
-    NSString *select = [NSString stringWithFormat:@"select ClientName from Clients;"];
+    NSString *select = [NSString stringWithFormat:@"select name from clients;"];
     sqlite3_stmt *statement;
     NSMutableArray *arr = [[NSMutableArray alloc] init];
     @synchronized(self)
@@ -418,7 +418,7 @@ static TimerDatabase *m_sharedInstance = nil;
  */
 -(NSArray *) getLogsForClient:(long long)client
 {
-    NSString *select = [NSString stringWithFormat:@"select distinct Memo from Logs where ClientID = %lld;", client];
+    NSString *select = [NSString stringWithFormat:@"select l.memo from logs l join (select id,max(created_at) from logs where client_id = %lld group by memo) n on l.id=n.id order by l.created_at desc limit 5;", client];
     sqlite3_stmt *statement;
     NSMutableArray *arr = [[NSMutableArray alloc] init];
     @synchronized(self)
@@ -470,11 +470,11 @@ static TimerDatabase *m_sharedInstance = nil;
  */
 -(NSArray *) getLogsAsCSV
 {
-    NSString *select = [NSString stringWithFormat:@"select c.clientname, count(l.clientid) as count, memo from \
-                        clients c join logs l on c.clientid = l.clientid \
+    NSString *select = [NSString stringWithFormat:@"select c.name, count(l.client_id) as count, memo from \
+                        clients c join logs l on c.id = l.client_id \
                         where l.reported_at is null \
                         group by  l.memo \
-                        order by c.clientname, l.created_at;"];
+                        order by c.name, l.created_at;"];
     sqlite3_stmt *statement;
     NSMutableArray *arr = [[NSMutableArray alloc] init];
     @synchronized(self)
