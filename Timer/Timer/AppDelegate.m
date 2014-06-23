@@ -43,6 +43,11 @@
             {
                 [self.pref_window orderOut:self];
             }
+            else if (targetWindow == self.moreClient)
+            {
+                [self.moreClient close];
+                self.moreClient = nil;
+            }
             }
 
     
@@ -261,6 +266,11 @@
  */
 - (void) alertMemoBox
 {
+    if ([self.window isVisible])
+    {
+        [self.window makeKeyAndOrderFront:self];
+        return;
+    }
     [self.timer invalidate];
     self.timer = nil;
     
@@ -275,7 +285,10 @@
         [((MemoWindow *)self.window).selectedClient length] > 0)
     {
         long long ID = [[TimerDatabase sharedInstance] getClientID:((MemoWindow *)self.window).selectedClient];
-        ((MemoWindow *)self.window).previousLogs = (NSMutableArray *) [[TimerDatabase sharedInstance] getLogsForClient:ID];
+        ((MemoWindow *)self.window).values = (NSDictionary *) [[TimerDatabase sharedInstance] getLogsForClient:ID];
+        ((MemoWindow *)self.window).previousLogs = [ ((MemoWindow *)self.window).values allKeys];
+        ((MemoWindow *)self.window).selectedLog =   [[TimerDatabase sharedInstance] getRecentLogsForClient:ID];
+        
     }
 
     ((MemoWindow *)self.window).memo = @"";

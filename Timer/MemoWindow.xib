@@ -15,35 +15,13 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="410" height="224"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="410" height="219"/>
+                <rect key="frame" x="0.0" y="0.0" width="410" height="224"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Afc-fF-MmI">
-                        <rect key="frame" x="26" y="170" width="361" height="26"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Clients" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="gYb-fY-BrR">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </comboBoxCell>
-                        <connections>
-                            <action selector="clientChanged:" target="QvC-M9-y7g" id="Up0-FQ-fvF"/>
-                            <binding destination="-2" name="contentValues" keyPath="self.window.clients" id="jGC-em-KHv">
-                                <dictionary key="options">
-                                    <string key="NSNullPlaceholder">Clients</string>
-                                </dictionary>
-                            </binding>
-                            <binding destination="-2" name="value" keyPath="self.window.selectedClient" previousBinding="jGC-em-KHv" id="7YD-sU-eV6">
-                                <dictionary key="options">
-                                    <string key="NSNullPlaceholder">Clients</string>
-                                </dictionary>
-                            </binding>
-                        </connections>
-                    </comboBox>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OsV-96-l2A" customClass="MemoWindowButtonView">
-                        <rect key="frame" x="205" y="14" width="180" height="32"/>
+                        <rect key="frame" x="205" y="19" width="180" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="RVV-ef-j6k">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -57,7 +35,7 @@ DQ
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sGd-th-qU2">
-                        <rect key="frame" x="25" y="14" width="180" height="32"/>
+                        <rect key="frame" x="25" y="19" width="180" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Snooze" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="AXa-dp-y5a">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -68,11 +46,11 @@ DQ
                         </connections>
                     </button>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s6u-VM-cJl">
-                        <rect key="frame" x="24" y="135" width="363" height="26"/>
+                        <rect key="frame" x="24" y="140" width="363" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="wKS-7D-itV" id="Zhq-7A-HN5">
+                        <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingMiddle" truncatesLastVisibleLine="YES" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="wKS-7D-itV" id="Zhq-7A-HN5">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
+                            <font key="font" metaFont="menu"/>
                             <menu key="menu" title="OtherViews" id="7kg-bp-9TU">
                                 <items>
                                     <menuItem title="Item 1" state="on" id="wKS-7D-itV"/>
@@ -96,8 +74,37 @@ DQ
                             </binding>
                         </connections>
                     </popUpButton>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dHX-6w-UCg">
-                        <rect key="frame" x="26" y="55" width="358" height="69"/>
+                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WLN-ty-Yol">
+                        <rect key="frame" x="24" y="179" width="318" height="26"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingMiddle" truncatesLastVisibleLine="YES" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="22J-TV-5Ex" id="5rN-2s-KvN">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="menu"/>
+                            <menu key="menu" title="OtherViews" id="aDs-25-UGq">
+                                <items>
+                                    <menuItem title="Item 1" state="on" id="22J-TV-5Ex"/>
+                                    <menuItem title="Item 2" id="nXd-mt-hXe"/>
+                                    <menuItem title="Item 3" id="zPf-03-Wvu"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                        <connections>
+                            <binding destination="-2" name="contentValues" keyPath="self.window.clients" id="N7y-9R-n1A">
+                                <dictionary key="options">
+                                    <bool key="NSInsertsNullPlaceholder" value="YES"/>
+                                    <string key="NSNoSelectionPlaceholder">Previous logs for this client</string>
+                                    <string key="NSNullPlaceholder">Clients...</string>
+                                </dictionary>
+                            </binding>
+                            <binding destination="-2" name="selectedValue" keyPath="self.window.selectedClient" previousBinding="N7y-9R-n1A" id="3u5-Vk-HcJ">
+                                <dictionary key="options">
+                                    <string key="NSNullPlaceholder">Clients...</string>
+                                </dictionary>
+                            </binding>
+                        </connections>
+                    </popUpButton>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dHX-6w-UCg" customClass="SelectableTextView">
+                        <rect key="frame" x="26" y="60" width="358" height="69"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="UBI-FJ-iom">
                             <font key="font" metaFont="system"/>
@@ -113,6 +120,17 @@ DQ
                             <outlet property="delegate" destination="QvC-M9-y7g" id="mVd-Xz-PE6"/>
                         </connections>
                     </textField>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kX4-pI-w6q">
+                        <rect key="frame" x="337" y="175" width="53" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Igd-CE-ukb">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="newClient:" target="QvC-M9-y7g" id="2f9-1y-PGf"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
         </window>

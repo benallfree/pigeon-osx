@@ -9,7 +9,7 @@
 #import "TimerDatabase.h"
 #import "Utilities.h"
 
-#define DB_VER @"2.1"
+#define DB_VER @"2.3"
 
 @implementation TimerDatabase
 
@@ -116,6 +116,12 @@ static TimerDatabase *m_sharedInstance = nil;
             return NO;
         }
         
+        if ((res = sqlite3_exec(m_dbHandle, "CREATE TABLE RECENT_LOGS (ClientID INTEGER PRIMARY KEY, MEMO TEXT);",
+                                NULL, NULL, NULL)) != SQLITE_OK)
+        {
+            return NO;
+        }
+ 
         //Create version table.
         if ((res = sqlite3_exec(m_dbHandle, "CREATE TABLE TimerDBVersion (DBVersion TEXT);",
                                 NULL, NULL, NULL)) != SQLITE_OK)
@@ -338,6 +344,46 @@ static TimerDatabase *m_sharedInstance = nil;
     return retVal;
 
 }
+
+/**
+ *  inserts a recent log for client.
+ *
+ *  @param log    <#log description#>
+ *  @param client <#client description#>
+ *
+ *  @return <#return value description#>
+ */
+-(BOOL) insertRecentLog:(NSString *)log forClient:(long long)client
+{
+    NSString *insertSql = [[NSString alloc] initWithFormat:@"insert or replace into RECENT_LOGS(ClientID, Memo) values(%lld, ?);", client];
+    sqlite3_stmt *statement;
+    @synchronized(self)
+    {
+        // NSLog(@"%@", insertSql);
+		int ret = SQLITE_OK;
+		if ((ret = sqlite3_prepare_v2(m_dbHandle, [insertSql cStringUsingEncoding:NSUTF8StringEncoding], -1, &statement, NULL)) == SQLITE_OK)
+		{
+            
+            if ([self bindVariable:1 textValue:log int64Value:0 context:statement useText:YES  useFSR:YES] != SQLITE_OK)
+            {
+                //throw an error - will do later not enough time for now
+                sqlite3_finalize(statement);
+                return NO;
+            }
+            
+            sqlite3_step(statement);
+			sqlite3_finalize(statement);
+            return YES;
+            
+        }
+        
+        
+    }
+    
+    return YES;
+   
+}
+
 /**
  *  inserts a log into database
  *
@@ -410,17 +456,54 @@ static TimerDatabase *m_sharedInstance = nil;
 }
 
 /**
+ *  get recent log for a client
+ *
+ *  @param client client id
+ *
+ *  @return recent log
+ */
+-(NSString *) getRecentLogsForClient:(long long)client
+{
+    NSString *select = [NSString stringWithFormat:@"select distinct Memo from RECENT_LOGS where ClientID = %lld;", client];
+    sqlite3_stmt *statement;
+    NSString *arr = nil;
+    @synchronized(self)
+    {
+		if (sqlite3_prepare_v2(m_dbHandle, [select cStringUsingEncoding:NSUTF8StringEncoding], -1, &statement, NULL) == SQLITE_OK)
+		{
+            
+            if (sqlite3_step(statement) == SQLITE_ROW)
+            {
+                const char *memo = (const char *)sqlite3_column_text(statement, 0);
+                
+                if (memo)
+                {
+                    arr = [[NSString stringWithCString:memo encoding:NSUTF8StringEncoding] stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
+                }
+                
+            }
+    		sqlite3_finalize(statement);
+            return arr;
+		}
+    }
+    return arr;
+    
+
+}
+
+
+/**
  *  gets logs for a given client name
  *
  *  @param client client name
  *
  *  @return Array containing the logs
  */
--(NSArray *) getLogsForClient:(long long)client
+-(NSDictionary *) getLogsForClient:(long long)client
 {
     NSString *select = [NSString stringWithFormat:@"select distinct Memo from Logs where ClientID = %lld;", client];
     sqlite3_stmt *statement;
-    NSMutableArray *arr = [[NSMutableArray alloc] init];
+    NSMutableDictionary *arr = [[NSMutableDictionary alloc] init];
     @synchronized(self)
     {
 		if (sqlite3_prepare_v2(m_dbHandle, [select cStringUsingEncoding:NSUTF8StringEncoding], -1, &statement, NULL) == SQLITE_OK)
@@ -432,7 +515,10 @@ static TimerDatabase *m_sharedInstance = nil;
                 
                 if (memo)
                 {
-                    [arr addObject:[NSString stringWithCString:memo encoding:NSUTF8StringEncoding]];
+                    NSString *originalStr = [NSString stringWithCString:memo encoding:NSUTF8StringEncoding];
+                    NSString *key = [originalStr stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
+                    [arr setObject:originalStr forKey:key];
+                    //[arr addObject:[NSString stringWithCString:memo encoding:NSUTF8StringEncoding]];
                 }
                 
             }

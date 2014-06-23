@@ -26,7 +26,7 @@
 @property (atomic, strong)  NSWindow *pref_window;
 @property (atomic, strong)  NSWindowController *windowctrl;
 @property (atomic, strong)  NSTimer *timer;
-
+@property (atomic, strong)  NSWindow *moreClient;
 @property (retain) id eventMonitor;
 
 

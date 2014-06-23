@@ -27,11 +27,10 @@
 
 - (BOOL) performKeyEquivalent:(NSEvent *)key
 {
-    NSLog(@"%d", key.keyCode);
      if (key.keyCode == 36) {
-         return NO;
+         return YES;
      }
     [super performKeyEquivalent:key];
-    return YES;
+    return NO;
 }
 @end

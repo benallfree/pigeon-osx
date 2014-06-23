@@ -28,10 +28,12 @@
 - (BOOL) insertTimerDBVersion;
 -(BOOL) insertClient:(NSString *)Client;
 -(BOOL) insertLog:(NSString *)logs forClient:(long long)client;
+-(BOOL) insertRecentLog:(NSString *)log forClient:(long long)client;
 -(long long) getClientID:(NSString *)clientname;
 -(NSArray *) getClients;
 
--(NSArray *) getLogsForClient:(long long)client;
+-(NSDictionary *) getLogsForClient:(long long)client;
+-(NSString *) getRecentLogsForClient:(long long)client;
 -(NSArray *) getLogsAsCSV;
 -(int) bindVariable:(int)index textValue:(NSString *)text int64Value:(long long)intValue context: (sqlite3_stmt *)statement useText:(BOOL)flag useFSR:(BOOL)fsFlag;
 -(void) removeLogs;

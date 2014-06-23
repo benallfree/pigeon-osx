@@ -24,6 +24,7 @@
         }
     }
     [self orderOut:self];
+    [app alertMemoBox];
 }
 
 -(void) close

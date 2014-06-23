@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface SelectableTextView : NSTextView
+@interface SelectableTextView : NSTextField
 
 @end

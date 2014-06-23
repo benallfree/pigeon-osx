@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A614090B1957D4B800A6229B /* NewClient.xib in Resources */ = {isa = PBXBuildFile; fileRef = A614090A1957D4B800A6229B /* NewClient.xib */; };
+		A614090E1957D5C600A6229B /* NewWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = A614090D1957D5C600A6229B /* NewWindow.m */; };
 		A68FE0F31953D45A004B98AA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A68FE0F21953D45A004B98AA /* Cocoa.framework */; };
 		A68FE0FD1953D45A004B98AA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A68FE0FB1953D45A004B98AA /* InfoPlist.strings */; };
 		A68FE0FF1953D45A004B98AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A68FE0FE1953D45A004B98AA /* main.m */; };
@@ -45,6 +47,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A614090A1957D4B800A6229B /* NewClient.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewClient.xib; sourceTree = "<group>"; };
+		A614090C1957D5C600A6229B /* NewWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewWindow.h; sourceTree = "<group>"; };
+		A614090D1957D5C600A6229B /* NewWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewWindow.m; sourceTree = "<group>"; };
 		A68FE0EF1953D45A004B98AA /* Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Timer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A68FE0F21953D45A004B98AA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		A68FE0F51953D45A004B98AA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -110,9 +115,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A61409091957D49900A6229B /* newClientWindow */ = {
+			isa = PBXGroup;
+			children = (
+				A614090A1957D4B800A6229B /* NewClient.xib */,
+				A614090C1957D5C600A6229B /* NewWindow.h */,
+				A614090D1957D5C600A6229B /* NewWindow.m */,
+			);
+			name = newClientWindow;
+			sourceTree = "<group>";
+		};
 		A68FE0E61953D45A004B98AA = {
 			isa = PBXGroup;
 			children = (
+				A61409091957D49900A6229B /* newClientWindow */,
 				A6CD25CD19557D07001D3A79 /* red.icns */,
 				A68FE13A1954B1D7004B98AA /* Preferences */,
 				A68FE13419548C94004B98AA /* Utilities */,
@@ -322,6 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A68FE0FD1953D45A004B98AA /* InfoPlist.strings in Resources */,
+				A614090B1957D4B800A6229B /* NewClient.xib in Resources */,
 				A68FE10B1953D45A004B98AA /* Images.xcassets in Resources */,
 				A68FE13C1954B1E9004B98AA /* Preferences.xib in Resources */,
 				A68FE1031953D45A004B98AA /* Credits.rtf in Resources */,
@@ -353,6 +370,7 @@
 				A68FE1061953D45A004B98AA /* AppDelegate.m in Sources */,
 				A6CD25CC1955784F001D3A79 /* SelectableTextView.m in Sources */,
 				A6CD25D119557DD5001D3A79 /* PreferenceWindow.m in Sources */,
+				A614090E1957D5C600A6229B /* NewWindow.m in Sources */,
 				A68FE0FF1953D45A004B98AA /* main.m in Sources */,
 				A68FE12F1953DEC4004B98AA /* MemoWindow.m in Sources */,
 				A68FE13719548CA8004B98AA /* Utilities.m in Sources */,

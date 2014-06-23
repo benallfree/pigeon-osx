@@ -23,9 +23,13 @@
 @property(strong, atomic) IBOutlet NSTextField *memoBox;
 @property(strong, atomic) IBOutlet NSButton *okbutton;
 @property(strong, atomic) IBOutlet NSComboBox *box;
+@property(strong, atomic) IBOutlet NSDictionary *values;
 
 -(IBAction)clientChanged:(id)sender;
 -(IBAction)memoChanged:(id)sender;
 -(IBAction)Cancel:(id)sender;
 -(IBAction)OK:(id)sender;
+-(IBAction)newClient:(id)sender;
+-(void) reloadClients;
+
 @end

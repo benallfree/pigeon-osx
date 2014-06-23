@@ -12,7 +12,27 @@
 
 @implementation MemoWindow
 
+/**
+ *  adds a new client
+ *
+ *  @param sender <#sender description#>
+ */
+-(IBAction)newClient:(id)sender
+{
+    AppDelegate *delegate = (AppDelegate *) [NSApp delegate];
 
+    if (!delegate.moreClient)
+    {
+        NSWindowController * controller = [[NSWindowController alloc] initWithWindowNibName:@"NewClient" ];
+        delegate.moreClient = (NSWindow *)controller.window;
+    }
+
+    [delegate.moreClient center];
+    [delegate.moreClient makeKeyAndOrderFront:self];
+    [delegate.moreClient setLevel:NSFloatingWindowLevel];
+    [NSApp activateIgnoringOtherApps:YES];
+
+}
 /**
  *  function to load window from nib
  *
@@ -31,6 +51,11 @@
 
     [item.windowController addObserver:item
                             forKeyPath: @"window.selectedLog"
+                               options:NSKeyValueObservingOptionNew
+                               context:(__bridge void *)(item)];
+
+    [item.windowController addObserver:item
+                            forKeyPath: @"window.selectedClient"
                                options:NSKeyValueObservingOptionNew
                                context:(__bridge void *)(item)];
 
@@ -84,17 +109,18 @@
     client = self.selectedClient;
     
     if ([self.memo length] <= 0)
-        self.memo = self.selectedLog;
+        self.memo = [self.values objectForKey:self.selectedLog];;
     
     long long clientID = [[TimerDatabase sharedInstance] getClientID:client];
     
     if (clientID <= 0)
     {   //insert or updateclient.
-        [[TimerDatabase sharedInstance] insertClient:client];
+        [[TimerDatabase sharedInstance] insertClient:[client stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
         clientID = [[TimerDatabase sharedInstance] getClientID:client];
     }
     //insert log into database
-    [[TimerDatabase sharedInstance] insertLog:self.memo forClient:clientID];
+    [[TimerDatabase sharedInstance] insertLog:[self.memo  stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] forClient:clientID];
+    [[TimerDatabase sharedInstance] insertRecentLog:[self.memo  stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] forClient:clientID];
     
     self.selectedLog = self.memo;
     //close window.
@@ -116,7 +142,8 @@
     [self.windowController willChangeValueForKey:@"window.previousLogs"];
     //get previous logs for the selected client.
     long long ID = [[TimerDatabase sharedInstance] getClientID:[sender stringValue]];
-    self.previousLogs = (NSMutableArray *)[[TimerDatabase sharedInstance] getLogsForClient:ID];
+    self.values = (NSDictionary *) [[TimerDatabase sharedInstance] getLogsForClient:ID];
+    self.previousLogs = [self.values allKeys];
     if (![self.previousClient isEqualToString:[sender stringValue]])
         self.selectedLog = nil;
     [self.windowController didChangeValueForKey:@"window.previousLogs"];
@@ -144,21 +171,37 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     
-    if ([keyPath isEqualTo:@"window.memo"] )
+    if ([keyPath isEqualTo:@"window.selectedClient"] )
     {
         
- 
+        [self.windowController willChangeValueForKey:@"window.previousLogs"];
+        //get previous logs for the selected client.
+        long long ID = [[TimerDatabase sharedInstance] getClientID:self.selectedClient];
+       self.values = (NSDictionary *) [[TimerDatabase sharedInstance] getLogsForClient:ID];
+        self.previousLogs = [self.values allKeys];
+        self.selectedLog = [[TimerDatabase sharedInstance] getRecentLogsForClient:ID];
+        [self.windowController didChangeValueForKey:@"window.previousLogs"];
+        self.previousClient = self.selectedClient;
+
     }
     else    if ([keyPath isEqualTo:@"window.selectedLog"] )
     {
         
         if (self.selectedLog)
-            self.memo = self.selectedLog;
+        {
+            self.memo = [self.values objectForKey:self.selectedLog];
+            
+        }
   
     }
 
 }
 
+-(void) reloadClients
+{
+    self.clients = (NSMutableArray *)[[TimerDatabase sharedInstance] getClients];
+    
+}
 - (BOOL)control:(NSControl*)control textView:(NSTextView*)textView doCommandBySelector:(SEL)commandSelector
 {
     BOOL result = NO;
