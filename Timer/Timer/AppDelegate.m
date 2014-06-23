@@ -152,7 +152,7 @@
     NSSavePanel *save = [NSSavePanel savePanel];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"YYYY-MM-dd hh:mma"];
+    [formatter setDateFormat:@"YYYY-MM-dd hhmma"];
     
     //Optionally for time zone converstions
     [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"..."]];
