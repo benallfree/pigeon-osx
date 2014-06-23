@@ -464,7 +464,7 @@ static TimerDatabase *m_sharedInstance = nil;
  */
 -(NSString *) getRecentLogsForClient:(long long)client
 {
-    NSString *select = [NSString stringWithFormat:@"select distinct Memo from RECENT_LOGS where ClientID = %lld;", client];
+    NSString *select = [NSString stringWithFormat:@"select  Memo from RECENT_LOGS where ClientID = %lld;", client];
     sqlite3_stmt *statement;
     NSString *arr = nil;
     @synchronized(self)
