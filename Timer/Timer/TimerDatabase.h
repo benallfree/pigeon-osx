@@ -28,7 +28,6 @@
 - (BOOL) insertTimerDBVersion;
 -(BOOL) insertClient:(NSString *)Client;
 -(BOOL) insertLog:(NSString *)logs forClient:(long long)client;
--(BOOL) insertRecentLog:(NSString *)log forClient:(long long)client;
 -(long long) getClientID:(NSString *)clientname;
 -(NSArray *) getClients;
 

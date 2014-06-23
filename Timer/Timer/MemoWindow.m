@@ -120,7 +120,6 @@
     }
     //insert log into database
     [[TimerDatabase sharedInstance] insertLog:[self.memo  stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] forClient:clientID];
-    [[TimerDatabase sharedInstance] insertRecentLog:[self.memo  stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] forClient:clientID];
     
     self.selectedLog = self.memo;
     //close window.
