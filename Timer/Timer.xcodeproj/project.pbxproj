@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		A614090B1957D4B800A6229B /* NewClient.xib in Resources */ = {isa = PBXBuildFile; fileRef = A614090A1957D4B800A6229B /* NewClient.xib */; };
 		A614090E1957D5C600A6229B /* NewWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = A614090D1957D5C600A6229B /* NewWindow.m */; };
+		A6140980195B1B4E00A6229B /* long.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A614097C195B1B4E00A6229B /* long.mp3 */; };
+		A6140981195B1B4E00A6229B /* short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A614097D195B1B4E00A6229B /* short.mp3 */; };
+		A6140982195B1B4E00A6229B /* start.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A614097E195B1B4E00A6229B /* start.mp3 */; };
+		A6140983195B1B4E00A6229B /* tick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A614097F195B1B4E00A6229B /* tick.mp3 */; };
+		A6140986195B9A8400A6229B /* BreakStarted.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6140985195B9A8400A6229B /* BreakStarted.xib */; };
+		A6140989195B9CC700A6229B /* BreakStarted.m in Sources */ = {isa = PBXBuildFile; fileRef = A6140988195B9CC700A6229B /* BreakStarted.m */; };
+		A614098B195B9E0F00A6229B /* BreakEnded.xib in Resources */ = {isa = PBXBuildFile; fileRef = A614098A195B9E0F00A6229B /* BreakEnded.xib */; };
+		A614098E195B9EC700A6229B /* BreakEnded.m in Sources */ = {isa = PBXBuildFile; fileRef = A614098D195B9EC700A6229B /* BreakEnded.m */; };
 		A68FE0F31953D45A004B98AA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A68FE0F21953D45A004B98AA /* Cocoa.framework */; };
 		A68FE0FD1953D45A004B98AA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A68FE0FB1953D45A004B98AA /* InfoPlist.strings */; };
 		A68FE0FF1953D45A004B98AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A68FE0FE1953D45A004B98AA /* main.m */; };
@@ -50,6 +58,16 @@
 		A614090A1957D4B800A6229B /* NewClient.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewClient.xib; sourceTree = "<group>"; };
 		A614090C1957D5C600A6229B /* NewWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewWindow.h; sourceTree = "<group>"; };
 		A614090D1957D5C600A6229B /* NewWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewWindow.m; sourceTree = "<group>"; };
+		A614097C195B1B4E00A6229B /* long.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = long.mp3; sourceTree = "<group>"; };
+		A614097D195B1B4E00A6229B /* short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = short.mp3; sourceTree = "<group>"; };
+		A614097E195B1B4E00A6229B /* start.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = start.mp3; sourceTree = "<group>"; };
+		A614097F195B1B4E00A6229B /* tick.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tick.mp3; sourceTree = "<group>"; };
+		A6140985195B9A8400A6229B /* BreakStarted.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BreakStarted.xib; sourceTree = "<group>"; };
+		A6140987195B9CC700A6229B /* BreakStarted.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BreakStarted.h; sourceTree = "<group>"; };
+		A6140988195B9CC700A6229B /* BreakStarted.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BreakStarted.m; sourceTree = "<group>"; };
+		A614098A195B9E0F00A6229B /* BreakEnded.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BreakEnded.xib; sourceTree = "<group>"; };
+		A614098C195B9EC700A6229B /* BreakEnded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BreakEnded.h; sourceTree = "<group>"; };
+		A614098D195B9EC700A6229B /* BreakEnded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BreakEnded.m; sourceTree = "<group>"; };
 		A68FE0EF1953D45A004B98AA /* Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Timer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A68FE0F21953D45A004B98AA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		A68FE0F51953D45A004B98AA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -125,9 +143,36 @@
 			name = newClientWindow;
 			sourceTree = "<group>";
 		};
+		A614097B195B1B4E00A6229B /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				A614097C195B1B4E00A6229B /* long.mp3 */,
+				A614097D195B1B4E00A6229B /* short.mp3 */,
+				A614097E195B1B4E00A6229B /* start.mp3 */,
+				A614097F195B1B4E00A6229B /* tick.mp3 */,
+			);
+			name = sounds;
+			path = Timer/sounds;
+			sourceTree = "<group>";
+		};
+		A6140984195B9A7000A6229B /* Break */ = {
+			isa = PBXGroup;
+			children = (
+				A6140985195B9A8400A6229B /* BreakStarted.xib */,
+				A6140987195B9CC700A6229B /* BreakStarted.h */,
+				A6140988195B9CC700A6229B /* BreakStarted.m */,
+				A614098A195B9E0F00A6229B /* BreakEnded.xib */,
+				A614098C195B9EC700A6229B /* BreakEnded.h */,
+				A614098D195B9EC700A6229B /* BreakEnded.m */,
+			);
+			name = Break;
+			sourceTree = "<group>";
+		};
 		A68FE0E61953D45A004B98AA = {
 			isa = PBXGroup;
 			children = (
+				A6140984195B9A7000A6229B /* Break */,
+				A614097B195B1B4E00A6229B /* sounds */,
 				A61409091957D49900A6229B /* newClientWindow */,
 				A6CD25CD19557D07001D3A79 /* red.icns */,
 				A68FE13A1954B1D7004B98AA /* Preferences */,
@@ -338,12 +383,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				A68FE0FD1953D45A004B98AA /* InfoPlist.strings in Resources */,
+				A6140986195B9A8400A6229B /* BreakStarted.xib in Resources */,
 				A614090B1957D4B800A6229B /* NewClient.xib in Resources */,
 				A68FE10B1953D45A004B98AA /* Images.xcassets in Resources */,
+				A614098B195B9E0F00A6229B /* BreakEnded.xib in Resources */,
 				A68FE13C1954B1E9004B98AA /* Preferences.xib in Resources */,
 				A68FE1031953D45A004B98AA /* Credits.rtf in Resources */,
+				A6140980195B1B4E00A6229B /* long.mp3 in Resources */,
 				A68FE1271953D48E004B98AA /* timer.icns in Resources */,
+				A6140983195B1B4E00A6229B /* tick.mp3 in Resources */,
+				A6140981195B1B4E00A6229B /* short.mp3 in Resources */,
 				A6CD25CE19557D07001D3A79 /* red.icns in Resources */,
+				A6140982195B1B4E00A6229B /* start.mp3 in Resources */,
 				A68FE1091953D45A004B98AA /* MainMenu.xib in Resources */,
 				A68FE1291953D626004B98AA /* timer.png in Resources */,
 				A68FE12C1953DD04004B98AA /* MemoWindow.xib in Resources */,
@@ -366,9 +417,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A68FE133195441BD004B98AA /* TimerDatabase.m in Sources */,
+				A6140989195B9CC700A6229B /* BreakStarted.m in Sources */,
 				A68FE13F1954B28A004B98AA /* NSFormatter+NumberOnlyFormatter.m in Sources */,
 				A68FE1061953D45A004B98AA /* AppDelegate.m in Sources */,
 				A6CD25CC1955784F001D3A79 /* SelectableTextView.m in Sources */,
+				A614098E195B9EC700A6229B /* BreakEnded.m in Sources */,
 				A6CD25D119557DD5001D3A79 /* PreferenceWindow.m in Sources */,
 				A614090E1957D5C600A6229B /* NewWindow.m in Sources */,
 				A68FE0FF1953D45A004B98AA /* main.m in Sources */,

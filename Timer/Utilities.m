@@ -72,8 +72,133 @@
 }
 
 
+/**
+ *  get path to the peference file path
+ *
+ *  @return preferences file path
+ */
++ (NSString *) PrefFilePath
+{
+    
+    NSString *dbFolder = [NSString stringWithFormat:@"%@/TimerDb",
+                          [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleExecutable"]];
+    NSError *error;
+    NSString *result =
+    [Utilities
+     findOrCreateDirectory:NSApplicationSupportDirectory
+     inDomain:NSUserDomainMask
+     appendPathComponent:dbFolder
+     error:&error];
+    if (error)
+    {
+        NSLog(@"Unable to find or create application support directory:\n%@", error);
+    }
+    return [NSString stringWithFormat:@"%@/Timer_pref.plist", result];
+    
+
+}
 
 
+
+/**
+ *  play a sound
+ *
+ *  @param filekey      filepath key
+ *  @param volKey       volume key
+ *  @param defaultSound default filename
+ */
++(void) playSound:(NSString *)filekey volumeKey:(NSString *)volKey default:(NSString *)defaultSound
+{
+    NSString *file = [[NSUserDefaults standardUserDefaults] objectForKey:filekey];
+    NSNumber *volume = [[NSUserDefaults standardUserDefaults] objectForKey:volKey];
+    
+    NSSound *sound = nil;
+    if ([file isEqualToString:@"default"])
+    {
+        sound = [NSSound soundNamed:defaultSound];
+    }
+    else
+    {
+        BOOL isDir;
+        BOOL foundFile = NO;
+        if ([[NSFileManager defaultManager] fileExistsAtPath:file isDirectory:&isDir])
+        {
+            if (!isDir){
+                sound = [[NSSound alloc] initWithContentsOfFile:file byReference:YES];
+                foundFile = YES;
+            }
+        }
+        
+        if (!foundFile)
+        {
+            //run default
+            [[NSUserDefaults standardUserDefaults] setObject:@"default" forKey:filekey];
+            sound = [NSSound soundNamed:defaultSound];
+        }
+    }
+    
+    if (volume)
+    {
+        float val = [volume floatValue] / 100.0;
+        [sound setVolume:val];
+    }
+    
+    [sound play];
+}
+
+/**
+ *  play a sound
+ *
+ *  @param filekey      filepath key
+ *  @param volKey       volume key
+ *  @param defaultSound default filename
+ */
++(void) playSoundStripped:(NSString *)filekey volumeKey:(NSString *)volKey default:(NSString *)defaultSound
+{
+    NSString *file = [[NSUserDefaults standardUserDefaults] objectForKey:filekey];
+    NSNumber *volume = [[NSUserDefaults standardUserDefaults] objectForKey:volKey];
+    
+    NSSound *sound = nil;
+    if ([file isEqualToString:@"default"])
+    {
+        sound = [NSSound soundNamed:defaultSound];
+    }
+    else
+    {
+        BOOL isDir;
+        BOOL foundFile = NO;
+        if ([[NSFileManager defaultManager] fileExistsAtPath:file isDirectory:&isDir])
+        {
+            if (!isDir){
+                sound = [[NSSound alloc] initWithContentsOfFile:file byReference:YES];
+                foundFile = YES;
+            }
+        }
+        
+        if (!foundFile)
+        {
+            //run default
+            [[NSUserDefaults standardUserDefaults] setObject:@"default" forKey:filekey];
+            sound = [NSSound soundNamed:defaultSound];
+        }
+    }
+    
+    if (volume)
+    {
+        float val = [volume floatValue] / 100.0;
+        [sound setVolume:val];
+    }
+    
+    [sound setCurrentTime:1.0];
+    [sound play];
+}
+
+
+/**
+ *  get timer db file path
+ *
+ *  @return return path to database file
+ */
 + (NSString *) TimerDbFilePath
 {
     

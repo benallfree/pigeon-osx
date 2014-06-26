@@ -10,8 +10,23 @@
 #import "MemoWindow.h"
 #import "TimerDatabase.h"
 #import "CHCSVParser.h"
+#import "Utilities.h"
+#import "PreferenceWindow.h"
+#import "BreakEnded.h"
+#import "BreakStarted.h"
 
 @implementation AppDelegate
+
+
+/**
+ *  startup launch timer routine.
+ *
+ *  @param sender <#sender description#>
+ */
+-(void) launchAlertMemoOnStartup:(id)sender;
+{
+    ;// [self alertMemoBox];
+}
 
 /**
  *  application did finish notification
@@ -23,6 +38,9 @@
     //setup status item
     [self setupStatusItem];
     
+    self.currentStatus = kDoingNothing;
+    [self performSelectorInBackground:@selector(playTick) withObject:nil];
+
     //setup default time interval for poping up memo window, if not set by user in preferences window.
     NSNumber *number = [[NSUserDefaults standardUserDefaults] objectForKey:@"timeInterval"];
     if (!number)
@@ -35,7 +53,6 @@
         NSWindow *targetWindow = theEvent.window;
         if (theEvent.keyCode == 53) {
             if (targetWindow == self.window) {
-                [self.active setState:NSOnState];
                 [self.window close];
                     return theEvent;
                 }
@@ -57,9 +74,14 @@
     
   
     self.eventMonitor = [NSEvent addLocalMonitorForEventsMatchingMask:NSKeyDownMask handler:handler];
-
+    [self.mute setState:NSOffState];
+    [self loadPreferences];
     //popup the memo box.
-    [self alertMemoBox];
+    
+    
+    [NSTimer scheduledTimerWithTimeInterval:1.1 target:self selector:@selector(launchAlertMemoOnStartup:) userInfo:nil repeats:NO];
+ 
+    [self startNextPomo:YES];
 
 }
 
@@ -68,10 +90,14 @@
  */
 - (void) startTimer
 {
-    NSNumber *number = [[NSUserDefaults standardUserDefaults] objectForKey:@"timeInterval"];
-    //otherewise activate the memo box
-    [self.active setState:NSOnState];
-    //Allocates and loads the images into the application which will be used for our NSStatusItem
+    if ([self.active state] == NSOffState)
+    {
+        
+    
+        //otherewise activate the memo box
+        [self.active setState:NSOnState];
+        [self startNextPomo:NO];
+    }//Allocates and loads the images into the application which will be used for our NSStatusItem
     self.timerStatusImage = [NSImage imageNamed:@"red"];
     
     [self.timerStatusImage setSize:NSMakeSize(16, 16)];
@@ -82,9 +108,8 @@
     [self.timerStatusItem setAlternateImage:self.timerStatusHighlightImage];
     
 
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:[number intValue] target:self selector:@selector(alertMemoBox) userInfo:nil repeats:NO];
-    
-}
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:[[[NSUserDefaults standardUserDefaults] objectForKey:@"log_interval"] intValue] * 60 target:self selector:@selector(alertMemoBox) userInfo:nil repeats:NO];
+ }
 
 /**
  *  inactivate the memo box for popping up next time.
@@ -99,6 +124,7 @@
     //Allocates and loads the images into the application which will be used for our NSStatusItem
     self.timerStatusImage = [NSImage imageNamed:@"timer"];
     
+    self.currentStatus = kDoingNothing;
     [self.timerStatusImage setSize:NSMakeSize(16, 16)];
 	self.timerStatusHighlightImage =  self.timerStatusImage;
     
@@ -110,6 +136,24 @@
 
    
 }
+
+/**
+ *  execute the mute menu item
+ */
+-(void) handleMuteMenuItem
+{
+    //if it was checked, then uncheck and invalidate the timer
+    if (self.mute.state == NSOnState)
+    {
+        [self.mute setState:NSOffState];
+    }
+    else
+    {
+        [self.mute setState:NSOnState];
+        
+    }
+}
+
 
 /**
  *  execute the active menu item
@@ -138,7 +182,7 @@
         
         
 
-        [self alertMemoBox];
+        [self resetPomoTimer];
         
     }
 }
@@ -206,6 +250,7 @@
         self.pref_window = (NSWindow *)controller.window;
     }
     [self.pref_window center];
+    [(PreferenceWindow *)self.pref_window makeCopyOfCurrent];
     self.pref_window.value = [[NSUserDefaults standardUserDefaults] objectForKey:@"timeInterval"];
     [self.pref_window makeKeyAndOrderFront:self];
     [self.pref_window setLevel:NSFloatingWindowLevel];
@@ -219,8 +264,12 @@
  */
 -(void) menuClicked:(id)sender
 {
+    if (sender == self.mute)
+    {
+        [self handleMuteMenuItem];
+    }
     //when clicked on active menu item
-    if (sender == self.active)
+    else if (sender == self.active)
     {
         [self handleActiveMenuItem];
     }
@@ -271,6 +320,7 @@
         [self.window makeKeyAndOrderFront:self];
         return;
     }
+  
     [self.timer invalidate];
     self.timer = nil;
     
@@ -285,23 +335,87 @@
         [((MemoWindow *)self.window).selectedClient length] > 0)
     {
         long long ID = [[TimerDatabase sharedInstance] getClientID:((MemoWindow *)self.window).selectedClient];
-        ((MemoWindow *)self.window).values = (NSDictionary *) [[TimerDatabase sharedInstance] getLogsForClient:ID];
-        ((MemoWindow *)self.window).previousLogs = [ ((MemoWindow *)self.window).values allKeys];
-        ((MemoWindow *)self.window).selectedLog =   [[TimerDatabase sharedInstance] getRecentLogsForClient:ID];
+        NSMutableArray *arr = (NSMutableArray *) [[TimerDatabase sharedInstance] getLogsForClient:ID];
+        if ([arr count] > 0)
+        {
+            NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"- Today", @"logs", nil];
+            [arr insertObject:dict atIndex:0];
+            NSMutableArray *tempArray =   (NSMutableArray *)[[TimerDatabase sharedInstance] getRecentLogsForClient:ID];
+            dict = [NSDictionary dictionaryWithObjectsAndKeys:@"- Recent", @"logs", nil];
+            ((MemoWindow *)self.window).recentRowIndex = [arr count];
+            [arr addObject:dict];
+            [arr addObjectsFromArray:tempArray];
+        }
+        ((MemoWindow *)self.window).values = arr;
+        [ ((MemoWindow *)self.window).Tablecontroller selectRowIndexes:[NSIndexSet indexSetWithIndex:1] byExtendingSelection:NO];
         
     }
-
-    ((MemoWindow *)self.window).memo = @"";
+   
         [self.window center];
         [self.window makeKeyAndOrderFront:self];
         [self.window setLevel:NSFloatingWindowLevel];
      
 }
 
+-(void) playTick
+{
+    //wait for start mp3 to play
+    sleep(6);
+    
+    while (1)
+    {
+        if ([self.mute state] == NSOffState && self.currentStatus == kPomoInProgress)
+        {
+           [Utilities playSoundStripped:@"tick_sound_path" volumeKey:@"tick_vol" default:@"tick"];
+        }
+        sleep(1);
+}
+}
+/**
+ *  updates timer strings
+ *
+ *  @param sender <#sender description#>
+ */
+-(void) updatePomoTimer:(id)sender
+{
+ 
+    if ([self.active state] ==NSOffState || self.currentStatus == kDoingNothing)
+    {
+        [self.timerStatusItem setTitle:@"Stopped."];
+        
+        [[self.timerStatusItem view] setNeedsDisplay:YES];
+        return;
+
+    }
+    
+    
+    if (self.seconds == 0)
+    {
+        if (self.minutes >0)
+            self.minutes--;
+        self.seconds = 59;
+    }
+    else
+        self.seconds--;
+    
+    
+    if (self.currentStatus == kPomoInProgress)
+    {
+        self.pomodoroTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
+        [self.timerStatusItem setTitle:[@"Pomo " stringByAppendingString:self.pomodoroTimerStr]];
+    }
+    else
+    {
+        self.breakTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
+        [self.timerStatusItem setTitle:[@"Break " stringByAppendingString:self.breakTimerStr]];
+        
+    }
+    [[self.timerStatusItem view] setNeedsDisplay:YES];
+}
 /**
  *  function to handle click on status icon 
  *
- *  @param sender <#sender description#>
+ *  @param sender
  */
 -(void) popup:(id)sender
 {
@@ -324,7 +438,7 @@
 {
     
     //Create the NSStatusBar and set its length
-	self.timerStatusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength];
+	self.timerStatusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
 	
 	
 	//Allocates and loads the images into the application which will be used for our NSStatusItem
@@ -349,6 +463,7 @@
 	//Enables highlighting
 	[self.timerStatusItem setHighlightMode:YES];
     
+    [self.timerStatusItem setTitle:@"Starting..."];
     [self.active setState:NSOnState];
 
     
@@ -374,5 +489,197 @@
   
 }
 
+/**
+ *  load preferences from disk
+ */
+- (void) loadPreferences
+{
+    
+   if  (![[NSUserDefaults standardUserDefaults] objectForKey:@"tick_vol"])
+    {
+        NSUserDefaults *dict = [NSUserDefaults standardUserDefaults];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"25"] forKey:@"pomodor_interval"];
+        [dict setObject:[NSString stringWithFormat:@"10"] forKey:@"log_interval"];
+        [dict setObject:[NSString stringWithFormat:@"5"] forKey:@"short_break"];
+        [dict setObject:[NSString stringWithFormat:@"20"] forKey:@"long_break"];
+        [dict setObject:[NSString stringWithFormat:@"3"] forKey:@"long_break_after"];
 
+        [dict setObject:[NSString stringWithFormat:@"default"] forKey:@"start_promo_sound"];
+        [dict setObject:[NSString stringWithFormat:@"default"] forKey:@"short_break_sound"];
+        [dict setObject:[NSString stringWithFormat:@"default"] forKey:@"long_break_sound"];
+        [dict setObject:[NSString stringWithFormat:@"default"] forKey:@"tick_sound"];
+
+        [dict setObject:[NSString stringWithFormat:@"default"] forKey:@"start_promo_sound_path"];
+        [dict setObject:[NSString stringWithFormat:@"default"] forKey:@"short_break_sound_path"];
+        [dict setObject:[NSString stringWithFormat:@"default"] forKey:@"long_break_sound_path"];
+        [dict setObject:[NSString stringWithFormat:@"default"] forKey:@"tick_sound_path"];
+
+        [dict setObject:[NSNumber numberWithInteger:20] forKey:@"start_promo_vol"];
+        [dict setObject:[NSNumber numberWithInteger:20] forKey:@"short_break_vol"];
+        [dict setObject:[NSNumber numberWithInteger:20] forKey:@"long_break_vol"];
+        [dict setObject:[NSNumber numberWithInteger:20] forKey:@"tick_vol"];
+
+        [dict setObject:[NSNumber numberWithBool:NO] forKey:@"start_auto"];
+
+        
+    }
+    else
+    {
+        self.minutes =  [[[NSUserDefaults standardUserDefaults] objectForKey:@"pomodor_interval"] integerValue];
+        self.seconds = 0;
+    }
+}
+
+/**
+ *  resets Pomo Timer
+ */
+- (void) resetPomoTimer
+{
+ 
+    [self.timer_updater invalidate];
+    [self.long_timer invalidate];
+    [self.short_timer  invalidate];
+    [self.timer_updater invalidate];
+    [self.pomo_timer invalidate];
+    self.pomo_timer = nil;
+    self.timer_updater = nil;
+    self.long_timer = nil;
+    self.short_timer = nil;
+    self.timer_updater = nil;
+    
+    self.timer_updater = nil;
+    self.totalPomodoro = 0;
+    self.currentStatus = kDoingNothing;
+    if ([self.active state ]== NSOnState)
+        [self startNextPomo:YES];
+    else
+    {
+        self.pomodoroTimerStr = @"00:00";
+        [self.timerStatusItem setTitle:@"Stopped."];
+    }
+}
+
+
+/**
+ *  when a pomo finishes
+ */
+- (void) pomoFinished
+{
+    NSInteger pomo_before_long_Break = [[[NSUserDefaults standardUserDefaults] objectForKey:@"long_break_after"] integerValue];
+    if (self.totalPomodoro >= pomo_before_long_Break)
+    {
+        self.totalPomodoro = 0;
+        [self longBreakStarted];
+    }
+    else
+    {
+        self.totalPomodoro++;
+        [self shortBreakStarted];
+    }
+    
+}
+/**
+ *  starts a new pomo session
+ */
+- (void) startNextPomo:(BOOL)startMemo
+{
+    if ([self.mute state] == NSOffState)
+    {
+        [Utilities playSound:@"start_promo_sound" volumeKey:@"start_promo_vol" default:@"start"];
+    }
+    
+    self.minutes = [[[NSUserDefaults standardUserDefaults] objectForKey:@"pomodor_interval"] integerValue];
+    self.seconds = 0;
+    if (!self.timer_updater)
+    self.timer_updater = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updatePomoTimer:) userInfo:nil repeats:YES];
+    self.currentStatus = kPomoInProgress;
+    NSInteger interval = [[[NSUserDefaults standardUserDefaults] objectForKey:@"pomodor_interval"] intValue] * 60 ;
+    self.pomo_timer =  [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(pomoFinished) userInfo:nil repeats:NO];
+    
+    self.pomodoroTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
+    [self.timerStatusItem setTitle:[@"Pomo " stringByAppendingString:self.pomodoroTimerStr]];
+
+    if (startMemo)
+        [self alertMemoBox];
+}
+                                     
+/**
+ *  when short break starts
+ */
+- (void) shortBreakStarted
+{
+    self.currentStatus = kShortBreak;
+
+    
+    if ([self.mute state] == NSOffState)
+    {
+        sleep(2);
+        [Utilities playSound:@"short_break_sound_path" volumeKey:@"short_break_vol" default:@"short"];
+    }
+    
+    self.break_started = [BreakStarted getWindow];
+    [self.break_started center];
+    [self.break_started setLevel:NSFloatingWindowLevel];
+    [self.break_started makeKeyAndOrderFront:self];
+    
+    [self.timer_updater invalidate];
+    self.minutes = [[[NSUserDefaults standardUserDefaults] objectForKey:@"short_break"] integerValue];
+    self.seconds = 0;
+    self.breakTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
+    [self.timerStatusItem setTitle:[@"Break " stringByAppendingString:self.breakTimerStr]];
+
+    self.timer_updater = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updatePomoTimer:) userInfo:nil repeats:YES];
+    
+    self.long_timer = [NSTimer scheduledTimerWithTimeInterval:[[[NSUserDefaults standardUserDefaults] objectForKey:@"long_break"] intValue] * 60 target:self selector:@selector(BreakEnded) userInfo:nil repeats:NO];
+}
+
+/**
+ *  when long break starts
+ */
+- (void) longBreakStarted
+{
+    self.currentStatus = kLongBreak;
+
+    if ([self.mute state] == NSOffState)
+    {
+        [Utilities playSound:@"long_break_sound_path" volumeKey:@"long_break_vol" default:@"long"];
+    }
+    //pop up break ended.
+    self.break_started = [BreakStarted getWindow];
+    [self.break_started center];
+    [self.break_started setLevel:NSFloatingWindowLevel];
+    [self.break_started makeKeyAndOrderFront:self];
+
+    [self.timer_updater invalidate];
+    self.minutes = [[[NSUserDefaults standardUserDefaults] objectForKey:@"long_break"] integerValue];
+    self.seconds = 0;
+    self.breakTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
+    [self.timerStatusItem setTitle:[@"Break " stringByAppendingString:self.breakTimerStr]];
+
+    self.timer_updater = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updatePomoTimer:) userInfo:nil repeats:YES];
+    
+    
+    self.short_timer = [NSTimer scheduledTimerWithTimeInterval:[[[NSUserDefaults standardUserDefaults] objectForKey:@"short_break"] intValue] * 60 target:self selector:@selector(BreakEnded) userInfo:nil repeats:NO];
+}
+
+//when long break ends.
+- (void) BreakEnded
+{
+   // [self.timer_updater invalidate];
+    self.currentStatus = kDoingNothing;
+    
+    if (([[[NSUserDefaults standardUserDefaults] objectForKey:@"start_auto"] boolValue]))
+    {
+        [self startNextPomo:YES];
+    }
+    else
+    {
+        //pop up break ended.
+        self.break_ended = [BreakEnded getWindow];
+        [self.break_ended center];
+        [self.break_ended setLevel:NSFloatingWindowLevel];
+        [self.break_ended makeKeyAndOrderFront:self];
+    }
+
+}
 @end

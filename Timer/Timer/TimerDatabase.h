@@ -31,8 +31,8 @@
 -(long long) getClientID:(NSString *)clientname;
 -(NSArray *) getClients;
 
--(NSDictionary *) getLogsForClient:(long long)client;
--(NSString *) getRecentLogsForClient:(long long)client;
+-(NSArray *) getLogsForClient:(long long)client;
+-(NSArray *) getRecentLogsForClient:(long long)client;
 -(NSArray *) getLogsAsCSV;
 -(int) bindVariable:(int)index textValue:(NSString *)text int64Value:(long long)intValue context: (sqlite3_stmt *)statement useText:(BOOL)flag useFSR:(BOOL)fsFlag;
 -(void) removeLogs;

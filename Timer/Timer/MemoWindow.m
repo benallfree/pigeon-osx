@@ -49,6 +49,8 @@
               options:NSKeyValueObservingOptionNew
               context:nil];
 
+    [item.controller setSelectionIndexes:[NSIndexSet indexSetWithIndex:1]];
+
     [item.windowController addObserver:item
                             forKeyPath: @"window.selectedLog"
                                options:NSKeyValueObservingOptionNew
@@ -59,7 +61,7 @@
                                options:NSKeyValueObservingOptionNew
                                context:(__bridge void *)(item)];
 
-    
+  
     return controller;
 }
 /**
@@ -72,7 +74,8 @@
 {
     AppDelegate *delegate = (AppDelegate *) [NSApp delegate];
  
-    [delegate startTimer];
+    [delegate uncheckActive];
+    [delegate resetPomoTimer];
     [self orderOut:sender];
 }
 
@@ -97,7 +100,7 @@
     if (![sender isKindOfClass:[NSButton class]]) return;
     //checking if all required fields are filled.
     if ([self.selectedClient length] <=0 ||
-        ([self.memo length] <= 0 && [self.selectedLog length] <=0))
+        [self.memo length] <= 0)
     {
         NSAlert *alert = [[NSAlert alloc] init];
         [alert setMessageText:@"Input are missings. Please review"];
@@ -108,8 +111,6 @@
     NSString *client =  nil;
     client = self.selectedClient;
     
-    if ([self.memo length] <= 0)
-        self.memo = [self.values objectForKey:self.selectedLog];;
     
     long long clientID = [[TimerDatabase sharedInstance] getClientID:client];
     
@@ -121,8 +122,7 @@
     //insert log into database
     [[TimerDatabase sharedInstance] insertLog:[self.memo  stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] forClient:clientID];
     
-    self.selectedLog = self.memo;
-    //close window.
+     //close window.
     [self orderOut:sender];
     
     //make app delegate to reset the timer.
@@ -138,14 +138,33 @@
 -(IBAction)clientChanged:(id)sender
 {
     NSLog(@"client changed");
-    [self.windowController willChangeValueForKey:@"window.previousLogs"];
+    [self.windowController willChangeValueForKey:@"window.values"];
     //get previous logs for the selected client.
-    long long ID = [[TimerDatabase sharedInstance] getClientID:[sender stringValue]];
-    self.values = (NSDictionary *) [[TimerDatabase sharedInstance] getLogsForClient:ID];
-    self.previousLogs = [self.values allKeys];
+    NSString *client = [[(NSPopUpButton*)sender selectedItem] title];
+    long long ID = [[TimerDatabase sharedInstance] getClientID:client];
+    NSMutableArray *arr = (NSMutableArray *) [[TimerDatabase sharedInstance] getLogsForClient:ID];
+    if ([arr count] > 0)
+    {
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"- Today", @"logs", nil];
+        [arr insertObject:dict atIndex:0];
+        NSMutableArray *tempArray =   (NSMutableArray *)[[TimerDatabase sharedInstance] getRecentLogsForClient:ID];
+        dict = [NSDictionary dictionaryWithObjectsAndKeys:@"- Recent", @"logs", nil];
+        self.recentRowIndex = [arr count];
+        
+        [arr addObject:dict];
+        [arr addObjectsFromArray:tempArray];
+    }
+    self.values = arr;
+
+
+    
     if (![self.previousClient isEqualToString:[sender stringValue]])
         self.selectedLog = nil;
-    [self.windowController didChangeValueForKey:@"window.previousLogs"];
+    [self.windowController didChangeValueForKey:@"window.values"];
+    [self.controller willChangeValueForKey:@"selectionIndexes"];
+    [self.controller setSelectionIndexes:[NSIndexSet indexSetWithIndex:1]];
+    [self.controller didChangeValueForKey:@"selectionIndexes"];
+    [self.Tablecontroller selectRowIndexes:[NSIndexSet indexSetWithIndex:1] byExtendingSelection:NO];
     self.previousClient = [sender stringValue];
     
 }
@@ -172,14 +191,26 @@
     
     if ([keyPath isEqualTo:@"window.selectedClient"] )
     {
+        if (self.selectedClient == nil) return;
         
-        [self.windowController willChangeValueForKey:@"window.previousLogs"];
+        [self.windowController willChangeValueForKey:@"window.values"];
         //get previous logs for the selected client.
         long long ID = [[TimerDatabase sharedInstance] getClientID:self.selectedClient];
-       self.values = (NSDictionary *) [[TimerDatabase sharedInstance] getLogsForClient:ID];
-        self.previousLogs = [self.values allKeys];
-        self.selectedLog = [[TimerDatabase sharedInstance] getRecentLogsForClient:ID];
-        [self.windowController didChangeValueForKey:@"window.previousLogs"];
+        NSMutableArray *arr = (NSMutableArray *) [[TimerDatabase sharedInstance] getLogsForClient:ID];
+        if ([arr count] > 0)
+        {
+            NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"- Today", @"logs", nil];
+            [arr insertObject:dict atIndex:0];
+            NSMutableArray *tempArray =   (NSMutableArray *)[[TimerDatabase sharedInstance] getRecentLogsForClient:ID];
+            dict = [NSDictionary dictionaryWithObjectsAndKeys:@"- Recent", @"logs", nil];
+            self.recentRowIndex = [arr count];
+            
+            [arr addObject:dict];
+            [arr addObjectsFromArray:tempArray];
+        }
+        self.values = arr;
+        [self.windowController didChangeValueForKey:@"window.values"];
+        [self.Tablecontroller selectRowIndexes:[NSIndexSet indexSetWithIndex:1] byExtendingSelection:NO];
         self.previousClient = self.selectedClient;
 
     }
@@ -188,7 +219,7 @@
         
         if (self.selectedLog)
         {
-            self.memo = [self.values objectForKey:self.selectedLog];
+           // self.memo = [self.values objectForKey:self.selectedLog];
             
         }
   
@@ -221,5 +252,32 @@
     }
     
     return result;
+}
+
+#pragma -mark
+#pragma nstableview protocol
+
+- (BOOL)tableView:(NSTableView *)aTableView shouldSelectRow:(NSInteger)rowIndex
+{
+    //today header row
+    if (rowIndex <= 0)
+        return NO;
+    
+    if (rowIndex == self.recentRowIndex)
+        return NO;
+    
+    return YES;
+    
+}
+
+- (void)tableViewSelectionDidChange:(NSNotification *)aNotification
+{
+    
+    NSTableView *view = (NSTableView *)aNotification.object;
+    NSInteger index = [view selectedRow];
+    
+    if (index <= 0 || index >= [self.values count]) return;
+    if (index == self.recentRowIndex) return;
+    self.memo = [[self.values objectAtIndex:index] objectForKey:@"originalLogs"];
 }
 @end

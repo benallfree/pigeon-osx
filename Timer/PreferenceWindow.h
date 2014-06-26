@@ -11,6 +11,21 @@
 @interface PreferenceWindow : NSWindow
 
 @property (strong, atomic) NSNumber *value;
+@property (strong, atomic) NSMutableArray *values;
+@property (strong, atomic) NSDictionary *recent_Values;
 
 -(IBAction) OK:(id)sender;
+-(IBAction) play_start_promo:(id)sender;
+-(IBAction) play_short_break:(id)sender;
+-(IBAction) play_long_break:(id)sender;
+-(IBAction) play_tick:(id)sender;
+-(IBAction) browse_start_promo:(id)sender;
+-(IBAction) browse_short_break:(id)sender;
+-(IBAction) browse_long_break:(id)sender;
+-(IBAction) browse_tick:(id)sender;
+-(IBAction) default_start_promo:(id)sender;
+-(IBAction) default_short_break:(id)sender;
+-(IBAction) default_long_break:(id)sender;
+-(IBAction) default_tick:(id)sender;
+-(void) makeCopyOfCurrent;
 @end

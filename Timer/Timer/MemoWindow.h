@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface MemoWindow : NSWindow
+@interface MemoWindow : NSWindow<NSTableViewDelegate>
 
 + (NSWindowController*) loadMemoWindow;
 
@@ -19,11 +19,14 @@
 @property(strong, atomic) NSString *previousClient;
 @property(strong, atomic) NSString *selectedLog;
 @property(strong, atomic) NSMutableArray *previousLogs;
+@property(atomic, readwrite) NSInteger recentRowIndex;
 @property(strong, atomic) NSString *memo;
 @property(strong, atomic) IBOutlet NSTextField *memoBox;
 @property(strong, atomic) IBOutlet NSButton *okbutton;
 @property(strong, atomic) IBOutlet NSComboBox *box;
-@property(strong, atomic) IBOutlet NSDictionary *values;
+@property(strong, atomic) IBOutlet NSMutableArray *values;
+@property(strong, atomic) IBOutlet NSArrayController *controller;
+@property(strong, atomic) IBOutlet NSTableView *Tablecontroller;
 
 -(IBAction)clientChanged:(id)sender;
 -(IBAction)memoChanged:(id)sender;

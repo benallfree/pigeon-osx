@@ -416,31 +416,38 @@ static TimerDatabase *m_sharedInstance = nil;
  *
  *  @return recent log
  */
--(NSString *) getRecentLogsForClient:(long long)client
+-(NSArray *) getRecentLogsForClient:(long long)client
 {
-    NSString *select = [NSString stringWithFormat:@"select memo from logs where client_id = %lld order by created_at desc limit 1;", client];
+    NSString *select = [NSString stringWithFormat:@"select memo from logs where client_id = %lld order by created_at desc limit 5;", client];
     sqlite3_stmt *statement;
-    NSString *arr = nil;
+    NSMutableDictionary *arr = nil;;
+    NSMutableArray *retVal = [[NSMutableArray alloc] init];
     @synchronized(self)
     {
 		if (sqlite3_prepare_v2(m_dbHandle, [select cStringUsingEncoding:NSUTF8StringEncoding], -1, &statement, NULL) == SQLITE_OK)
 		{
             
-            if (sqlite3_step(statement) == SQLITE_ROW)
+            while (sqlite3_step(statement) == SQLITE_ROW)
             {
                 const char *memo = (const char *)sqlite3_column_text(statement, 0);
                 
                 if (memo)
                 {
-                    arr = [[NSString stringWithCString:memo encoding:NSUTF8StringEncoding] stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
+                    arr = [[NSMutableDictionary alloc] init];
+                    NSString *originalStr = [NSString stringWithCString:memo encoding:NSUTF8StringEncoding];
+                     NSString *key = [originalStr stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
+                    [arr setObject:key forKey:@"logs"];
+                    [arr setObject:originalStr forKey:@"originalLogs"];
+                    [retVal addObject:arr];
                 }
                 
             }
     		sqlite3_finalize(statement);
-            return arr;
-		}
+  		}
     }
-    return arr;
+    
+    return retVal;
+    
     
 
 }
@@ -453,11 +460,12 @@ static TimerDatabase *m_sharedInstance = nil;
  *
  *  @return Array containing the logs
  */
--(NSDictionary *) getLogsForClient:(long long)client
+-(NSArray *) getLogsForClient:(long long)client
 {
     NSString *select = [NSString stringWithFormat:@"select l.memo from logs l join (select id,max(created_at) from logs where client_id = %lld group by memo) n on l.id=n.id order by l.created_at desc limit 5;", client];
     sqlite3_stmt *statement;
-    NSMutableDictionary *arr = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *arr = nil;;
+    NSMutableArray *retVal = [[NSMutableArray alloc] init];
     @synchronized(self)
     {
 		if (sqlite3_prepare_v2(m_dbHandle, [select cStringUsingEncoding:NSUTF8StringEncoding], -1, &statement, NULL) == SQLITE_OK)
@@ -469,18 +477,21 @@ static TimerDatabase *m_sharedInstance = nil;
                 
                 if (memo)
                 {
+                    arr = [[NSMutableDictionary alloc] init];
                     NSString *originalStr = [NSString stringWithCString:memo encoding:NSUTF8StringEncoding];
                     NSString *key = [originalStr stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
-                    [arr setObject:originalStr forKey:key];
+                    [arr setObject:key forKey:@"logs"];
+                    [arr setObject:originalStr forKey:@"originalLogs"];
+                    [retVal addObject:arr];
                     //[arr addObject:[NSString stringWithCString:memo encoding:NSUTF8StringEncoding]];
                 }
                 
             }
     		sqlite3_finalize(statement);
-            return arr;
-		}
+  		}
     }
-    return arr;
+    
+     return retVal;
 
 }
 

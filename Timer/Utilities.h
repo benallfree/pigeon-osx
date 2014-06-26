@@ -11,4 +11,8 @@
 @interface Utilities : NSObject
 
 + (NSString *) TimerDbFilePath;
++ (NSString *) PrefFilePath;
++(void) playSound:(NSString *)filekey volumeKey:(NSString *)volKey default:(NSString *)defaultSound;
++(void) playSoundStripped:(NSString *)filekey volumeKey:(NSString *)volKey default:(NSString *)defaultSound;
+
 @end
