@@ -40,7 +40,7 @@
     
     self.currentStatus = kDoingNothing;
     [self performSelectorInBackground:@selector(playTick) withObject:nil];
-
+    [self performSelectorInBackground:@selector(backgroundThread) withObject:nil];
     //setup default time interval for poping up memo window, if not set by user in preferences window.
     NSNumber *number = [[NSUserDefaults standardUserDefaults] objectForKey:@"timeInterval"];
     if (!number)
@@ -64,6 +64,14 @@
             {
                 [self.moreClient close];
                 self.moreClient = nil;
+            }
+            else if (targetWindow == self.break_ended)
+            {
+                [(BreakEnded *)self.break_ended stop:self];
+            }
+            else
+            {
+                [targetWindow close];
             }
             }
 
@@ -240,6 +248,54 @@
     
 }
 /**
+ *  handles menu item click for Enter Logs
+ */
+-(void) handleEnterLogs
+{
+    
+    if ([self.window isVisible])
+    {
+        [self.window makeKeyAndOrderFront:self];
+        return;
+    }
+    
+    [self.timer invalidate];
+    self.timer = nil;
+    
+    if (!self.window)
+    {
+        self.windowctrl =  [MemoWindow loadMemoWindow];
+        
+        self.window = self.windowctrl.window;
+    }
+    ((MemoWindow *)self.window).clients = (NSMutableArray *) [[TimerDatabase sharedInstance] getClients];
+    if (((MemoWindow *)self.window).selectedClient &&
+        [((MemoWindow *)self.window).selectedClient length] > 0)
+    {
+        long long ID = [[TimerDatabase sharedInstance] getClientID:((MemoWindow *)self.window).selectedClient];
+        NSMutableArray *arr = (NSMutableArray *) [[TimerDatabase sharedInstance] getLogsForClient:ID];
+        if ([arr count] > 0)
+        {
+            NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"- Today", @"logs", nil];
+            [arr insertObject:dict atIndex:0];
+            NSMutableArray *tempArray =   (NSMutableArray *)[[TimerDatabase sharedInstance] getRecentLogsForClient:ID];
+            dict = [NSDictionary dictionaryWithObjectsAndKeys:@"- Recent", @"logs", nil];
+            ((MemoWindow *)self.window).recentRowIndex = [arr count];
+            [arr addObject:dict];
+            [arr addObjectsFromArray:tempArray];
+        }
+        ((MemoWindow *)self.window).values = arr;
+        [ ((MemoWindow *)self.window).Tablecontroller selectRowIndexes:[NSIndexSet indexSetWithIndex:1] byExtendingSelection:NO];
+        
+    }
+    
+    [self.window center];
+    [self.window makeKeyAndOrderFront:self];
+    [self.window setLevel:NSFloatingWindowLevel];
+    
+   
+}
+/**
  *  execute preference menu item.
  */
 -(void) handlePreferenceMenuItem
@@ -281,7 +337,7 @@
     //if user hit enter log
     else if (sender == self.enterLog)
     {
-        [self alertMemoBox];
+        [self handleEnterLogs];
     }
     //handle preference
     else if (sender == self.Preferences)
@@ -315,6 +371,13 @@
  */
 - (void) alertMemoBox
 {
+    
+    if (( [self.active state] == NSOnState) && (self.currentStatus != kPomoInProgress))
+    {
+        [self startTimer];
+        return;
+    }
+    
     if ([self.window isVisible])
     {
         [self.window makeKeyAndOrderFront:self];
@@ -371,10 +434,40 @@
         sleep(1);
 }
 }
+
+-(void) backgroundThread
+{
+    while (1)
+    {
+    if (self.seconds == 0)
+    {
+        if (self.minutes >0)
+            self.minutes--;
+        self.seconds = 59;
+    }
+    else
+        self.seconds--;
+
+
+    if (self.currentStatus == kPomoInProgress)
+    {
+        self.pomodoroTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
+        [self.timerStatusItem setTitle:[@"Pomo " stringByAppendingString:self.pomodoroTimerStr]];
+    }
+    else if (self.currentStatus == kLongBreak || self.currentStatus == kShortBreak)
+    {
+        self.breakTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
+        [self.timerStatusItem setTitle:[@"Break " stringByAppendingString:self.breakTimerStr]];
+    
+    }
+        sleep(1);
+    }
+}
+
 /**
  *  updates timer strings
  *
- *  @param sender <#sender description#>
+ *  @param sender
  */
 -(void) updatePomoTimer:(id)sender
 {
@@ -389,24 +482,24 @@
     }
     
     
-    if (self.seconds == 0)
+  /*  if (self.seconds == 0)
     {
         if (self.minutes >0)
             self.minutes--;
         self.seconds = 59;
     }
     else
-        self.seconds--;
+        self.seconds--;*/
     
     
     if (self.currentStatus == kPomoInProgress)
     {
-        self.pomodoroTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
+      //  self.pomodoroTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
         [self.timerStatusItem setTitle:[@"Pomo " stringByAppendingString:self.pomodoroTimerStr]];
     }
     else
     {
-        self.breakTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
+      //  self.breakTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
         [self.timerStatusItem setTitle:[@"Break " stringByAppendingString:self.breakTimerStr]];
         
     }
@@ -630,7 +723,7 @@
 
     self.timer_updater = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updatePomoTimer:) userInfo:nil repeats:YES];
     
-    self.long_timer = [NSTimer scheduledTimerWithTimeInterval:[[[NSUserDefaults standardUserDefaults] objectForKey:@"long_break"] intValue] * 60 target:self selector:@selector(BreakEnded) userInfo:nil repeats:NO];
+    self.long_timer = [NSTimer scheduledTimerWithTimeInterval:[[[NSUserDefaults standardUserDefaults] objectForKey:@"short_break"] intValue] * 60 target:self selector:@selector(BreakEnded) userInfo:nil repeats:NO];
 }
 
 /**
@@ -659,7 +752,7 @@
     self.timer_updater = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updatePomoTimer:) userInfo:nil repeats:YES];
     
     
-    self.short_timer = [NSTimer scheduledTimerWithTimeInterval:[[[NSUserDefaults standardUserDefaults] objectForKey:@"short_break"] intValue] * 60 target:self selector:@selector(BreakEnded) userInfo:nil repeats:NO];
+    self.short_timer = [NSTimer scheduledTimerWithTimeInterval:[[[NSUserDefaults standardUserDefaults] objectForKey:@"long_break"] intValue] * 60 target:self selector:@selector(BreakEnded) userInfo:nil repeats:NO];
 }
 
 //when long break ends.
@@ -670,6 +763,7 @@
     
     if (([[[NSUserDefaults standardUserDefaults] objectForKey:@"start_auto"] boolValue]))
     {
+        [self.break_started close];
         [self startNextPomo:YES];
     }
     else

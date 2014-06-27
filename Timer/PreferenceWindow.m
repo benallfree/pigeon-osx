@@ -223,6 +223,7 @@
     if (log_interval > pomo_interval)
     {
         [[NSUserDefaults standardUserDefaults] setObject:[self.recent_Values objectForKey:@"log_interval"] forKey:@"log_interval"];
+        [[NSUserDefaults standardUserDefaults] setObject:[self.recent_Values objectForKey:@"pomodor_interval"] forKey:@"pomodor_interval"];
 
         NSAlert *alert = [[NSAlert alloc] init];
         [alert setMessageText:@"Log interval cannot be greater than pomodoro interval."];
@@ -230,10 +231,11 @@
         [self makeKeyAndOrderFront:self];
         return;
     }
+
     if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"log_interval"] isEqualToString: [self.recent_Values objectForKey:@"log_interval"]])
         [app alertMemoBox];
    
-    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"pomodor_interval"] isEqualToString: [self.recent_Values objectForKey:@"pomodor_interval"]])
+    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"pomodor_interval"] isEqualToString: [self.recent_Values objectForKey:@"pomodor_interval"]] && app.currentStatus == kPomoInProgress)
     {
         NSAlert *alert = [NSAlert alertWithMessageText:@" Pomodoro in progress. Restart?" defaultButton:@"OK" alternateButton:@"Cancel" otherButton:nil informativeTextWithFormat:@""];
         
