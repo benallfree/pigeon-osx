@@ -173,6 +173,7 @@
     if (self.active.state == NSOnState)
     {
         [self uncheckActive];
+        [self resetPomoTimer];
         
     }
     else
