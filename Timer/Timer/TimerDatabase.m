@@ -418,7 +418,7 @@ static TimerDatabase *m_sharedInstance = nil;
  */
 -(NSArray *) getRecentLogsForClient:(long long)client
 {
-    NSString *select = [NSString stringWithFormat:@"select memo from logs where client_id = %lld order by created_at desc limit 5;", client];
+    NSString *select = [NSString stringWithFormat:@"select l.memo from logs l join (select id,max(created_at) from logs where client_id = %lld and exported_at is not null group by memo) n on l.id=n.id order by l.created_at desc limit 10;", client];
     sqlite3_stmt *statement;
     NSMutableDictionary *arr = nil;;
     NSMutableArray *retVal = [[NSMutableArray alloc] init];
@@ -462,7 +462,7 @@ static TimerDatabase *m_sharedInstance = nil;
  */
 -(NSArray *) getLogsForClient:(long long)client
 {
-    NSString *select = [NSString stringWithFormat:@"select l.memo from logs l join (select id,max(created_at) from logs where client_id = %lld group by memo) n on l.id=n.id order by l.created_at desc limit 5;", client];
+    NSString *select = [NSString stringWithFormat:@"select l.memo from logs l join (select id,max(created_at) from logs where client_id = %lld and exported_at is null group by memo) n on l.id=n.id order by l.created_at desc;", client];
     sqlite3_stmt *statement;
     NSMutableDictionary *arr = nil;;
     NSMutableArray *retVal = [[NSMutableArray alloc] init];

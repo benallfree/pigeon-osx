@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A68FE0EE1953D45A004B98AA"
                BuildableName = "Timer.app"
-               BlueprintName = "Timer"
-               ReferencedContainer = "container:Timer.xcodeproj">
+               BlueprintName = "Pigeon Timer"
+               ReferencedContainer = "container:Pigeon Timer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,8 +34,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A68FE10F1953D45A004B98AA"
                BuildableName = "TimerTests.xctest"
-               BlueprintName = "TimerTests"
-               ReferencedContainer = "container:Timer.xcodeproj">
+               BlueprintName = "Pigeon TimerTests"
+               ReferencedContainer = "container:Pigeon Timer.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -44,8 +44,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A68FE0EE1953D45A004B98AA"
             BuildableName = "Timer.app"
-            BlueprintName = "Timer"
-            ReferencedContainer = "container:Timer.xcodeproj">
+            BlueprintName = "Pigeon Timer"
+            ReferencedContainer = "container:Pigeon Timer.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -63,8 +63,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A68FE0EE1953D45A004B98AA"
             BuildableName = "Timer.app"
-            BlueprintName = "Timer"
-            ReferencedContainer = "container:Timer.xcodeproj">
+            BlueprintName = "Pigeon Timer"
+            ReferencedContainer = "container:Pigeon Timer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -81,8 +81,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A68FE0EE1953D45A004B98AA"
             BuildableName = "Timer.app"
-            BlueprintName = "Timer"
-            ReferencedContainer = "container:Timer.xcodeproj">
+            BlueprintName = "Pigeon Timer"
+            ReferencedContainer = "container:Pigeon Timer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

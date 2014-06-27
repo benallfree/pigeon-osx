@@ -74,8 +74,8 @@
 {
     AppDelegate *delegate = (AppDelegate *) [NSApp delegate];
  
-    [delegate uncheckActive];
-    [delegate resetPomoTimer];
+  //  [delegate uncheckActive];
+  //  [delegate resetPomoTimer];
     [self orderOut:sender];
 }
 
