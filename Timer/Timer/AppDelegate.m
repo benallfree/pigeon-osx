@@ -139,7 +139,8 @@
 	//Sets the images in our NSStatusItem
 	[self.timerStatusItem setImage:self.timerStatusImage];
 	[self.timerStatusItem setAlternateImage:self.timerStatusHighlightImage];
-    
+    if (self.break_started)
+        [self.break_started close];
     
 
    
