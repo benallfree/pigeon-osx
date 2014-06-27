@@ -32,6 +32,7 @@
 @property (atomic, strong)  NSWindow *pref_window;
 @property (atomic, strong)  NSWindow *break_started;
 @property (atomic, strong)  NSWindow *break_ended;
+@property (atomic, strong)  NSWindow *check_loginItem;
 @property (atomic, strong)  NSWindowController *windowctrl;
 @property (atomic, strong)  NSTimer *timer;
 @property (atomic, strong)  NSTimer *pomo_timer;
@@ -62,4 +63,8 @@
 - (void) longBreakStarted;
 - (void) uncheckActive;
 - (void) loadPreferences;
+- (void) addToLoginItem;
+- (BOOL) itemExistsinLoginList;
+- (void) setupApp;
+
 @end

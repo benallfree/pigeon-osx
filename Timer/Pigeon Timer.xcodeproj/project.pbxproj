@@ -17,6 +17,9 @@
 		A6140989195B9CC700A6229B /* BreakStarted.m in Sources */ = {isa = PBXBuildFile; fileRef = A6140988195B9CC700A6229B /* BreakStarted.m */; };
 		A614098B195B9E0F00A6229B /* BreakEnded.xib in Resources */ = {isa = PBXBuildFile; fileRef = A614098A195B9E0F00A6229B /* BreakEnded.xib */; };
 		A614098E195B9EC700A6229B /* BreakEnded.m in Sources */ = {isa = PBXBuildFile; fileRef = A614098D195B9EC700A6229B /* BreakEnded.m */; };
+		A61409A1195E2BDD00A6229B /* StartupCheck.xib in Resources */ = {isa = PBXBuildFile; fileRef = A61409A0195E2BDD00A6229B /* StartupCheck.xib */; };
+		A61409A4195E2D7A00A6229B /* LaunchUpWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = A61409A3195E2D7A00A6229B /* LaunchUpWindow.m */; };
+		A61409A7195E382F00A6229B /* NSBundle+LoginItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A61409A6195E382F00A6229B /* NSBundle+LoginItem.m */; };
 		A68FE0F31953D45A004B98AA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A68FE0F21953D45A004B98AA /* Cocoa.framework */; };
 		A68FE0FD1953D45A004B98AA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A68FE0FB1953D45A004B98AA /* InfoPlist.strings */; };
 		A68FE0FF1953D45A004B98AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A68FE0FE1953D45A004B98AA /* main.m */; };
@@ -68,6 +71,11 @@
 		A614098A195B9E0F00A6229B /* BreakEnded.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BreakEnded.xib; sourceTree = "<group>"; };
 		A614098C195B9EC700A6229B /* BreakEnded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BreakEnded.h; sourceTree = "<group>"; };
 		A614098D195B9EC700A6229B /* BreakEnded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BreakEnded.m; sourceTree = "<group>"; };
+		A61409A0195E2BDD00A6229B /* StartupCheck.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartupCheck.xib; sourceTree = "<group>"; };
+		A61409A2195E2D7A00A6229B /* LaunchUpWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchUpWindow.h; sourceTree = "<group>"; };
+		A61409A3195E2D7A00A6229B /* LaunchUpWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchUpWindow.m; sourceTree = "<group>"; };
+		A61409A5195E382F00A6229B /* NSBundle+LoginItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+LoginItem.h"; sourceTree = SOURCE_ROOT; };
+		A61409A6195E382F00A6229B /* NSBundle+LoginItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+LoginItem.m"; sourceTree = SOURCE_ROOT; };
 		A68FE0EF1953D45A004B98AA /* Pigeon Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pigeon Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A68FE0F21953D45A004B98AA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		A68FE0F51953D45A004B98AA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -168,9 +176,20 @@
 			name = Break;
 			sourceTree = "<group>";
 		};
+		A614099F195E2B6D00A6229B /* LaunchUp */ = {
+			isa = PBXGroup;
+			children = (
+				A61409A0195E2BDD00A6229B /* StartupCheck.xib */,
+				A61409A2195E2D7A00A6229B /* LaunchUpWindow.h */,
+				A61409A3195E2D7A00A6229B /* LaunchUpWindow.m */,
+			);
+			name = LaunchUp;
+			sourceTree = "<group>";
+		};
 		A68FE0E61953D45A004B98AA = {
 			isa = PBXGroup;
 			children = (
+				A614099F195E2B6D00A6229B /* LaunchUp */,
 				A6140984195B9A7000A6229B /* Break */,
 				A614097B195B1B4E00A6229B /* sounds */,
 				A61409091957D49900A6229B /* newClientWindow */,
@@ -221,6 +240,8 @@
 		A68FE0F81953D45A004B98AA /* Timer */ = {
 			isa = PBXGroup;
 			children = (
+				A61409A5195E382F00A6229B /* NSBundle+LoginItem.h */,
+				A61409A6195E382F00A6229B /* NSBundle+LoginItem.m */,
 				A6CD25D2195582BF001D3A79 /* CHCSVParser.h */,
 				A6CD25D3195582BF001D3A79 /* CHCSVParser.m */,
 				A68FE1041953D45A004B98AA /* AppDelegate.h */,
@@ -386,6 +407,7 @@
 				A6140986195B9A8400A6229B /* BreakStarted.xib in Resources */,
 				A614090B1957D4B800A6229B /* NewClient.xib in Resources */,
 				A68FE10B1953D45A004B98AA /* Images.xcassets in Resources */,
+				A61409A1195E2BDD00A6229B /* StartupCheck.xib in Resources */,
 				A614098B195B9E0F00A6229B /* BreakEnded.xib in Resources */,
 				A68FE13C1954B1E9004B98AA /* Preferences.xib in Resources */,
 				A68FE1031953D45A004B98AA /* Credits.rtf in Resources */,
@@ -421,8 +443,10 @@
 				A68FE13F1954B28A004B98AA /* NSFormatter+NumberOnlyFormatter.m in Sources */,
 				A68FE1061953D45A004B98AA /* AppDelegate.m in Sources */,
 				A6CD25CC1955784F001D3A79 /* SelectableTextView.m in Sources */,
+				A61409A4195E2D7A00A6229B /* LaunchUpWindow.m in Sources */,
 				A614098E195B9EC700A6229B /* BreakEnded.m in Sources */,
 				A6CD25D119557DD5001D3A79 /* PreferenceWindow.m in Sources */,
+				A61409A7195E382F00A6229B /* NSBundle+LoginItem.m in Sources */,
 				A614090E1957D5C600A6229B /* NewWindow.m in Sources */,
 				A68FE0FF1953D45A004B98AA /* main.m in Sources */,
 				A68FE12F1953DEC4004B98AA /* MemoWindow.m in Sources */,

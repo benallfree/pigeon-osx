@@ -1010,8 +1010,8 @@ Gw
                             </menu>
                         </popUpButtonCell>
                         <connections>
-                            <binding destination="iBg-oJ-NNV" name="selectedValue" keyPath="values.pomodor_interval" previousBinding="iaj-lx-ftj" id="SyN-Fx-kSJ"/>
                             <binding destination="-3" name="contentValues" keyPath="self.delegate.pref_window.values" id="iaj-lx-ftj"/>
+                            <binding destination="iBg-oJ-NNV" name="selectedValue" keyPath="values.pomodor_interval" previousBinding="iaj-lx-ftj" id="SyN-Fx-kSJ"/>
                         </connections>
                     </popUpButton>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aNe-NI-nb5">
@@ -1029,8 +1029,8 @@ Gw
                             </menu>
                         </popUpButtonCell>
                         <connections>
-                            <binding destination="iBg-oJ-NNV" name="selectedValue" keyPath="values.log_interval" previousBinding="KkN-Fj-CZS" id="6Q1-JE-S4j"/>
                             <binding destination="-3" name="contentValues" keyPath="self.delegate.pref_window.values" id="KkN-Fj-CZS"/>
+                            <binding destination="iBg-oJ-NNV" name="selectedValue" keyPath="values.log_interval" previousBinding="KkN-Fj-CZS" id="6Q1-JE-S4j"/>
                         </connections>
                     </popUpButton>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jaY-Zn-Idg">
@@ -1048,8 +1048,8 @@ Gw
                             </menu>
                         </popUpButtonCell>
                         <connections>
-                            <binding destination="iBg-oJ-NNV" name="selectedValue" keyPath="values.short_break" previousBinding="P85-D8-d28" id="dzB-uG-ICE"/>
                             <binding destination="-3" name="contentValues" keyPath="self.delegate.pref_window.values" id="P85-D8-d28"/>
+                            <binding destination="iBg-oJ-NNV" name="selectedValue" keyPath="values.short_break" previousBinding="P85-D8-d28" id="dzB-uG-ICE"/>
                         </connections>
                     </popUpButton>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LRE-xf-g1j">
@@ -1067,8 +1067,8 @@ Gw
                             </menu>
                         </popUpButtonCell>
                         <connections>
-                            <binding destination="iBg-oJ-NNV" name="selectedValue" keyPath="values.long_break" previousBinding="Pst-Oq-5qv" id="rA7-4l-BOR"/>
                             <binding destination="-3" name="contentValues" keyPath="self.delegate.pref_window.values" id="Pst-Oq-5qv"/>
+                            <binding destination="iBg-oJ-NNV" name="selectedValue" keyPath="values.long_break" previousBinding="Pst-Oq-5qv" id="rA7-4l-BOR"/>
                         </connections>
                     </popUpButton>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TvX-4M-apd">
@@ -1104,8 +1104,8 @@ Gw
                             </menu>
                         </popUpButtonCell>
                         <connections>
-                            <binding destination="iBg-oJ-NNV" name="selectedValue" keyPath="values.long_break_after" previousBinding="dRE-Dx-vOb" id="bRg-1g-fCR"/>
                             <binding destination="-3" name="contentValues" keyPath="self.delegate.pref_window.values" id="dRE-Dx-vOb"/>
+                            <binding destination="iBg-oJ-NNV" name="selectedValue" keyPath="values.long_break_after" previousBinding="dRE-Dx-vOb" id="bRg-1g-fCR"/>
                         </connections>
                     </popUpButton>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dch-cT-KGl">
@@ -1153,6 +1153,17 @@ Gw
                         </buttonCell>
                         <connections>
                             <binding destination="WEf-pR-w0i" name="value" keyPath="values.start_auto" id="Uvk-70-i6p"/>
+                        </connections>
+                    </button>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NTx-Oe-qIA">
+                        <rect key="frame" x="321" y="44" width="220" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Load Pigeon automatically at startup." bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="dve-2Z-WPB">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                        </buttonCell>
+                        <connections>
+                            <binding destination="WEf-pR-w0i" name="value" keyPath="values.load_onStart" id="2b0-Z5-N7X"/>
                         </connections>
                     </button>
                 </subviews>

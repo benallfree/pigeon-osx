@@ -14,6 +14,7 @@
 #import "PreferenceWindow.h"
 #import "BreakEnded.h"
 #import "BreakStarted.h"
+#import "NSBundle+LoginItem.h"
 
 @implementation AppDelegate
 
@@ -38,59 +39,30 @@
     //setup status item
     [self setupStatusItem];
     
-    self.currentStatus = kDoingNothing;
-    [self performSelectorInBackground:@selector(playTick) withObject:nil];
-    [self performSelectorInBackground:@selector(backgroundThread) withObject:nil];
-    //setup default time interval for poping up memo window, if not set by user in preferences window.
-    NSNumber *number = [[NSUserDefaults standardUserDefaults] objectForKey:@"timeInterval"];
-    if (!number)
+    [[NSUserDefaults standardUserDefaults]  addObserver:self
+                            forKeyPath: @"load_onStart"
+                               options:NSKeyValueObservingOptionNew
+                               context:nil];
+    
+
+    NSNumber *check_laucnItem = [[NSUserDefaults standardUserDefaults] objectForKey:@"load_onStart"];
+    NSNumber *dont_check = [[NSUserDefaults standardUserDefaults] objectForKey:@"dont_ask"];
+    if (![[NSBundle mainBundle] isLoginItem] && (!dont_check || ![dont_check boolValue]))
     {
-        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:10] forKey:@"timeInterval"];
+        if (!check_laucnItem || ![check_laucnItem boolValue])
+        {
+            NSWindowController * controller = [[NSWindowController alloc] initWithWindowNibName:@"StartupCheck" ];
+            self.check_loginItem = (NSWindow *)controller.window;
+            [self.check_loginItem center];
+            [self.check_loginItem makeKeyAndOrderFront:self];
+            [self.check_loginItem setLevel:NSFloatingWindowLevel];
+            return;
+        }
     }
     
-    //added esc key controller
-    NSEvent* (^handler)(NSEvent*) = ^(NSEvent *theEvent) {
-        NSWindow *targetWindow = theEvent.window;
-        if (theEvent.keyCode == 53) {
-            if (targetWindow == self.window) {
-                [self.window orderOut:self];
-                    return theEvent;
-                }
-            else if (targetWindow == self.pref_window)
-            {
-                [self.pref_window orderOut:self];
-            }
-            else if (targetWindow == self.moreClient)
-            {
-                [self.moreClient close];
-                self.moreClient = nil;
-            }
-            else if (targetWindow == self.break_ended)
-            {
-                [(BreakEnded *)self.break_ended stop:self];
-            }
-            else
-            {
-                [targetWindow close];
-            }
-            }
-
+    [self setupApp];
     
-        NSEvent *result = theEvent;
-        return result;
-    };
-    
-  
-    self.eventMonitor = [NSEvent addLocalMonitorForEventsMatchingMask:NSKeyDownMask handler:handler];
-    [self.mute setState:NSOffState];
-    [self loadPreferences];
-    //popup the memo box.
-    
-    
-    [NSTimer scheduledTimerWithTimeInterval:1.1 target:self selector:@selector(launchAlertMemoOnStartup:) userInfo:nil repeats:NO];
- 
-    [self startNextPomo:YES];
-
+   
 }
 
 /**
@@ -293,6 +265,28 @@
     [self.window setLevel:NSFloatingWindowLevel];
     
    
+}
+
+
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    
+    if ([keyPath isEqualTo:@"load_onStart"] )
+    {
+         NSNumber *check_laucnItem = [[NSUserDefaults standardUserDefaults] objectForKey:@"load_onStart"];
+        if ([check_laucnItem boolValue])
+        {
+            if (![[NSBundle mainBundle] isLoginItem])
+            {
+                [[NSBundle mainBundle] addToLoginItems];
+            }
+        }
+        else
+        {
+            [[NSBundle mainBundle] removeFromLoginItems];
+        }
+    }
 }
 /**
  *  execute preference menu item.
@@ -772,4 +766,127 @@
     }
 
 }
+
+
+/**
+ *  checks if egnyte Drive was added login items
+ *
+ *  @return YES if added otherwise false
+ */
+-(BOOL) itemExistsinLoginList
+{
+    
+    BOOL exists = NO;
+    NSString * appPath = [[NSBundle mainBundle] bundlePath];
+    // This will retrieve the path for the application
+    // For example, /Applications/test.app
+    CFURLRef url = (__bridge CFURLRef)([NSURL fileURLWithPath:appPath]);
+    // Create a reference to the shared file list.
+    LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
+    if (loginItems) {
+        UInt32 seedValue;
+        //Retrieve the list of Login Items and cast them to
+        // a NSArray so that it will be easier to iterate.
+        NSArray *loginItemsArray = CFBridgingRelease(LSSharedFileListCopySnapshot(loginItems, &seedValue));
+        for(int i = 0; i< [loginItemsArray count]; i++){
+            LSSharedFileListItemRef currentItemRef = CFBridgingRetain([loginItemsArray objectAtIndex:i]);
+            //Resolve the item with URL
+            if (LSSharedFileListItemResolve(currentItemRef, 0, (CFURLRef*) &url, NULL) == noErr) {
+                NSString * urlPath = [((NSURL *)CFBridgingRelease(url)) path];
+                if ([urlPath compare:appPath] == NSOrderedSame){
+                    exists = YES;
+                }
+            }
+        }
+    }
+    CFRelease(loginItems);
+    return exists;
+    
+}
+
+
+/**
+ *  adds Egnyte drive to startup lit
+ */
+-(void) addToLoginItem
+{
+    
+    if ( [self itemExistsinLoginList] ) return;
+    //    kLSSharedFileListSessionLoginItems
+    NSString *strUserPath = [[NSBundle mainBundle] bundlePath];
+    CFURLRef url = (CFURLRef)CFBridgingRetain([NSURL fileURLWithPath:strUserPath]);
+    
+    // Create a reference to the shared file list.
+    LSSharedFileListRef favoriteItems = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
+    
+    if (favoriteItems) {
+        //Insert an item to the list.
+        LSSharedFileListItemRef item = LSSharedFileListInsertItemURL(favoriteItems,                                                                     kLSSharedFileListItemLast, NULL, NULL,                                                                     url, NULL, NULL);
+        if (item){
+            CFRelease(item);
+        }
+    }
+    
+    CFRelease(favoriteItems);
+}
+
+//sets up rest of the app things
+- (void) setupApp
+{
+    self.currentStatus = kDoingNothing;
+    [self performSelectorInBackground:@selector(playTick) withObject:nil];
+    [self performSelectorInBackground:@selector(backgroundThread) withObject:nil];
+    //setup default time interval for poping up memo window, if not set by user in preferences window.
+    NSNumber *number = [[NSUserDefaults standardUserDefaults] objectForKey:@"timeInterval"];
+    if (!number)
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:10] forKey:@"timeInterval"];
+    }
+    
+    //added esc key controller
+    NSEvent* (^handler)(NSEvent*) = ^(NSEvent *theEvent) {
+        NSWindow *targetWindow = theEvent.window;
+        if (theEvent.keyCode == 53) {
+            if (targetWindow == self.window) {
+                [self.window orderOut:self];
+                return theEvent;
+            }
+            else if (targetWindow == self.pref_window)
+            {
+                [self.pref_window orderOut:self];
+            }
+            else if (targetWindow == self.moreClient)
+            {
+                [self.moreClient close];
+                self.moreClient = nil;
+            }
+            else if (targetWindow == self.break_ended)
+            {
+                [(BreakEnded *)self.break_ended stop:self];
+            }
+            else
+            {
+                [targetWindow close];
+            }
+        }
+        
+        
+        NSEvent *result = theEvent;
+        return result;
+    };
+    
+    
+    
+    self.eventMonitor = [NSEvent addLocalMonitorForEventsMatchingMask:NSKeyDownMask handler:handler];
+    [self.mute setState:NSOffState];
+    [self loadPreferences];
+    //popup the memo box.
+    
+    
+    [NSTimer scheduledTimerWithTimeInterval:1.1 target:self selector:@selector(launchAlertMemoOnStartup:) userInfo:nil repeats:NO];
+    
+    [self startNextPomo:YES];
+   
+}
+
 @end
