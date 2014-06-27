@@ -53,7 +53,7 @@
         NSWindow *targetWindow = theEvent.window;
         if (theEvent.keyCode == 53) {
             if (targetWindow == self.window) {
-                [self.window close];
+                [self.window orderOut:self];
                     return theEvent;
                 }
             else if (targetWindow == self.pref_window)
@@ -276,8 +276,6 @@
     {
         long long ID = [[TimerDatabase sharedInstance] getClientID:((MemoWindow *)self.window).selectedClient];
         NSMutableArray *arr = (NSMutableArray *) [[TimerDatabase sharedInstance] getLogsForClient:ID];
-        if ([arr count] > 0)
-        {
             NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"- Today", @"logs", nil];
             [arr insertObject:dict atIndex:0];
             NSMutableArray *tempArray =   (NSMutableArray *)[[TimerDatabase sharedInstance] getRecentLogsForClient:ID];
@@ -285,7 +283,6 @@
             ((MemoWindow *)self.window).recentRowIndex = [arr count];
             [arr addObject:dict];
             [arr addObjectsFromArray:tempArray];
-        }
         ((MemoWindow *)self.window).values = arr;
         [ ((MemoWindow *)self.window).Tablecontroller selectRowIndexes:[NSIndexSet indexSetWithIndex:1] byExtendingSelection:NO];
         
@@ -401,8 +398,6 @@
     {
         long long ID = [[TimerDatabase sharedInstance] getClientID:((MemoWindow *)self.window).selectedClient];
         NSMutableArray *arr = (NSMutableArray *) [[TimerDatabase sharedInstance] getLogsForClient:ID];
-        if ([arr count] > 0)
-        {
             NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"- Today", @"logs", nil];
             [arr insertObject:dict atIndex:0];
             NSMutableArray *tempArray =   (NSMutableArray *)[[TimerDatabase sharedInstance] getRecentLogsForClient:ID];
@@ -410,7 +405,6 @@
             ((MemoWindow *)self.window).recentRowIndex = [arr count];
             [arr addObject:dict];
             [arr addObjectsFromArray:tempArray];
-        }
         ((MemoWindow *)self.window).values = arr;
         [ ((MemoWindow *)self.window).Tablecontroller selectRowIndexes:[NSIndexSet indexSetWithIndex:1] byExtendingSelection:NO];
         

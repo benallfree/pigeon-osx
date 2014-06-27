@@ -143,8 +143,6 @@
     NSString *client = [[(NSPopUpButton*)sender selectedItem] title];
     long long ID = [[TimerDatabase sharedInstance] getClientID:client];
     NSMutableArray *arr = (NSMutableArray *) [[TimerDatabase sharedInstance] getLogsForClient:ID];
-    if ([arr count] > 0)
-    {
         NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"- Today", @"logs", nil];
         [arr insertObject:dict atIndex:0];
         NSMutableArray *tempArray =   (NSMutableArray *)[[TimerDatabase sharedInstance] getRecentLogsForClient:ID];
@@ -153,7 +151,6 @@
         
         [arr addObject:dict];
         [arr addObjectsFromArray:tempArray];
-    }
     self.values = arr;
 
 
@@ -197,8 +194,6 @@
         //get previous logs for the selected client.
         long long ID = [[TimerDatabase sharedInstance] getClientID:self.selectedClient];
         NSMutableArray *arr = (NSMutableArray *) [[TimerDatabase sharedInstance] getLogsForClient:ID];
-        if ([arr count] > 0)
-        {
             NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"- Today", @"logs", nil];
             [arr insertObject:dict atIndex:0];
             NSMutableArray *tempArray =   (NSMutableArray *)[[TimerDatabase sharedInstance] getRecentLogsForClient:ID];
@@ -207,7 +202,6 @@
             
             [arr addObject:dict];
             [arr addObjectsFromArray:tempArray];
-        }
         self.values = arr;
         [self.windowController didChangeValueForKey:@"window.values"];
         [self.Tablecontroller selectRowIndexes:[NSIndexSet indexSetWithIndex:1] byExtendingSelection:NO];
