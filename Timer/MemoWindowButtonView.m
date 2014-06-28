@@ -27,9 +27,14 @@
 
 - (BOOL) performKeyEquivalent:(NSEvent *)key
 {
-     if (key.keyCode == 36) {
-         return YES;
-     }
+    if (([key modifierFlags] & NSDeviceIndependentModifierFlagsMask) == NSCommandKeyMask)
+    {
+        if (key.keyCode == 36) {
+            [[self window] orderOut:self];
+        }
+
+    }
+    
     [super performKeyEquivalent:key];
     return NO;
 }
