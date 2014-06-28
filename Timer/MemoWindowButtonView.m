@@ -7,6 +7,7 @@
 //
 
 #import "MemoWindowButtonView.h"
+#import "MemoWindow.h"
 
 @implementation MemoWindowButtonView
 
@@ -25,13 +26,16 @@
     // Drawing code here.
 }
 
+int count = 0;
 - (BOOL) performKeyEquivalent:(NSEvent *)key
 {
+    NSLog(@"%d", key.type);
     if (([key modifierFlags] & NSDeviceIndependentModifierFlagsMask) == NSCommandKeyMask)
     {
         if (key.keyCode == 36) {
-            [[self window] orderOut:self];
+            [(MemoWindow *)[self window] OK:self];
         }
+        return YES;
 
     }
     
