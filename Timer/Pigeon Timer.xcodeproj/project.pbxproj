@@ -20,6 +20,7 @@
 		A61409A1195E2BDD00A6229B /* StartupCheck.xib in Resources */ = {isa = PBXBuildFile; fileRef = A61409A0195E2BDD00A6229B /* StartupCheck.xib */; };
 		A61409A4195E2D7A00A6229B /* LaunchUpWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = A61409A3195E2D7A00A6229B /* LaunchUpWindow.m */; };
 		A61409A7195E382F00A6229B /* NSBundle+LoginItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A61409A6195E382F00A6229B /* NSBundle+LoginItem.m */; };
+		A61409AB195F407800A6229B /* PomodoroSound.m in Sources */ = {isa = PBXBuildFile; fileRef = A61409AA195F407800A6229B /* PomodoroSound.m */; };
 		A68FE0F31953D45A004B98AA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A68FE0F21953D45A004B98AA /* Cocoa.framework */; };
 		A68FE0FD1953D45A004B98AA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A68FE0FB1953D45A004B98AA /* InfoPlist.strings */; };
 		A68FE0FF1953D45A004B98AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A68FE0FE1953D45A004B98AA /* main.m */; };
@@ -76,6 +77,8 @@
 		A61409A3195E2D7A00A6229B /* LaunchUpWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchUpWindow.m; sourceTree = "<group>"; };
 		A61409A5195E382F00A6229B /* NSBundle+LoginItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+LoginItem.h"; sourceTree = SOURCE_ROOT; };
 		A61409A6195E382F00A6229B /* NSBundle+LoginItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+LoginItem.m"; sourceTree = SOURCE_ROOT; };
+		A61409A9195F407800A6229B /* PomodoroSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomodoroSound.h; sourceTree = "<group>"; };
+		A61409AA195F407800A6229B /* PomodoroSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PomodoroSound.m; sourceTree = "<group>"; };
 		A68FE0EF1953D45A004B98AA /* Pigeon Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pigeon Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A68FE0F21953D45A004B98AA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		A68FE0F51953D45A004B98AA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -186,9 +189,19 @@
 			name = LaunchUp;
 			sourceTree = "<group>";
 		};
+		A61409A8195F405100A6229B /* PomodoroSound */ = {
+			isa = PBXGroup;
+			children = (
+				A61409A9195F407800A6229B /* PomodoroSound.h */,
+				A61409AA195F407800A6229B /* PomodoroSound.m */,
+			);
+			name = PomodoroSound;
+			sourceTree = "<group>";
+		};
 		A68FE0E61953D45A004B98AA = {
 			isa = PBXGroup;
 			children = (
+				A61409A8195F405100A6229B /* PomodoroSound */,
 				A614099F195E2B6D00A6229B /* LaunchUp */,
 				A6140984195B9A7000A6229B /* Break */,
 				A614097B195B1B4E00A6229B /* sounds */,
@@ -440,6 +453,7 @@
 			files = (
 				A68FE133195441BD004B98AA /* TimerDatabase.m in Sources */,
 				A6140989195B9CC700A6229B /* BreakStarted.m in Sources */,
+				A61409AB195F407800A6229B /* PomodoroSound.m in Sources */,
 				A68FE13F1954B28A004B98AA /* NSFormatter+NumberOnlyFormatter.m in Sources */,
 				A68FE1061953D45A004B98AA /* AppDelegate.m in Sources */,
 				A6CD25CC1955784F001D3A79 /* SelectableTextView.m in Sources */,

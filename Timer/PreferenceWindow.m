@@ -31,6 +31,20 @@
     self.recent_Values = [[NSUserDefaults standardUserDefaults] persistentDomainForName:[[NSBundle mainBundle] bundleIdentifier ]];
 }
 
+-(IBAction) sliderEvent:(id)sender
+{
+    NSLog(@"slider moved");
+    if (sender == self.promo)
+        [Utilities playSound:@"start_promo_sound_path" volumeKey:@"start_promo_vol" default:@"start" running:YES];
+    else   if (sender == self.sbreak)
+        [Utilities playSound:@"short_break_sound_path" volumeKey:@"short_break_vol" default:@"short" running:YES];
+    else   if (sender == self.lbreak)
+        [Utilities playSound:@"long_break_sound_path" volumeKey:@"long_break_vol" default:@"long" running:YES];
+    else   if (sender == self.tick)
+        [Utilities playSound:@"tick_sound_path" volumeKey:@"tick_vol" default:@"tick" running:YES];
+    
+}
+
 
 /**
  *  play promo sond

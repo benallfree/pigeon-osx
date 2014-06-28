@@ -14,5 +14,6 @@
 + (NSString *) PrefFilePath;
 +(void) playSound:(NSString *)filekey volumeKey:(NSString *)volKey default:(NSString *)defaultSound;
 +(void) playSoundStripped:(NSString *)filekey volumeKey:(NSString *)volKey default:(NSString *)defaultSound;
++(void) playSound:(NSString *)filekey volumeKey:(NSString *)volKey default:(NSString *)defaultSound running:(BOOL)playIfNotrunning;
 
 @end

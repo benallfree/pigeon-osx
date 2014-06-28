@@ -7,6 +7,7 @@
 //
 
 #import "Utilities.h"
+#import "PomodoroSound.h"
 
 @implementation Utilities
 
@@ -112,10 +113,9 @@
     NSString *file = [[NSUserDefaults standardUserDefaults] objectForKey:filekey];
     NSNumber *volume = [[NSUserDefaults standardUserDefaults] objectForKey:volKey];
     
-    NSSound *sound = nil;
     if ([file isEqualToString:@"default"])
     {
-        sound = [NSSound soundNamed:defaultSound];
+        file = defaultSound;
     }
     else
     {
@@ -124,7 +124,6 @@
         if ([[NSFileManager defaultManager] fileExistsAtPath:file isDirectory:&isDir])
         {
             if (!isDir){
-                sound = [[NSSound alloc] initWithContentsOfFile:file byReference:YES];
                 foundFile = YES;
             }
         }
@@ -132,18 +131,30 @@
         if (!foundFile)
         {
             //run default
-            [[NSUserDefaults standardUserDefaults] setObject:@"default" forKey:filekey];
-            sound = [NSSound soundNamed:defaultSound];
+            file = defaultSound;
         }
     }
     
-    if (volume)
+ 
+    PomodoroSound *sound = [PomodoroSound shared];
+    [sound playSong:file volKey:volKey];
+}
+
++(void) playSound:(NSString *)filekey volumeKey:(NSString *)volKey default:(NSString *)defaultSound running:(BOOL)playIfNotrunning
+{
+    PomodoroSound *sound = [PomodoroSound shared];
+
+    if (!playIfNotrunning)
     {
-        float val = [volume floatValue] / 100.0;
-        [sound setVolume:val];
+        [Utilities playSound:filekey volumeKey:volKey default:defaultSound];
     }
-    
-    [sound play];
+    else
+    {
+        if ([sound isFinished:volKey])
+        {
+            [Utilities playSound:filekey volumeKey:volKey default:defaultSound];
+        }
+    }
 }
 
 /**

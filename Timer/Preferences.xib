@@ -701,32 +701,40 @@ Gw
                     <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nmZ-bW-0pe">
                         <rect key="frame" x="508" y="151" width="92" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <sliderCell key="cell" controlSize="small" alignment="left" maxValue="100" doubleValue="48.796875" tickMarkPosition="below" sliderType="linear" id="kY5-UC-C7f"/>
+                        <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" doubleValue="48.796875" tickMarkPosition="below" sliderType="linear" id="kY5-UC-C7f"/>
                         <connections>
-                            <binding destination="WEf-pR-w0i" name="value" keyPath="values.start_promo_vol" id="b7b-BK-jUR"/>
+                            <action selector="sliderEvent:" target="F0z-JX-Cv5" id="XDL-oI-hZV"/>
+                            <binding destination="WEf-pR-w0i" name="value" keyPath="values.start_promo_vol" id="0nP-UH-keQ">
+                                <dictionary key="options">
+                                    <bool key="NSValidatesImmediately" value="YES"/>
+                                </dictionary>
+                            </binding>
                         </connections>
                     </slider>
                     <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M8W-JN-ATc">
                         <rect key="frame" x="508" y="126" width="92" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <sliderCell key="cell" controlSize="small" alignment="left" maxValue="100" doubleValue="48.796875" tickMarkPosition="below" sliderType="linear" id="Zla-0v-LOe"/>
+                        <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" doubleValue="48.796875" tickMarkPosition="below" sliderType="linear" id="Zla-0v-LOe"/>
                         <connections>
+                            <action selector="sliderEvent:" target="F0z-JX-Cv5" id="jw0-Ob-ZMH"/>
                             <binding destination="WEf-pR-w0i" name="value" keyPath="values.short_break_vol" id="s8J-H8-ZS9"/>
                         </connections>
                     </slider>
                     <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dAO-GU-a9v">
                         <rect key="frame" x="508" y="101" width="92" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <sliderCell key="cell" controlSize="small" alignment="left" maxValue="100" doubleValue="48.796875" tickMarkPosition="below" sliderType="linear" id="6er-jc-7JH"/>
+                        <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" doubleValue="48.796875" tickMarkPosition="below" sliderType="linear" id="6er-jc-7JH"/>
                         <connections>
+                            <action selector="sliderEvent:" target="F0z-JX-Cv5" id="Qqf-9D-DhN"/>
                             <binding destination="WEf-pR-w0i" name="value" keyPath="values.long_break_vol" id="YNd-Ra-tmT"/>
                         </connections>
                     </slider>
                     <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cXG-w5-DBT">
                         <rect key="frame" x="508" y="76" width="92" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <sliderCell key="cell" controlSize="small" alignment="left" maxValue="100" doubleValue="48.796875" tickMarkPosition="below" sliderType="linear" id="f2S-vG-0k8"/>
+                        <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" doubleValue="48.796875" tickMarkPosition="below" sliderType="linear" id="f2S-vG-0k8"/>
                         <connections>
+                            <action selector="sliderEvent:" target="F0z-JX-Cv5" id="RDW-kF-k9j"/>
                             <binding destination="WEf-pR-w0i" name="value" keyPath="values.tick_vol" id="llc-eZ-pPW"/>
                         </connections>
                     </slider>
@@ -1168,6 +1176,12 @@ Gw
                     </button>
                 </subviews>
             </view>
+            <connections>
+                <outlet property="lbreak" destination="dAO-GU-a9v" id="IoT-4A-Wrj"/>
+                <outlet property="promo" destination="nmZ-bW-0pe" id="5yl-L2-PnM"/>
+                <outlet property="sbreak" destination="M8W-JN-ATc" id="qUV-Wq-29a"/>
+                <outlet property="tick" destination="cXG-w5-DBT" id="bvd-in-5a8"/>
+            </connections>
         </window>
         <customObject id="BN3-dO-Qzg" customClass="OnlyIntegerValueFormatter"/>
         <userDefaultsController id="iBg-oJ-NNV"/>

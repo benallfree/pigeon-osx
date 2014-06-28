@@ -14,6 +14,12 @@
 @property (strong, atomic) NSMutableArray *values;
 @property (strong, atomic) NSDictionary *recent_Values;
 
+@property (strong, atomic) IBOutlet NSSlider *promo;
+@property (strong, atomic) IBOutlet NSSlider *tick;
+@property (strong, atomic) IBOutlet NSSlider *sbreak;
+@property (strong, atomic) IBOutlet NSSlider *lbreak;
+
+
 -(IBAction) OK:(id)sender;
 -(IBAction) play_start_promo:(id)sender;
 -(IBAction) play_short_break:(id)sender;
@@ -28,4 +34,5 @@
 -(IBAction) default_long_break:(id)sender;
 -(IBAction) default_tick:(id)sender;
 -(void) makeCopyOfCurrent;
+-(IBAction) sliderEvent:(id)sender;
 @end
