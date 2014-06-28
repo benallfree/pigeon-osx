@@ -262,11 +262,8 @@
             dict = [NSDictionary dictionaryWithObjectsAndKeys:@"- Recent", @"logs", nil];
             ((MemoWindow *)self.window).recentRowIndex = [arr count];
             [arr addObject:dict];
-             for (NSDictionary *item in tempArray)
-             {
-                 
-                 [arr addObjectsFromArray:tempArray];
-             }
+           [arr addObjectsFromArray:tempArray];
+        
         ((MemoWindow *)self.window).values = arr;
         [ ((MemoWindow *)self.window).Tablecontroller selectRowIndexes:[NSIndexSet indexSetWithIndex:1] byExtendingSelection:NO];
         
