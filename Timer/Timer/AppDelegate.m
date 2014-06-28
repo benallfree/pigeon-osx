@@ -687,7 +687,7 @@
     if (!self.timer_updater)
     self.timer_updater = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updatePomoTimer:) userInfo:nil repeats:YES];
     self.currentStatus = kPomoInProgress;
-    NSInteger interval = [[[NSUserDefaults standardUserDefaults] objectForKey:@"pomodor_interval"] intValue] * 60 ;
+    NSInteger interval = [[[NSUserDefaults standardUserDefaults] objectForKey:@"pomodor_interval"] intValue] * 60;
     self.pomo_timer =  [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(pomoFinished) userInfo:nil repeats:NO];
     
     self.pomodoroTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
@@ -707,7 +707,7 @@
     
     if ([self.mute state] == NSOffState)
     {
-        sleep(2);
+       // sleep(2);
         [Utilities playSound:@"short_break_sound_path" volumeKey:@"short_break_vol" default:@"short"];
     }
     
