@@ -43,6 +43,7 @@
                                options:NSKeyValueObservingOptionNew
                                context:nil];
     
+    self.totalPomodoro = 1;
     [[NSUserDefaults standardUserDefaults]  addObserver:self
                                              forKeyPath: @"dont_ask"
                                                 options:NSKeyValueObservingOptionNew
@@ -261,7 +262,11 @@
             dict = [NSDictionary dictionaryWithObjectsAndKeys:@"- Recent", @"logs", nil];
             ((MemoWindow *)self.window).recentRowIndex = [arr count];
             [arr addObject:dict];
-            [arr addObjectsFromArray:tempArray];
+             for (NSDictionary *item in tempArray)
+             {
+                 
+                 [arr addObjectsFromArray:tempArray];
+             }
         ((MemoWindow *)self.window).values = arr;
         [ ((MemoWindow *)self.window).Tablecontroller selectRowIndexes:[NSIndexSet indexSetWithIndex:1] byExtendingSelection:NO];
         
@@ -642,7 +647,7 @@
     self.timer_updater = nil;
     
     self.timer_updater = nil;
-    self.totalPomodoro = 0;
+    self.totalPomodoro = 1;
     self.currentStatus = kDoingNothing;
     if ([self.active state ]== NSOnState)
         [self startNextPomo:YES];
@@ -662,7 +667,7 @@
     NSInteger pomo_before_long_Break = [[[NSUserDefaults standardUserDefaults] objectForKey:@"long_break_after"] integerValue];
     if (self.totalPomodoro >= pomo_before_long_Break)
     {
-        self.totalPomodoro = 0;
+        self.totalPomodoro = 1;
         [self longBreakStarted];
     }
     else
