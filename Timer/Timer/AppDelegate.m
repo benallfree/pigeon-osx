@@ -38,26 +38,33 @@
 {
     //setup status item
     [self setupStatusItem];
-    
     [[NSUserDefaults standardUserDefaults]  addObserver:self
                             forKeyPath: @"load_onStart"
                                options:NSKeyValueObservingOptionNew
                                context:nil];
     
-
-    NSNumber *check_laucnItem = [[NSUserDefaults standardUserDefaults] objectForKey:@"load_onStart"];
+    [[NSUserDefaults standardUserDefaults]  addObserver:self
+                                             forKeyPath: @"dont_ask"
+                                                options:NSKeyValueObservingOptionNew
+                                                context:nil];
+    
     NSNumber *dont_check = [[NSUserDefaults standardUserDefaults] objectForKey:@"dont_ask"];
-    if (![[NSBundle mainBundle] isLoginItem] && (!dont_check || ![dont_check boolValue]))
+    if (![[NSBundle mainBundle] isLoginItem])
     {
-        if (!check_laucnItem || ![check_laucnItem boolValue])
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"load_onStart"];
+        if (!dont_check || ![dont_check boolValue])
         {
-            NSWindowController * controller = [[NSWindowController alloc] initWithWindowNibName:@"StartupCheck" ];
-            self.check_loginItem = (NSWindow *)controller.window;
-            [self.check_loginItem center];
-            [self.check_loginItem makeKeyAndOrderFront:self];
-            [self.check_loginItem setLevel:NSFloatingWindowLevel];
-            return;
+                NSWindowController * controller = [[NSWindowController alloc] initWithWindowNibName:@"StartupCheck" ];
+                self.check_loginItem = (NSWindow *)controller.window;
+                [self.check_loginItem center];
+                [self.check_loginItem makeKeyAndOrderFront:self];
+                [self.check_loginItem setLevel:NSFloatingWindowLevel];
+                return;
         }
+    }
+    else
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:@"load_onStart"];
     }
     
     [self setupApp];
@@ -297,6 +304,10 @@
     {
         NSWindowController * controller = [[NSWindowController alloc] initWithWindowNibName:@"Preferences" ];
         self.pref_window = (NSWindow *)controller.window;
+    }
+    if (![[NSBundle mainBundle] isLoginItem])
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"load_onStart"];
     }
     [self.pref_window center];
     [(PreferenceWindow *)self.pref_window makeCopyOfCurrent];
