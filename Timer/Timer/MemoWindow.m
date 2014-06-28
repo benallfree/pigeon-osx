@@ -130,6 +130,16 @@
     [delegate startTimer];
 }
 
+-(NSMutableArray *) unique:(NSMutableArray *)array
+{
+    NSSet *uniqueEvents = [NSSet setWithArray:array];
+    
+    [array removeAllObjects];
+    
+    [array addObjectsFromArray:[uniqueEvents allObjects]];
+    return array;
+}
+
 /**
  *  function to handle when combox selection is changed
  *
@@ -148,9 +158,10 @@
         NSMutableArray *tempArray =   (NSMutableArray *)[[TimerDatabase sharedInstance] getRecentLogsForClient:ID];
         dict = [NSDictionary dictionaryWithObjectsAndKeys:@"- Recent", @"logs", nil];
         self.recentRowIndex = [arr count];
-        
+    
         [arr addObject:dict];
         [arr addObjectsFromArray:tempArray];
+    arr = [self unique:arr];
     self.values = arr;
 
 
@@ -202,6 +213,7 @@
             
             [arr addObject:dict];
             [arr addObjectsFromArray:tempArray];
+        arr = [self unique:arr];
         self.values = arr;
         [self.windowController didChangeValueForKey:@"window.values"];
         [self.Tablecontroller selectRowIndexes:[NSIndexSet indexSetWithIndex:1] byExtendingSelection:NO];
