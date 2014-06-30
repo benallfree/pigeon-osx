@@ -44,6 +44,7 @@
 @property (atomic, strong)  NSString *pomodoroTimerStr;
 @property (atomic, readwrite)  NSInteger minutes;
 @property (atomic, readwrite)  NSInteger seconds;
+@property (atomic, readwrite)  NSInteger totalSecondsToStay;
 @property (atomic, readwrite)  NSInteger totalPomodoro;
 @property (atomic, readwrite)  NSInteger currentStatus;
 

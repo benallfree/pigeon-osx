@@ -462,12 +462,12 @@
     else
         self.seconds--;
 
-
+        self.totalSecondsToStay--;
     if (self.currentStatus == kPomoInProgress)
     {
         self.pomodoroTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
         [self.timerStatusItem setTitle:[@"Pomo " stringByAppendingString:self.pomodoroTimerStr]];
-        if (self.seconds == 0)
+        if (self.totalSecondsToStay == 0)
         {
             [self pomoFinished];
         }
@@ -476,7 +476,7 @@
     {
         self.breakTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
         [self.timerStatusItem setTitle:[@"Break " stringByAppendingString:self.breakTimerStr]];
-        if (self.seconds == 0)
+        if (self.totalSecondsToStay == 0)
         {
             [self BreakEnded];
         }
@@ -641,6 +641,7 @@
     else
     {
         self.minutes =  [[[NSUserDefaults standardUserDefaults] objectForKey:@"pomodor_interval"] integerValue];
+        self.totalSecondsToStay = self.minutes * 60;
         self.seconds = 0;
     }
 }
@@ -704,6 +705,7 @@
     }
     
     self.minutes = [[[NSUserDefaults standardUserDefaults] objectForKey:@"pomodor_interval"] integerValue];
+    self.totalSecondsToStay = self.minutes * 60;
     self.seconds = 0;
     //if (!self.timer_updater)
    // self.timer_updater = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updatePomoTimer:) userInfo:nil repeats:YES];
@@ -740,6 +742,7 @@
     [self.timer_updater invalidate];
     self.minutes = [[[NSUserDefaults standardUserDefaults] objectForKey:@"short_break"] integerValue];
     self.seconds = 0;
+    self.totalSecondsToStay = self.minutes * 60;
     self.breakTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
     [self.timerStatusItem setTitle:[@"Break " stringByAppendingString:self.breakTimerStr]];
 
@@ -768,6 +771,7 @@
     [self.timer_updater invalidate];
     self.minutes = [[[NSUserDefaults standardUserDefaults] objectForKey:@"long_break"] integerValue];
     self.seconds = 0;
+    self.totalSecondsToStay = self.minutes * 60;
     self.breakTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
     [self.timerStatusItem setTitle:[@"Break " stringByAppendingString:self.breakTimerStr]];
 
