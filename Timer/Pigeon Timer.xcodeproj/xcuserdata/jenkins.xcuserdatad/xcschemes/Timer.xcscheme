@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A68FE0EE1953D45A004B98AA"
-               BuildableName = "Timer.app"
+               BuildableName = "Pigeon Timer.app"
                BlueprintName = "Pigeon Timer"
                ReferencedContainer = "container:Pigeon Timer.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A68FE10F1953D45A004B98AA"
-               BuildableName = "TimerTests.xctest"
+               BuildableName = "Pigeon TimerTests.xctest"
                BlueprintName = "Pigeon TimerTests"
                ReferencedContainer = "container:Pigeon Timer.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A68FE0EE1953D45A004B98AA"
-            BuildableName = "Timer.app"
+            BuildableName = "Pigeon Timer.app"
             BlueprintName = "Pigeon Timer"
             ReferencedContainer = "container:Pigeon Timer.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A68FE0EE1953D45A004B98AA"
-            BuildableName = "Timer.app"
+            BuildableName = "Pigeon Timer.app"
             BlueprintName = "Pigeon Timer"
             ReferencedContainer = "container:Pigeon Timer.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A68FE0EE1953D45A004B98AA"
-            BuildableName = "Timer.app"
+            BuildableName = "Pigeon Timer.app"
             BlueprintName = "Pigeon Timer"
             ReferencedContainer = "container:Pigeon Timer.xcodeproj">
          </BuildableReference>

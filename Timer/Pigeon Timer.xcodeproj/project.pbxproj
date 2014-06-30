@@ -21,6 +21,9 @@
 		A61409A4195E2D7A00A6229B /* LaunchUpWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = A61409A3195E2D7A00A6229B /* LaunchUpWindow.m */; };
 		A61409A7195E382F00A6229B /* NSBundle+LoginItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A61409A6195E382F00A6229B /* NSBundle+LoginItem.m */; };
 		A61409AB195F407800A6229B /* PomodoroSound.m in Sources */ = {isa = PBXBuildFile; fileRef = A61409AA195F407800A6229B /* PomodoroSound.m */; };
+		A61409C01961BA9500A6229B /* break.png in Resources */ = {isa = PBXBuildFile; fileRef = A61409BD1961BA9500A6229B /* break.png */; };
+		A61409C11961BA9500A6229B /* pomo.png in Resources */ = {isa = PBXBuildFile; fileRef = A61409BE1961BA9500A6229B /* pomo.png */; };
+		A61409C21961BA9500A6229B /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = A61409BF1961BA9500A6229B /* stop.png */; };
 		A68FE0F31953D45A004B98AA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A68FE0F21953D45A004B98AA /* Cocoa.framework */; };
 		A68FE0FD1953D45A004B98AA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A68FE0FB1953D45A004B98AA /* InfoPlist.strings */; };
 		A68FE0FF1953D45A004B98AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A68FE0FE1953D45A004B98AA /* main.m */; };
@@ -79,6 +82,9 @@
 		A61409A6195E382F00A6229B /* NSBundle+LoginItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+LoginItem.m"; sourceTree = SOURCE_ROOT; };
 		A61409A9195F407800A6229B /* PomodoroSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomodoroSound.h; sourceTree = "<group>"; };
 		A61409AA195F407800A6229B /* PomodoroSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PomodoroSound.m; sourceTree = "<group>"; };
+		A61409BD1961BA9500A6229B /* break.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = break.png; path = Timer/break.png; sourceTree = "<group>"; };
+		A61409BE1961BA9500A6229B /* pomo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pomo.png; path = Timer/pomo.png; sourceTree = "<group>"; };
+		A61409BF1961BA9500A6229B /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stop.png; path = Timer/stop.png; sourceTree = "<group>"; };
 		A68FE0EF1953D45A004B98AA /* Pigeon Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pigeon Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A68FE0F21953D45A004B98AA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		A68FE0F51953D45A004B98AA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -299,6 +305,9 @@
 		A68FE12A1953DCEB004B98AA /* MemoWindow */ = {
 			isa = PBXGroup;
 			children = (
+				A61409BD1961BA9500A6229B /* break.png */,
+				A61409BE1961BA9500A6229B /* pomo.png */,
+				A61409BF1961BA9500A6229B /* stop.png */,
 				A68FE12D1953DEC4004B98AA /* MemoWindow.h */,
 				A68FE12E1953DEC4004B98AA /* MemoWindow.m */,
 				A68FE12B1953DD04004B98AA /* MemoWindow.xib */,
@@ -417,6 +426,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A68FE0FD1953D45A004B98AA /* InfoPlist.strings in Resources */,
+				A61409C21961BA9500A6229B /* stop.png in Resources */,
 				A6140986195B9A8400A6229B /* BreakStarted.xib in Resources */,
 				A614090B1957D4B800A6229B /* NewClient.xib in Resources */,
 				A68FE10B1953D45A004B98AA /* Images.xcassets in Resources */,
@@ -427,6 +437,8 @@
 				A6140980195B1B4E00A6229B /* long.mp3 in Resources */,
 				A68FE1271953D48E004B98AA /* timer.icns in Resources */,
 				A6140983195B1B4E00A6229B /* tick.mp3 in Resources */,
+				A61409C01961BA9500A6229B /* break.png in Resources */,
+				A61409C11961BA9500A6229B /* pomo.png in Resources */,
 				A6140981195B1B4E00A6229B /* short.mp3 in Resources */,
 				A6CD25CE19557D07001D3A79 /* red.icns in Resources */,
 				A6140982195B1B4E00A6229B /* start.mp3 in Resources */,

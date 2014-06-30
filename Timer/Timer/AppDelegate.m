@@ -48,7 +48,12 @@
                                              forKeyPath: @"dont_ask"
                                                 options:NSKeyValueObservingOptionNew
                                                 context:nil];
-    
+   
+    [[NSUserDefaults standardUserDefaults]  addObserver:self
+                                             forKeyPath: @"show_timer"
+                                                options:NSKeyValueObservingOptionNew
+                                                context:nil];
+
     NSNumber *dont_check = [[NSUserDefaults standardUserDefaults] objectForKey:@"dont_ask"];
     if (![[NSBundle mainBundle] isLoginItem])
     {
@@ -86,14 +91,10 @@
         [self.active setState:NSOnState];
         [self startNextPomo:NO];
     }//Allocates and loads the images into the application which will be used for our NSStatusItem
-    self.timerStatusImage = [NSImage imageNamed:@"red"];
-    
-    [self.timerStatusImage setSize:NSMakeSize(16, 16)];
-    self.timerStatusHighlightImage =  self.timerStatusImage;
-    
-    //Sets the images in our NSStatusItem
-    [self.timerStatusItem setImage:self.timerStatusImage];
-    [self.timerStatusItem setAlternateImage:self.timerStatusHighlightImage];
+    self.timerStatusImage = [NSImage imageNamed:@"pomo"];
+	self.timerStatusHighlightImage =  self.timerStatusImage;
+	[self.timerStatusItem setImage:self.timerStatusImage];
+	[self.timerStatusItem setAlternateImage:self.timerStatusHighlightImage];
     
 
     self.timer = [NSTimer scheduledTimerWithTimeInterval:[[[NSUserDefaults standardUserDefaults] objectForKey:@"log_interval"] intValue] * 60 target:self selector:@selector(alertMemoBox) userInfo:nil repeats:NO];
@@ -110,19 +111,17 @@
     [self.active setState:NSOffState];
     
     //Allocates and loads the images into the application which will be used for our NSStatusItem
-    self.timerStatusImage = [NSImage imageNamed:@"timer"];
     
     self.currentStatus = kDoingNothing;
-    [self.timerStatusImage setSize:NSMakeSize(16, 16)];
-	self.timerStatusHighlightImage =  self.timerStatusImage;
     
 	//Sets the images in our NSStatusItem
+    
+    self.timerStatusImage = [NSImage imageNamed:@"stop"];
+	self.timerStatusHighlightImage =  self.timerStatusImage;
 	[self.timerStatusItem setImage:self.timerStatusImage];
 	[self.timerStatusItem setAlternateImage:self.timerStatusHighlightImage];
     if (self.break_started)
         [self.break_started close];
-    
-
    
 }
 
@@ -161,7 +160,7 @@
         //otherewise activate the memo box
         [self.active setState:NSOnState];
         //Allocates and loads the images into the application which will be used for our NSStatusItem
-        self.timerStatusImage = [NSImage imageNamed:@"red"];
+        self.timerStatusImage = [NSImage imageNamed:@"pomo"];
         
         [self.timerStatusImage setSize:NSMakeSize(16, 16)];
         self.timerStatusHighlightImage =  self.timerStatusImage;
@@ -290,8 +289,10 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    
-    if ([keyPath isEqualTo:@"load_onStart"] )
+    if ([keyPath isEqualTo:@"show_timer"] )
+    {
+    }
+    else if ([keyPath isEqualTo:@"load_onStart"] )
     {
          NSNumber *check_laucnItem = [[NSUserDefaults standardUserDefaults] objectForKey:@"load_onStart"];
         if ([check_laucnItem boolValue])
@@ -451,8 +452,12 @@
 
 -(void) backgroundThread
 {
+    NSNumber *showTitle = nil;
+    
     while (1)
     {
+        showTitle = [[NSUserDefaults standardUserDefaults] objectForKey:@"show_timer"];
+        
     if (self.seconds == 0)
     {
         if (self.minutes >0)
@@ -466,7 +471,12 @@
     if (self.currentStatus == kPomoInProgress)
     {
         self.pomodoroTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
-        [self.timerStatusItem setTitle:[@"Pomo " stringByAppendingString:self.pomodoroTimerStr]];
+        
+        if ([showTitle boolValue])
+            [self.timerStatusItem setTitle:self.pomodoroTimerStr];
+        else
+            [self.timerStatusItem setTitle:@""];
+        
         if (self.totalSecondsToStay == 0)
         {
             [self pomoFinished];
@@ -475,7 +485,11 @@
     else if (self.currentStatus == kLongBreak || self.currentStatus == kShortBreak)
     {
         self.breakTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
-        [self.timerStatusItem setTitle:[@"Break " stringByAppendingString:self.breakTimerStr]];
+        if ([showTitle boolValue])
+            [self.timerStatusItem setTitle:self.breakTimerStr];
+        else
+            [self.timerStatusItem setTitle:@""];
+        
         if (self.totalSecondsToStay == 0)
         {
             [self BreakEnded];
@@ -496,7 +510,10 @@
  
     if ([self.active state] ==NSOffState || self.currentStatus == kDoingNothing)
     {
-        [self.timerStatusItem setTitle:@"Stopped."];
+        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"show_timer" ] boolValue])
+            [self.timerStatusItem setTitle:@""];
+        else
+            [self.timerStatusItem setTitle:@""];
         
         [[self.timerStatusItem view] setNeedsDisplay:YES];
         return;
@@ -517,12 +534,12 @@
     if (self.currentStatus == kPomoInProgress)
     {
       //  self.pomodoroTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
-        [self.timerStatusItem setTitle:[@"Pomo " stringByAppendingString:self.pomodoroTimerStr]];
+        [self.timerStatusItem setTitle:self.pomodoroTimerStr];
     }
     else
     {
       //  self.breakTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
-        [self.timerStatusItem setTitle:[@"Break " stringByAppendingString:self.breakTimerStr]];
+        [self.timerStatusItem setTitle:self.breakTimerStr];
         
     }
     [[self.timerStatusItem view] setNeedsDisplay:YES];
@@ -557,9 +574,9 @@
 	
 	
 	//Allocates and loads the images into the application which will be used for our NSStatusItem
-    self.timerStatusImage = [NSImage imageNamed:@"red"];
+    self.timerStatusImage = [NSImage imageNamed:@"pomo"];
     
-    [self.timerStatusImage setSize:NSMakeSize(16, 16)];
+  //  [self.timerStatusImage setSize:NSMakeSize(16, 16)];
 	self.timerStatusHighlightImage =  self.timerStatusImage;
     
 	//Sets the images in our NSStatusItem
@@ -578,7 +595,8 @@
 	//Enables highlighting
 	[self.timerStatusItem setHighlightMode:YES];
     
-    [self.timerStatusItem setTitle:@"Starting..."];
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"show_timer" ] boolValue])
+        [self.timerStatusItem setTitle:@"Starting..."];
     [self.active setState:NSOnState];
 
     
@@ -633,6 +651,8 @@
         [dict setObject:[NSNumber numberWithInteger:20] forKey:@"short_break_vol"];
         [dict setObject:[NSNumber numberWithInteger:20] forKey:@"long_break_vol"];
         [dict setObject:[NSNumber numberWithInteger:20] forKey:@"tick_vol"];
+        
+        [dict setObject:[NSNumber numberWithBool:NO] forKey:@"show_timer"];
 
         [dict setObject:[NSNumber numberWithBool:NO] forKey:@"start_auto"];
 
@@ -671,7 +691,11 @@
     else
     {
         self.pomodoroTimerStr = @"00:00";
-        [self.timerStatusItem setTitle:@"Stopped."];
+        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"show_timer" ] boolValue])
+            [self.timerStatusItem setTitle:@""];
+        else
+            [self.timerStatusItem setTitle:@""];
+        
     }
 }
 
@@ -713,7 +737,11 @@
    // self.pomo_timer =  [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(pomoFinished) userInfo:nil repeats:NO];
     
     self.pomodoroTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
-    [self.timerStatusItem setTitle:[@"Pomo " stringByAppendingString:self.pomodoroTimerStr]];
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"show_timer" ] boolValue])
+        [self.timerStatusItem setTitle:self.pomodoroTimerStr];
+    else
+        [self.timerStatusItem setTitle:@""];
+    
     self.currentStatus = kPomoInProgress;
     
     if (startMemo)
@@ -726,8 +754,11 @@
 - (void) shortBreakStarted
 {
     self.currentStatus = kShortBreak;
-
+    self.timerStatusImage = [NSImage imageNamed:@"break"];
+	self.timerStatusHighlightImage =  self.timerStatusImage;
+	[self.timerStatusItem setImage:self.timerStatusImage];
     
+	[self.timerStatusItem setAlternateImage:self.timerStatusHighlightImage];
     if ([self.mute state] == NSOffState)
     {
        // sleep(2);
@@ -744,8 +775,12 @@
     self.seconds = 0;
     self.totalSecondsToStay = self.minutes * 60;
     self.breakTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
-    [self.timerStatusItem setTitle:[@"Break " stringByAppendingString:self.breakTimerStr]];
-
+ 
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"show_timer" ] boolValue])
+        [self.timerStatusItem setTitle:self.breakTimerStr];
+    else
+        [self.timerStatusItem setTitle:@""];
+    
    // self.timer_updater = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updatePomoTimer:) userInfo:nil repeats:YES];
     
    // self.long_timer = [NSTimer scheduledTimerWithTimeInterval:[[[NSUserDefaults standardUserDefaults] objectForKey:@"short_break"] intValue] * 60 target:self selector:@selector(BreakEnded) userInfo:nil repeats:NO];
@@ -772,9 +807,12 @@
     self.minutes = [[[NSUserDefaults standardUserDefaults] objectForKey:@"long_break"] integerValue];
     self.seconds = 0;
     self.totalSecondsToStay = self.minutes * 60;
-    self.breakTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
-    [self.timerStatusItem setTitle:[@"Break " stringByAppendingString:self.breakTimerStr]];
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"show_timer" ] boolValue])
+        [self.timerStatusItem setTitle:self.breakTimerStr];
+    else
+        [self.timerStatusItem setTitle:@""];
 
+   
    // self.timer_updater = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updatePomoTimer:) userInfo:nil repeats:YES];
     
     
