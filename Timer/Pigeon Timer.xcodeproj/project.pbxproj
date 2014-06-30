@@ -24,6 +24,9 @@
 		A61409C01961BA9500A6229B /* break.png in Resources */ = {isa = PBXBuildFile; fileRef = A61409BD1961BA9500A6229B /* break.png */; };
 		A61409C11961BA9500A6229B /* pomo.png in Resources */ = {isa = PBXBuildFile; fileRef = A61409BE1961BA9500A6229B /* pomo.png */; };
 		A61409C21961BA9500A6229B /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = A61409BF1961BA9500A6229B /* stop.png */; };
+		A61409C61961D8C300A6229B /* break@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A61409C31961D8C300A6229B /* break@2x.png */; };
+		A61409C71961D8C300A6229B /* pomo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A61409C41961D8C300A6229B /* pomo@2x.png */; };
+		A61409C81961D8C300A6229B /* stop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A61409C51961D8C300A6229B /* stop@2x.png */; };
 		A68FE0F31953D45A004B98AA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A68FE0F21953D45A004B98AA /* Cocoa.framework */; };
 		A68FE0FD1953D45A004B98AA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A68FE0FB1953D45A004B98AA /* InfoPlist.strings */; };
 		A68FE0FF1953D45A004B98AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A68FE0FE1953D45A004B98AA /* main.m */; };
@@ -85,6 +88,9 @@
 		A61409BD1961BA9500A6229B /* break.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = break.png; path = Timer/break.png; sourceTree = "<group>"; };
 		A61409BE1961BA9500A6229B /* pomo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pomo.png; path = Timer/pomo.png; sourceTree = "<group>"; };
 		A61409BF1961BA9500A6229B /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stop.png; path = Timer/stop.png; sourceTree = "<group>"; };
+		A61409C31961D8C300A6229B /* break@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "break@2x.png"; path = "Timer/break@2x.png"; sourceTree = "<group>"; };
+		A61409C41961D8C300A6229B /* pomo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pomo@2x.png"; path = "Timer/pomo@2x.png"; sourceTree = "<group>"; };
+		A61409C51961D8C300A6229B /* stop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "stop@2x.png"; path = "Timer/stop@2x.png"; sourceTree = "<group>"; };
 		A68FE0EF1953D45A004B98AA /* Pigeon Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pigeon Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A68FE0F21953D45A004B98AA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		A68FE0F51953D45A004B98AA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -305,6 +311,9 @@
 		A68FE12A1953DCEB004B98AA /* MemoWindow */ = {
 			isa = PBXGroup;
 			children = (
+				A61409C31961D8C300A6229B /* break@2x.png */,
+				A61409C41961D8C300A6229B /* pomo@2x.png */,
+				A61409C51961D8C300A6229B /* stop@2x.png */,
 				A61409BD1961BA9500A6229B /* break.png */,
 				A61409BE1961BA9500A6229B /* pomo.png */,
 				A61409BF1961BA9500A6229B /* stop.png */,
@@ -425,15 +434,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A61409C81961D8C300A6229B /* stop@2x.png in Resources */,
 				A68FE0FD1953D45A004B98AA /* InfoPlist.strings in Resources */,
 				A61409C21961BA9500A6229B /* stop.png in Resources */,
 				A6140986195B9A8400A6229B /* BreakStarted.xib in Resources */,
+				A61409C71961D8C300A6229B /* pomo@2x.png in Resources */,
 				A614090B1957D4B800A6229B /* NewClient.xib in Resources */,
 				A68FE10B1953D45A004B98AA /* Images.xcassets in Resources */,
 				A61409A1195E2BDD00A6229B /* StartupCheck.xib in Resources */,
 				A614098B195B9E0F00A6229B /* BreakEnded.xib in Resources */,
 				A68FE13C1954B1E9004B98AA /* Preferences.xib in Resources */,
 				A68FE1031953D45A004B98AA /* Credits.rtf in Resources */,
+				A61409C61961D8C300A6229B /* break@2x.png in Resources */,
 				A6140980195B1B4E00A6229B /* long.mp3 in Resources */,
 				A68FE1271953D48E004B98AA /* timer.icns in Resources */,
 				A6140983195B1B4E00A6229B /* tick.mp3 in Resources */,
