@@ -467,12 +467,20 @@
     {
         self.pomodoroTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
         [self.timerStatusItem setTitle:[@"Pomo " stringByAppendingString:self.pomodoroTimerStr]];
+        if (self.seconds == 0)
+        {
+            [self pomoFinished];
+        }
     }
     else if (self.currentStatus == kLongBreak || self.currentStatus == kShortBreak)
     {
         self.breakTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
         [self.timerStatusItem setTitle:[@"Break " stringByAppendingString:self.breakTimerStr]];
-    
+        if (self.seconds == 0)
+        {
+            [self BreakEnded];
+        }
+
     }
         sleep(1);
     }
@@ -697,15 +705,15 @@
     
     self.minutes = [[[NSUserDefaults standardUserDefaults] objectForKey:@"pomodor_interval"] integerValue];
     self.seconds = 0;
-    if (!self.timer_updater)
-    self.timer_updater = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updatePomoTimer:) userInfo:nil repeats:YES];
-    self.currentStatus = kPomoInProgress;
-    NSInteger interval = [[[NSUserDefaults standardUserDefaults] objectForKey:@"pomodor_interval"] intValue] * 60;
-    self.pomo_timer =  [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(pomoFinished) userInfo:nil repeats:NO];
+    //if (!self.timer_updater)
+   // self.timer_updater = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updatePomoTimer:) userInfo:nil repeats:YES];
+  //  NSInteger interval = [[[NSUserDefaults standardUserDefaults] objectForKey:@"pomodor_interval"] intValue] * 60;
+   // self.pomo_timer =  [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(pomoFinished) userInfo:nil repeats:NO];
     
     self.pomodoroTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
     [self.timerStatusItem setTitle:[@"Pomo " stringByAppendingString:self.pomodoroTimerStr]];
-
+    self.currentStatus = kPomoInProgress;
+    
     if (startMemo)
         [self alertMemoBox];
 }
@@ -735,9 +743,9 @@
     self.breakTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
     [self.timerStatusItem setTitle:[@"Break " stringByAppendingString:self.breakTimerStr]];
 
-    self.timer_updater = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updatePomoTimer:) userInfo:nil repeats:YES];
+   // self.timer_updater = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updatePomoTimer:) userInfo:nil repeats:YES];
     
-    self.long_timer = [NSTimer scheduledTimerWithTimeInterval:[[[NSUserDefaults standardUserDefaults] objectForKey:@"short_break"] intValue] * 60 target:self selector:@selector(BreakEnded) userInfo:nil repeats:NO];
+   // self.long_timer = [NSTimer scheduledTimerWithTimeInterval:[[[NSUserDefaults standardUserDefaults] objectForKey:@"short_break"] intValue] * 60 target:self selector:@selector(BreakEnded) userInfo:nil repeats:NO];
 }
 
 /**
@@ -763,10 +771,10 @@
     self.breakTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
     [self.timerStatusItem setTitle:[@"Break " stringByAppendingString:self.breakTimerStr]];
 
-    self.timer_updater = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updatePomoTimer:) userInfo:nil repeats:YES];
+   // self.timer_updater = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updatePomoTimer:) userInfo:nil repeats:YES];
     
     
-    self.short_timer = [NSTimer scheduledTimerWithTimeInterval:[[[NSUserDefaults standardUserDefaults] objectForKey:@"long_break"] intValue] * 60 target:self selector:@selector(BreakEnded) userInfo:nil repeats:NO];
+   // self.short_timer = [NSTimer scheduledTimerWithTimeInterval:[[[NSUserDefaults standardUserDefaults] objectForKey:@"long_break"] intValue] * 60 target:self selector:@selector(BreakEnded) userInfo:nil repeats:NO];
 }
 
 //when long break ends.
@@ -907,7 +915,7 @@
     //popup the memo box.
     
     
-    [NSTimer scheduledTimerWithTimeInterval:1.1 target:self selector:@selector(launchAlertMemoOnStartup:) userInfo:nil repeats:NO];
+   // [NSTimer scheduledTimerWithTimeInterval:1.1 target:self selector:@selector(launchAlertMemoOnStartup:) userInfo:nil repeats:NO];
     
     [self startNextPomo:YES];
    
