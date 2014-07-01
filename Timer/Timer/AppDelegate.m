@@ -274,8 +274,12 @@
            [arr addObjectsFromArray:tempArray];
         arr = [self unique:arr];
         ((MemoWindow *)self.window).values = arr;
-        [ ((MemoWindow *)self.window).Tablecontroller selectRowIndexes:[NSIndexSet indexSetWithIndex:1] byExtendingSelection:NO];
-        
+        if ( ((MemoWindow *)self.window).recentRowIndex > 1)
+            [ ((MemoWindow *)self.window).Tablecontroller selectRowIndexes:[NSIndexSet indexSetWithIndex:1] byExtendingSelection:NO];
+        else if ([ ((MemoWindow *)self.window).values count] > 2)
+            [ ((MemoWindow *)self.window).Tablecontroller selectRowIndexes:[NSIndexSet indexSetWithIndex:2] byExtendingSelection:NO];
+        else
+            [ ((MemoWindow *)self.window).Tablecontroller deselectAll:self];
     }
     
     [self.window center];
@@ -425,8 +429,13 @@
             [arr addObjectsFromArray:tempArray];
         arr = [self unique:arr];
         ((MemoWindow *)self.window).values = arr;
-        [ ((MemoWindow *)self.window).Tablecontroller selectRowIndexes:[NSIndexSet indexSetWithIndex:1] byExtendingSelection:NO];
         
+        if ( ((MemoWindow *)self.window).recentRowIndex > 1)
+            [ ((MemoWindow *)self.window).Tablecontroller selectRowIndexes:[NSIndexSet indexSetWithIndex:1] byExtendingSelection:NO];
+        else if ([ ((MemoWindow *)self.window).values count] > 2)
+            [ ((MemoWindow *)self.window).Tablecontroller selectRowIndexes:[NSIndexSet indexSetWithIndex:2] byExtendingSelection:NO];
+        else
+            [ ((MemoWindow *)self.window).Tablecontroller deselectAll:self];
     }
    
         [self.window center];

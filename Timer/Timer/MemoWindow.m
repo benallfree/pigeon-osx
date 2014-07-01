@@ -132,11 +132,31 @@
 
 -(NSMutableArray *) unique:(NSMutableArray *)array
 {
-    NSSet *uniqueEvents = [NSSet setWithArray:array];
+/*    NSSet *uniqueEvents = [NSSet setWithArray:array];
     
     [array removeAllObjects];
     
-    [array addObjectsFromArray:[uniqueEvents allObjects]];
+    [array addObjectsFromArray:[uniqueEvents allObjects]];*/
+    
+    int count = [array count];
+    
+    for (int i = count -1; i > self.recentRowIndex; i--)
+    {
+        NSString *logs = [[array objectAtIndex:i] objectForKey:@"logs"];
+        if ([logs isEqualToString:@"- Recent"])
+            break;
+        for (int j = self.recentRowIndex - 1; j >= 0; j--)
+        {
+            
+            NSString *compareLogs = [[array objectAtIndex:j] objectForKey:@"logs"];
+            
+            if ([compareLogs isEqualToString:logs])
+            {
+                [array removeObjectAtIndex:i];
+            }
+            
+        }
+    }
     return array;
 }
 
@@ -156,12 +176,13 @@
         NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"- Today", @"logs", nil];
         [arr insertObject:dict atIndex:0];
         NSMutableArray *tempArray =   (NSMutableArray *)[[TimerDatabase sharedInstance] getRecentLogsForClient:ID];
+    
         dict = [NSDictionary dictionaryWithObjectsAndKeys:@"- Recent", @"logs", nil];
         self.recentRowIndex = [arr count];
     
         [arr addObject:dict];
         [arr addObjectsFromArray:tempArray];
-    arr = [self unique:arr];
+        arr = [self unique:arr];
     self.values = arr;
 
 
@@ -172,7 +193,13 @@
     [self.controller willChangeValueForKey:@"selectionIndexes"];
     [self.controller setSelectionIndexes:[NSIndexSet indexSetWithIndex:1]];
     [self.controller didChangeValueForKey:@"selectionIndexes"];
-    [self.Tablecontroller selectRowIndexes:[NSIndexSet indexSetWithIndex:1] byExtendingSelection:NO];
+    if (self.recentRowIndex > 1)
+        [self.Tablecontroller selectRowIndexes:[NSIndexSet indexSetWithIndex:1] byExtendingSelection:NO];
+    else if ([self.values count] > 2)
+        [self.Tablecontroller selectRowIndexes:[NSIndexSet indexSetWithIndex:2] byExtendingSelection:NO];
+    else
+        [self.Tablecontroller deselectAll:self];
+    
     self.previousClient = [sender stringValue];
     
 }
@@ -216,7 +243,12 @@
         arr = [self unique:arr];
         self.values = arr;
         [self.windowController didChangeValueForKey:@"window.values"];
-        [self.Tablecontroller selectRowIndexes:[NSIndexSet indexSetWithIndex:1] byExtendingSelection:NO];
+        if (self.recentRowIndex > 1)
+            [self.Tablecontroller selectRowIndexes:[NSIndexSet indexSetWithIndex:1] byExtendingSelection:NO];
+        else if ([self.values count] > 2)
+            [self.Tablecontroller selectRowIndexes:[NSIndexSet indexSetWithIndex:2] byExtendingSelection:NO];
+        else
+            [self.Tablecontroller deselectAll:self];
         self.previousClient = self.selectedClient;
 
     }
@@ -288,6 +320,7 @@
     NSLog(@"index = %ld",(long)index);
     NSDictionary *memoDict = [self.values objectAtIndex:index] ;
     NSLog(@"log dictionary = %@", memoDict);
+        if ([memoDict objectForKey:@"originalLogs"])
     self.memo = [memoDict objectForKey:@"originalLogs"];
         
     }
