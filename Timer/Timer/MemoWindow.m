@@ -278,12 +278,25 @@
 
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification
 {
-    
+ 
+    @try {
     NSTableView *view = (NSTableView *)aNotification.object;
     NSInteger index = [view selectedRow];
-    
     if (index <= 0 || index >= [self.values count]) return;
     if (index == self.recentRowIndex) return;
-    self.memo = [[self.values objectAtIndex:index] objectForKey:@"originalLogs"];
+    NSLog(@"[self.values count] = %lu", (unsigned long)[self.values count]);
+    NSLog(@"index = %ld",(long)index);
+    NSDictionary *memoDict = [self.values objectAtIndex:index] ;
+    NSLog(@"log dictionary = %@", memoDict);
+    self.memo = [memoDict objectForKey:@"originalLogs"];
+        
+    }
+    @catch (NSException *exception) {
+        NSLog(@"%@", exception);
+    }
+    @finally {
+        NSLog(@"unknown exception during tableViewSelectionDidChange");
+    }
+    
 }
 @end
