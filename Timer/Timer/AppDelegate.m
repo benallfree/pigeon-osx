@@ -229,15 +229,6 @@
     
 }
 
--(NSMutableArray *) unique:(NSMutableArray *)array
-{
-    NSSet *uniqueEvents = [NSSet setWithArray:array];
-    
-    [array removeAllObjects];
-    
-    [array addObjectsFromArray:[uniqueEvents allObjects]];
-    return array;
-}
 /**
  *  handles menu item click for Enter Logs
  */
@@ -272,7 +263,7 @@
             ((MemoWindow *)self.window).recentRowIndex = [arr count];
             [arr addObject:dict];
            [arr addObjectsFromArray:tempArray];
-        arr = [self unique:arr];
+        arr = [Utilities unique:arr withIndex:((MemoWindow *)self.window).recentRowIndex ];
         ((MemoWindow *)self.window).values = arr;
         if ( ((MemoWindow *)self.window).recentRowIndex > 1)
             [ ((MemoWindow *)self.window).Tablecontroller selectRowIndexes:[NSIndexSet indexSetWithIndex:1] byExtendingSelection:NO];
@@ -427,7 +418,9 @@
             ((MemoWindow *)self.window).recentRowIndex = [arr count];
             [arr addObject:dict];
             [arr addObjectsFromArray:tempArray];
-        arr = [self unique:arr];
+       
+        arr = [Utilities unique:arr withIndex:((MemoWindow *)self.window).recentRowIndex];
+        
         ((MemoWindow *)self.window).values = arr;
         
         if ( ((MemoWindow *)self.window).recentRowIndex > 1)

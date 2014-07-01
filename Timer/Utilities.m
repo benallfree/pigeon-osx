@@ -231,4 +231,39 @@
     
 }
 
+/**
+ *  removes those logs from under -Recent, if they are also in -Today
+ *
+ *  @param array       arra
+ *  @param recentIndex recent entry log
+ *
+ *  @return <#return value description#>
+ */
++(NSMutableArray *) unique:(NSMutableArray *)array withIndex:(int)recentIndex
+{
+    
+    int count = [array count];
+    
+    for (int i = count -1; i > recentIndex; i--)
+    {
+        NSString *logs = [[array objectAtIndex:i] objectForKey:@"logs"];
+        if ([logs isEqualToString:@"- Recent"])
+            break;
+        for (int j = recentIndex - 1; j >= 0; j--)
+        {
+            
+            NSString *compareLogs = [[array objectAtIndex:j] objectForKey:@"logs"];
+            
+            if ([compareLogs isEqualToString:logs])
+            {
+                [array removeObjectAtIndex:i];
+            }
+            
+        }
+    }
+    return array;
+}
+
+
+
 @end

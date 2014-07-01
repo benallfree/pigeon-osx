@@ -9,6 +9,7 @@
 #import "MemoWindow.h"
 #import "AppDelegate.h"
 #import "TimerDatabase.h"
+#import "Utilities.h"
 
 @implementation MemoWindow
 
@@ -129,37 +130,6 @@
     AppDelegate *delegate = (AppDelegate *) [NSApp delegate];
     [delegate startTimer];
 }
-
--(NSMutableArray *) unique:(NSMutableArray *)array
-{
-/*    NSSet *uniqueEvents = [NSSet setWithArray:array];
-    
-    [array removeAllObjects];
-    
-    [array addObjectsFromArray:[uniqueEvents allObjects]];*/
-    
-    int count = [array count];
-    
-    for (int i = count -1; i > self.recentRowIndex; i--)
-    {
-        NSString *logs = [[array objectAtIndex:i] objectForKey:@"logs"];
-        if ([logs isEqualToString:@"- Recent"])
-            break;
-        for (int j = self.recentRowIndex - 1; j >= 0; j--)
-        {
-            
-            NSString *compareLogs = [[array objectAtIndex:j] objectForKey:@"logs"];
-            
-            if ([compareLogs isEqualToString:logs])
-            {
-                [array removeObjectAtIndex:i];
-            }
-            
-        }
-    }
-    return array;
-}
-
 /**
  *  function to handle when combox selection is changed
  *
@@ -182,7 +152,7 @@
     
         [arr addObject:dict];
         [arr addObjectsFromArray:tempArray];
-        arr = [self unique:arr];
+        arr = [Utilities unique:arr withIndex:self.recentRowIndex];
     self.values = arr;
 
 
@@ -240,7 +210,7 @@
             
             [arr addObject:dict];
             [arr addObjectsFromArray:tempArray];
-        arr = [self unique:arr];
+        arr = [Utilities unique:arr withIndex:self.recentRowIndex];
         self.values = arr;
         [self.windowController didChangeValueForKey:@"window.values"];
         if (self.recentRowIndex > 1)
@@ -314,22 +284,23 @@
     @try {
     NSTableView *view = (NSTableView *)aNotification.object;
     NSInteger index = [view selectedRow];
-    if (index <= 0 || index >= [self.values count]) return;
+        if (!self.values) return;
+    if (index <= 1 || index >= [self.values count]) return;
     if (index == self.recentRowIndex) return;
     NSLog(@"[self.values count] = %lu", (unsigned long)[self.values count]);
     NSLog(@"index = %ld",(long)index);
     NSDictionary *memoDict = [self.values objectAtIndex:index] ;
     NSLog(@"log dictionary = %@", memoDict);
+        
+        if ([[memoDict objectForKey:@"logs"] hasSuffix:@"Today"] || [[memoDict objectForKey:@"logs"] hasSuffix:@"Recent"])
+            return;
         if ([memoDict objectForKey:@"originalLogs"])
-    self.memo = [memoDict objectForKey:@"originalLogs"];
+            self.memo = [memoDict objectForKey:@"originalLogs"];
         
     }
     @catch (NSException *exception) {
         NSLog(@"%@", exception);
     }
-    @finally {
-        NSLog(@"unknown exception during tableViewSelectionDidChange");
-    }
-    
+       
 }
 @end
