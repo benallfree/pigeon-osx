@@ -285,7 +285,7 @@
     NSTableView *view = (NSTableView *)aNotification.object;
     NSInteger index = [view selectedRow];
         if (!self.values) return;
-    if (index <= 1 || index >= [self.values count]) return;
+    if (index <= 0 || index >= [self.values count]) return;
     if (index == self.recentRowIndex) return;
     NSLog(@"[self.values count] = %lu", (unsigned long)[self.values count]);
     NSLog(@"index = %ld",(long)index);
