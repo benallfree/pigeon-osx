@@ -290,7 +290,10 @@
 {
     if ([keyPath isEqualTo:@"show_timer"] )
     {
-        self.pomodoroTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
+        if (self.currentStatus != kPomoPaused)
+            self.pomodoroTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
+        else
+            self.pomodoroTimerStr = [NSString stringWithFormat:@"Paused"];
         
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"show_timer" ] boolValue])
             [self.timerStatusItem setTitle:self.pomodoroTimerStr];
@@ -338,6 +341,46 @@
 
 }
 /**
+ *  handles break
+ */
+
+-(void) handleBreak
+{
+    [self pomoFinished];
+    self.pomodoroTimerStr = @"00:00";
+   
+}
+/**
+ *  handle pause menu item click
+ *
+ *  @param 
+ */
+-(void) handlePause
+{
+    if (self.currentStatus != kPomoPaused)
+    {
+        self.oldStatus = self.currentStatus;
+        self.currentStatus = kPomoPaused;
+        self.timerStatusImage = [NSImage imageNamed:@"break"];
+        self.timerStatusHighlightImage =  self.timerStatusImage;
+        [self.timerStatusItem setImage:self.timerStatusImage];
+        [self.pause setTitle:@"Resume..."];
+        [self.timerStatusItem setAlternateImage:self.timerStatusHighlightImage];
+    }
+    else
+    {
+        self.currentStatus = self.oldStatus;
+        if (self.currentStatus == kPomoInProgress)
+        {
+            self.timerStatusImage = [NSImage imageNamed:@"pomo"];
+            self.timerStatusHighlightImage =  self.timerStatusImage;
+            [self.timerStatusItem setImage:self.timerStatusImage];
+            [self.pause setTitle:@"Pause..."];
+        }
+        [self.timerStatusItem setAlternateImage:self.timerStatusHighlightImage];
+    }
+}
+/**
  *  action listener for menu items
  *
  *  @param sender Object that trigger this function
@@ -367,6 +410,14 @@
     else if (sender == self.Preferences)
     {
         [self handlePreferenceMenuItem];
+    }
+    else if (sender == self.breakNow)
+    {
+        [self handleBreak];
+    }
+    else if (sender == self.pause)
+    {
+        [self handlePause];
     }
     //quit
     else
@@ -472,6 +523,8 @@
     {
         showTitle = [[NSUserDefaults standardUserDefaults] objectForKey:@"show_timer"];
         
+    if (self.currentStatus != kPomoPaused)
+    {
     if (self.seconds == 0)
     {
         if (self.minutes >0)
@@ -482,7 +535,20 @@
         self.seconds--;
 
         self.totalSecondsToStay--;
-    if (self.currentStatus == kPomoInProgress)
+    }
+     
+    if (self.currentStatus == kPomoPaused)
+     {
+         self.pomodoroTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
+         
+         if ([showTitle boolValue])
+             [self.timerStatusItem setTitle:@"Paused"] ;//]self.pomodoroTimerStr];
+         else
+             [self.timerStatusItem setTitle:@""];
+         
+       
+     }
+    else if (self.currentStatus == kPomoInProgress)
     {
         self.pomodoroTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
         
@@ -566,7 +632,15 @@
 -(void) popup:(id)sender
 {
   //  self.window = nil;
-    
+    if (self.currentStatus == kShortBreak || self.currentStatus == kLongBreak)
+    {
+        [self.breakNow setAction:nil];
+    }
+    else
+    {
+        [self.breakNow setTarget:self];
+        [self.breakNow setAction:@selector(menuClicked:)];
+    }
     if (![[TimerDatabase sharedInstance] LogsAvailableToReport])
     {
         [self.report setAction:nil];
@@ -757,7 +831,7 @@
         [self.timerStatusItem setTitle:@""];
     
     self.currentStatus = kPomoInProgress;
-    
+    self.currentStatus = kPomoInProgress;
     if (startMemo)
         [self alertMemoBox];
 }
@@ -921,6 +995,7 @@
 //sets up rest of the app things
 - (void) setupApp
 {
+    self.currentStatus = kDoingNothing;
     self.currentStatus = kDoingNothing;
     [self performSelectorInBackground:@selector(playTick) withObject:nil];
     [self performSelectorInBackground:@selector(backgroundThread) withObject:nil];

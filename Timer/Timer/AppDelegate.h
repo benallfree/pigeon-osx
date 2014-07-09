@@ -11,6 +11,7 @@
 #define kShortBreak 1
 #define kLongBreak  2
 #define kPomoInProgress 3
+#define kPomoPaused 5
 #define kDoingNothing 4
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
@@ -27,6 +28,8 @@
 @property (atomic, strong) IBOutlet NSMenuItem               *enterLog;
 @property (atomic, strong) IBOutlet NSMenuItem               *Preferences;
 @property (atomic, strong) IBOutlet NSMenuItem               *quit;
+@property (atomic, strong) IBOutlet NSMenuItem               *breakNow;
+@property (atomic, strong) IBOutlet NSMenuItem               *pause;
 
 @property (atomic, strong)  NSWindow *window;
 @property (atomic, strong)  NSWindow *pref_window;
@@ -47,6 +50,7 @@
 @property (atomic, readwrite)  NSInteger totalSecondsToStay;
 @property (atomic, readwrite)  NSInteger totalPomodoro;
 @property (atomic, readwrite)  NSInteger currentStatus;
+@property (atomic, readwrite)  NSInteger oldStatus;
 
 @property (retain) id eventMonitor;
 

@@ -15,8 +15,10 @@
             <connections>
                 <outlet property="Preferences" destination="P4U-xX-t30" id="WfF-7E-Rz3"/>
                 <outlet property="active" destination="Zkn-HH-jb4" id="PdW-tD-0Rs"/>
+                <outlet property="breakNow" destination="TMd-Iz-YDW" id="FaF-rl-RJD"/>
                 <outlet property="enterLog" destination="AkJ-o0-SAr" id="y8u-Cr-EQG"/>
                 <outlet property="mute" destination="vth-Mb-hvs" id="Xkt-tG-zfh"/>
+                <outlet property="pause" destination="2Jf-uq-AwS" id="JcM-oS-I8E"/>
                 <outlet property="quit" destination="ebA-XR-qea" id="wfx-WG-bFt"/>
                 <outlet property="report" destination="iuy-Mf-Qmp" id="F6r-rt-Mbd"/>
                 <outlet property="timerStatusMenu" destination="pam-P4-OCF" id="p8X-YS-BGw"/>
@@ -44,6 +46,19 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="8wn-iv-biw"/>
+                <menuItem title="Break Now..." id="TMd-Iz-YDW">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="menuClicked:" target="Voe-Tx-rLC" id="YWj-yF-tTK"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Pause..." id="2Jf-uq-AwS">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="menuClicked:" target="Voe-Tx-rLC" id="Ix9-tI-zkV"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="0t9-S8-Kr7"/>
                 <menuItem title="Enter logs..." id="AkJ-o0-SAr">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -66,5 +81,6 @@
                 </menuItem>
             </items>
         </menu>
+        <menuItem isSeparatorItem="YES" id="Mty-6f-G6n"/>
     </objects>
 </document>
