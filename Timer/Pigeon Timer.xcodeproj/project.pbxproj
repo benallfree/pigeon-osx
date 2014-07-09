@@ -47,6 +47,7 @@
 		A68FE139195492A4004B98AA /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A68FE138195492A4004B98AA /* libsqlite3.dylib */; };
 		A68FE13C1954B1E9004B98AA /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = A68FE13B1954B1E9004B98AA /* Preferences.xib */; };
 		A68FE13F1954B28A004B98AA /* NSFormatter+NumberOnlyFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A68FE13E1954B28A004B98AA /* NSFormatter+NumberOnlyFormatter.m */; };
+		A6ADB926196D1DE7003F3487 /* CustomNSField.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ADB924196D1DE7003F3487 /* CustomNSField.m */; };
 		A6CD25CC1955784F001D3A79 /* SelectableTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD25CB1955784F001D3A79 /* SelectableTextView.m */; };
 		A6CD25CE19557D07001D3A79 /* red.icns in Resources */ = {isa = PBXBuildFile; fileRef = A6CD25CD19557D07001D3A79 /* red.icns */; };
 		A6CD25D119557DD5001D3A79 /* PreferenceWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD25D019557DD5001D3A79 /* PreferenceWindow.m */; };
@@ -123,6 +124,8 @@
 		A68FE13B1954B1E9004B98AA /* Preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
 		A68FE13D1954B28A004B98AA /* NSFormatter+NumberOnlyFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSFormatter+NumberOnlyFormatter.h"; path = "Timer/NSFormatter+NumberOnlyFormatter.h"; sourceTree = "<group>"; };
 		A68FE13E1954B28A004B98AA /* NSFormatter+NumberOnlyFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSFormatter+NumberOnlyFormatter.m"; path = "Timer/NSFormatter+NumberOnlyFormatter.m"; sourceTree = "<group>"; };
+		A6ADB924196D1DE7003F3487 /* CustomNSField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNSField.m; sourceTree = "<group>"; };
+		A6ADB925196D1DE7003F3487 /* CustomNSField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNSField.h; sourceTree = "<group>"; };
 		A6CD25CA1955784F001D3A79 /* SelectableTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectableTextView.h; sourceTree = "<group>"; };
 		A6CD25CB1955784F001D3A79 /* SelectableTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectableTextView.m; sourceTree = "<group>"; };
 		A6CD25CD19557D07001D3A79 /* red.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = red.icns; path = Timer/red.icns; sourceTree = "<group>"; };
@@ -213,6 +216,7 @@
 		A68FE0E61953D45A004B98AA = {
 			isa = PBXGroup;
 			children = (
+				A6ADB923196D1DD8003F3487 /* CustomTextField */,
 				A61409A8195F405100A6229B /* PomodoroSound */,
 				A614099F195E2B6D00A6229B /* LaunchUp */,
 				A6140984195B9A7000A6229B /* Break */,
@@ -358,6 +362,15 @@
 			name = Preferences;
 			sourceTree = "<group>";
 		};
+		A6ADB923196D1DD8003F3487 /* CustomTextField */ = {
+			isa = PBXGroup;
+			children = (
+				A6ADB924196D1DE7003F3487 /* CustomNSField.m */,
+				A6ADB925196D1DE7003F3487 /* CustomNSField.h */,
+			);
+			name = CustomTextField;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -481,6 +494,7 @@
 				A68FE13F1954B28A004B98AA /* NSFormatter+NumberOnlyFormatter.m in Sources */,
 				A68FE1061953D45A004B98AA /* AppDelegate.m in Sources */,
 				A6CD25CC1955784F001D3A79 /* SelectableTextView.m in Sources */,
+				A6ADB926196D1DE7003F3487 /* CustomNSField.m in Sources */,
 				A61409A4195E2D7A00A6229B /* LaunchUpWindow.m in Sources */,
 				A614098E195B9EC700A6229B /* BreakEnded.m in Sources */,
 				A6CD25D119557DD5001D3A79 /* PreferenceWindow.m in Sources */,

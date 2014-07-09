@@ -34,12 +34,13 @@ int count = 0;
     {
         if (key.keyCode == 36) {
             [(MemoWindow *)[self window] OK:self];
+            return YES;
         }
-        return YES;
+        return NO;
 
     }
     
-    [super performKeyEquivalent:key];
-    return NO;
+    return [super performKeyEquivalent:key];
+    //return NO;
 }
 @end

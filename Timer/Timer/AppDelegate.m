@@ -183,7 +183,11 @@
 {
     //popup save panel.
     NSSavePanel *save = [NSSavePanel savePanel];
-    
+    NSString *lastPath = [[NSUserDefaults standardUserDefaults] objectForKey:@"directory_selected"];
+    if (lastPath)
+    {
+        [save setDirectoryURL:[NSURL fileURLWithPath:lastPath]];
+    }
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"YYYY-MM-dd hhmma"];
     
@@ -200,7 +204,7 @@
         NSError *err;
         NSString *selectedFile = [[[save URL] path] stringByAppendingPathExtension:@"csv"];
         
-        
+        [[NSUserDefaults standardUserDefaults] setObject:[selectedFile stringByDeletingLastPathComponent] forKey:@"directory_selected"];
         //get the CSV string from database
         NSArray *logs = [[TimerDatabase sharedInstance] getLogsAsCSV];
         
@@ -286,6 +290,14 @@
 {
     if ([keyPath isEqualTo:@"show_timer"] )
     {
+        self.pomodoroTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
+        
+        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"show_timer" ] boolValue])
+            [self.timerStatusItem setTitle:self.pomodoroTimerStr];
+        else
+            [self.timerStatusItem setTitle:@""];
+        
+
     }
     else if ([keyPath isEqualTo:@"load_onStart"] )
     {
