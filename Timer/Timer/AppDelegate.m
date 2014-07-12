@@ -91,11 +91,14 @@
         [self.active setState:NSOnState];
         [self startNextPomo:NO];
     }//Allocates and loads the images into the application which will be used for our NSStatusItem
-    self.timerStatusImage = [NSImage imageNamed:@"pomo"];
-	self.timerStatusHighlightImage =  self.timerStatusImage;
-	[self.timerStatusItem setImage:self.timerStatusImage];
-	[self.timerStatusItem setAlternateImage:self.timerStatusHighlightImage];
     
+    if (self.currentStatus == kPomoInProgress)
+    {
+        self.timerStatusImage = [NSImage imageNamed:@"pomo"];
+        self.timerStatusHighlightImage =  self.timerStatusImage;
+        [self.timerStatusItem setImage:self.timerStatusImage];
+        [self.timerStatusItem setAlternateImage:self.timerStatusHighlightImage];
+    }
 
     self.timer = [NSTimer scheduledTimerWithTimeInterval:[[[NSUserDefaults standardUserDefaults] objectForKey:@"log_interval"] intValue] * 60 target:self selector:@selector(alertMemoBox) userInfo:nil repeats:NO];
  }
@@ -880,6 +883,9 @@
 - (void) longBreakStarted
 {
     self.currentStatus = kLongBreak;
+    self.timerStatusImage = [NSImage imageNamed:@"break"];
+    self.timerStatusHighlightImage =  self.timerStatusImage;
+    [self.timerStatusItem setImage:self.timerStatusImage];
 
     if ([self.mute state] == NSOffState)
     {
