@@ -834,7 +834,10 @@
         [self.timerStatusItem setTitle:@""];
     
     self.currentStatus = kPomoInProgress;
-    self.currentStatus = kPomoInProgress;
+    self.timerStatusImage = [NSImage imageNamed:@"pomo"];
+	self.timerStatusHighlightImage =  self.timerStatusImage;
+	[self.timerStatusItem setImage:self.timerStatusImage];
+
     if (startMemo)
         [self alertMemoBox];
 }
