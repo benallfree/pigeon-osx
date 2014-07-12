@@ -155,12 +155,14 @@
     //if it was checked, then uncheck and invalidate the timer
     if (self.active.state == NSOnState)
     {
+        NSLog(@"User set off Activity");
         [self uncheckActive];
         [self resetPomoTimer];
         
     }
     else
     {
+        NSLog(@"User set Activity On");
         //otherewise activate the memo box
         [self.active setState:NSOnState];
         //Allocates and loads the images into the application which will be used for our NSStatusItem
@@ -212,6 +214,7 @@
         //get the CSV string from database
         NSArray *logs = [[TimerDatabase sharedInstance] getLogsAsCSV];
         
+        NSLog(@"Saving report to file %@", selectedFile);
         //write to the file.
         NSOutputStream *output = [NSOutputStream outputStreamToFileAtPath:selectedFile append:NO];
          
@@ -242,7 +245,7 @@
  */
 -(void) handleEnterLogs
 {
-    
+    NSLog(@"user clicked on Enter Logs.");
     if ([self.window isVisible])
     {
         [self.window makeKeyAndOrderFront:self];
@@ -327,6 +330,7 @@
  */
 -(void) handlePreferenceMenuItem
 {
+    NSLog(@"Handle Pereferences Launch");
     if (!self.pref_window)
     {
         NSWindowController * controller = [[NSWindowController alloc] initWithWindowNibName:@"Preferences" ];
@@ -350,6 +354,8 @@
 
 -(void) handleBreak
 {
+    NSLog(@"User stopped activity and started break from menu.");
+
     [self pomoFinished];
     self.pomodoroTimerStr = @"00:00";
    
@@ -361,6 +367,7 @@
  */
 -(void) handlePause
 {
+    NSLog(@"Activity Paused");
     if (self.currentStatus != kPomoPaused)
     {
         self.oldStatus = self.currentStatus;
@@ -450,7 +457,7 @@
  */
 - (void) alertMemoBox
 {
-    
+    NSLog(@"Launching Memo Box");
     if (( [self.active state] == NSOnState) && (self.currentStatus != kPomoInProgress))
     {
         [self startTimer];
@@ -707,7 +714,7 @@
 - (NSApplicationTerminateReply) applicationShouldTerminate:(id)sender
 {
     
-    
+    NSLog(@"Terminating App.");
         [[NSStatusBar systemStatusBar] removeStatusItem:self.timerStatusItem];
         
         return NSTerminateNow;
@@ -719,7 +726,7 @@
  */
 - (void) loadPreferences
 {
-    
+    NSLog(@"Loading Preferences");
    if  (![[NSUserDefaults standardUserDefaults] objectForKey:@"tick_vol"])
     {
         NSUserDefaults *dict = [NSUserDefaults standardUserDefaults];
@@ -797,6 +804,7 @@
  */
 - (void) pomoFinished
 {
+    NSLog(@"Current Pomo Finished");
     NSInteger pomo_before_long_Break = [[[NSUserDefaults standardUserDefaults] objectForKey:@"long_break_after"] integerValue];
     if (self.totalPomodoro >= pomo_before_long_Break)
     {
@@ -815,6 +823,7 @@
  */
 - (void) startNextPomo:(BOOL)startMemo
 {
+    NSLog(@"Next Pomo Started");
     if ([self.mute state] == NSOffState)
     {
         [Utilities playSound:@"start_promo_sound" volumeKey:@"start_promo_vol" default:@"start"];
@@ -848,6 +857,7 @@
  */
 - (void) shortBreakStarted
 {
+    NSLog(@"Short Break Started.");
     self.currentStatus = kShortBreak;
     self.timerStatusImage = [NSImage imageNamed:@"break"];
 	self.timerStatusHighlightImage =  self.timerStatusImage;
@@ -886,6 +896,7 @@
  */
 - (void) longBreakStarted
 {
+    NSLog(@"Long Break Started");
     self.currentStatus = kLongBreak;
     self.timerStatusImage = [NSImage imageNamed:@"break"];
     self.timerStatusHighlightImage =  self.timerStatusImage;
@@ -920,7 +931,7 @@
 //when long break ends.
 - (void) BreakEnded
 {
-   // [self.timer_updater invalidate];
+    NSLog(@"Break Ended.");
     self.currentStatus = kDoingNothing;
     
     if (([[[NSUserDefaults standardUserDefaults] objectForKey:@"start_auto"] boolValue]))
@@ -1048,7 +1059,12 @@
         return result;
     };
     
+    NSDictionary *recent_Values = [[NSUserDefaults standardUserDefaults] persistentDomainForName:[[NSBundle mainBundle] bundleIdentifier ]];
     
+    for (id key in recent_Values)
+    {
+        NSLog(@"%@ = %@", key, [recent_Values objectForKey:key]);
+    }
     
     self.eventMonitor = [NSEvent addLocalMonitorForEventsMatchingMask:NSKeyDownMask handler:handler];
     [self.mute setState:NSOffState];

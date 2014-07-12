@@ -73,6 +73,7 @@
 
 -(IBAction)Cancel:(id)sender
 {
+    NSLog(@"memo snoozed");
     AppDelegate *delegate = (AppDelegate *) [NSApp delegate];
  
   //  [delegate uncheckActive];
@@ -99,7 +100,7 @@
  */
 -(IBAction)OK:(id)sender
 {
-    if (![sender isKindOfClass:[NSButton class]]) return;
+    NSLog(@"memo entered:");
     //checking if all required fields are filled.
     if ([self.selectedClient length] <=0 ||
         [self.memo length] <= 0)

@@ -216,6 +216,7 @@
  */
 -(void) OK:(id)sender
 {
+    NSLog(@"preferences changed");
     AppDelegate *app = (AppDelegate *)[NSApp delegate];
     
     if ([app.window isVisible])
