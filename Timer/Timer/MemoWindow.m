@@ -78,6 +78,7 @@
   //  [delegate uncheckActive];
   //  [delegate resetPomoTimer];
     [self orderOut:sender];
+    [delegate startTimer];
 }
 
 - (void) close

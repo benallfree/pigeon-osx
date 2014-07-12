@@ -100,6 +100,7 @@
         [self.timerStatusItem setAlternateImage:self.timerStatusHighlightImage];
     }
 
+    NSLog(@"Next memo pop after %d minutes", [[[NSUserDefaults standardUserDefaults] objectForKey:@"log_interval"] intValue]);
     self.timer = [NSTimer scheduledTimerWithTimeInterval:[[[NSUserDefaults standardUserDefaults] objectForKey:@"log_interval"] intValue] * 60 target:self selector:@selector(alertMemoBox) userInfo:nil repeats:NO];
  }
 
