@@ -1050,7 +1050,8 @@
             }
             else
             {
-                [targetWindow close];
+                if (![targetWindow isKindOfClass:[NSSavePanel class] ])
+                    [targetWindow close];
             }
         }
         
