@@ -42,7 +42,25 @@
         [Utilities playSound:@"long_break_sound_path" volumeKey:@"long_break_vol" default:@"long" running:YES];
     else   if (sender == self.tick)
         [Utilities playSound:@"tick_sound_path" volumeKey:@"tick_vol" default:@"tick" running:YES];
+    else if (sender == self.countdown)
+        [Utilities playSound:@"countdown_music_sound_path" volumeKey:@"countdown_music_vol" default:@"countdown" running:YES];
+    else if (sender == self.breakEnd)
+        [Utilities playSound:@"break_end_sound_path" volumeKey:@"break_end_vol" default:@"break_end" running:YES];
+    else if (sender == self.memoPopup)
+        [Utilities playSound:@"popup_sound_path" volumeKey:@"popup_vol" default:@"memo" running:YES];
     
+    
+}
+
+
+-(IBAction) playPopupSound:(id)sender
+{
+    [Utilities playSound:@"popup_sound_path" volumeKey:@"popup_vol" default:@"memo"];
+}
+
+-(IBAction) play_breakend:(id)sender
+{
+    [Utilities playSound:@"break_end_sound_path" volumeKey:@"break_end_vol" default:@"break_end"];
 }
 
 
@@ -121,6 +139,16 @@
 
 }
 
+
+/**
+ *  set custom popup mp3
+ *
+ *  @param sender <#sender description#>
+ */
+-(IBAction) browse_popup_sound:(id)sender
+{
+    [self browse_and_set_audio:@"popup_sound_path" nameKey:@"popup_sound"];
+}
 /**
  *  set custom promo mp3
  *
@@ -160,6 +188,26 @@
 {
     [self browse_and_set_audio:@"tick_sound_path" nameKey:@"tick_sound"];
 
+}
+
+-(IBAction) default_popup_sound:(id)sender
+{
+    [[NSUserDefaults standardUserDefaults]  setObject:[NSString stringWithFormat:@"default"] forKey:@"popup_sound_path"];
+    [[NSUserDefaults standardUserDefaults] setObject:@"default" forKey:@"popup_sound"];
+  
+}
+
+-(IBAction) default_break_end:(id)sender
+{
+    [[NSUserDefaults standardUserDefaults]  setObject:[NSString stringWithFormat:@"default"] forKey:@"break_end_sound_path"];
+    [[NSUserDefaults standardUserDefaults] setObject:@"default" forKey:@"break_end_sound"];
+}
+
+
+-(IBAction) browse_break_end:(id)sender
+{
+    [self browse_and_set_audio:@"break_end_sound_path" nameKey:@"break_end_sound"];
+    
 }
 
 /**
@@ -234,7 +282,20 @@
     
     int log_interval = [[[NSUserDefaults standardUserDefaults] objectForKey:@"log_interval"] intValue];
     int pomo_interval = [[[NSUserDefaults standardUserDefaults] objectForKey:@"pomodor_interval"] intValue];
+    int count_down = [[[NSUserDefaults standardUserDefaults] objectForKey:@"count_down_minutes"] intValue];
     
+    if (count_down > pomo_interval)
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:[self.recent_Values objectForKey:@"log_interval"] forKey:@"log_interval"];
+        [[NSUserDefaults standardUserDefaults] setObject:[self.recent_Values objectForKey:@"count_down_minutes"] forKey:@"count_down_minutes"];
+        
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:@"Countdown interval cannot be greater than pomodoro interval."];
+        [alert runModal];
+        [self makeKeyAndOrderFront:self];
+        return;
+    }
+
     if (log_interval > pomo_interval)
     {
         [[NSUserDefaults standardUserDefaults] setObject:[self.recent_Values objectForKey:@"log_interval"] forKey:@"log_interval"];
@@ -271,9 +332,43 @@
 
     }
     
+    app.preferencesWindowClosed = YES;
+    
+    [app update];
     [[NSUserDefaults standardUserDefaults] synchronize];
     self.recent_Values = nil;
     [self orderOut:self];
+}
+
+/**
+ *  plays the countdown music file
+ *
+ *  @param sender
+ */
+-(IBAction) play_coundown:(id)sender
+{
+    [Utilities playSound:@"countdown_music_sound_path" volumeKey:@"countdown_music_vol" default:@"countdown"];
+}
+
+/**
+ *  changes the file for coundown.
+ *
+ *  @param sender
+ */
+-(IBAction) browse_coundown:(id)sender
+{
+    [self browse_and_set_audio:@"countdown_music_sound_path" nameKey:@"countdown_music_sound"];
+}
+
+/**
+ *  default count down
+ *
+ *  @param sender
+ */
+-(IBAction) default_countdown:(id)sender
+{
+    [[NSUserDefaults standardUserDefaults]  setObject:[NSString stringWithFormat:@"default"] forKey:@"countdown_music_sound"];
+    [[NSUserDefaults standardUserDefaults] setObject:@"default" forKey:@"countdown_music_sound_path"];
 }
 
 /**
@@ -281,6 +376,9 @@
  */
 -(void) close
 {
+    AppDelegate *app = [NSApp delegate];
+    app.preferencesWindowClosed = YES;
+
     NSLog(@"Reverting..");
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     for (id key in self.recent_Values)

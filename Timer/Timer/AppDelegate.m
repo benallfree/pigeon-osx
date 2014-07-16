@@ -288,7 +288,11 @@
     [self.window makeKeyAndOrderFront:self];
     [self.window setLevel:NSFloatingWindowLevel];
     
-   
+    if ([self.mute state] == NSOffState && self.playpopupSound)
+    {
+        
+        [Utilities playSound:@"popup_sound_path" volumeKey:@"popup_vol" default:@"memo"];
+    }
 }
 
 
@@ -346,6 +350,7 @@
     [self.pref_window makeKeyAndOrderFront:self];
     [self.pref_window setLevel:NSFloatingWindowLevel];
     [NSApp activateIgnoringOtherApps:YES];
+    self.preferencesWindowClosed = NO;
 
 }
 /**
@@ -508,7 +513,13 @@
         [self.window center];
         [self.window makeKeyAndOrderFront:self];
         [self.window setLevel:NSFloatingWindowLevel];
-     
+    if ([self.mute state] == NSOffState && self.playpopupSound)
+    {
+        
+        [Utilities playSound:@"popup_sound_path" volumeKey:@"popup_vol" default:@"memo"];
+    }
+
+    
 }
 
 -(void) playTick
@@ -518,11 +529,27 @@
     
     while (1)
     {
-        if ([self.mute state] == NSOffState && self.currentStatus == kPomoInProgress)
+        if ([self.mute state] == NSOffState)
+        {
+        if (self.currentStatus == kPomoInProgress && !self.countdown_music)
         {
            [Utilities playSoundStripped:@"tick_sound_path" volumeKey:@"tick_vol" default:@"tick"];
         }
+        else
+        {
+            if (self.countdown_music)
+            {
+                BOOL playOnce = [[[NSUserDefaults standardUserDefaults] objectForKey:@"count_down_playOnce"] boolValue];
+                if (!(playOnce && self.countdown_playcount >= 1))
+                    [Utilities playSound:@"countdown_music_sound_path" volumeKey:@"countdown_music_vol" default:@"countdown"];
+                else  if ([self.mute state] == NSOffState && self.currentStatus == kPomoInProgress )
+                    [Utilities playSoundStripped:@"tick_sound_path" volumeKey:@"tick_vol" default:@"tick"];
+
+                self.countdown_playcount++;
+            }
+        }
         sleep(1);
+        }
 }
 }
 
@@ -547,6 +574,13 @@
 
         self.totalSecondsToStay--;
     }
+
+
+    if (self.totalSecondsToStay <= self.countdown_minutes*60)
+    {
+            self.countdown_music = YES;
+    }
+
      
     if (self.currentStatus == kPomoPaused)
      {
@@ -559,6 +593,8 @@
          
        
      }
+
+     
     else if (self.currentStatus == kPomoInProgress)
     {
         self.pomodoroTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
@@ -567,6 +603,7 @@
             [self.timerStatusItem setTitle:self.pomodoroTimerStr];
         else
             [self.timerStatusItem setTitle:@""];
+        
         
         if (self.totalSecondsToStay == 0)
         {
@@ -721,6 +758,73 @@
   
 }
 
+
+- (void) setupPopupSound
+{
+    
+    NSUserDefaults *dict = [NSUserDefaults standardUserDefaults];
+    
+    if (![dict objectForKey:@"popup_sound_path"])
+    {
+        [dict setObject:[NSString stringWithFormat:@"default"] forKey:@"popup_sound_path"];
+    }
+    if (![dict objectForKey:@"popup_sound"])
+    {
+        [dict setObject:[NSString stringWithFormat:@"default"] forKey:@"popup_sound"];
+    }
+    if (![dict objectForKey:@"popup_vol"])
+    {
+        [dict setObject:[NSNumber numberWithInteger:20] forKey:@"popup_vol"];
+    }
+}
+
+- (void) setupBreakEndSound
+{
+    
+        NSUserDefaults *dict = [NSUserDefaults standardUserDefaults];
+        
+        if (![dict objectForKey:@"break_end_sound_path"])
+        {
+            [dict setObject:[NSString stringWithFormat:@"default"] forKey:@"break_end_sound_path"];
+        }
+        if (![dict objectForKey:@"break_end_sound"])
+        {
+            [dict setObject:[NSString stringWithFormat:@"default"] forKey:@"break_end_sound"];
+        }
+        if (![dict objectForKey:@"break_end_vol"])
+        {
+            [dict setObject:[NSNumber numberWithInteger:20] forKey:@"break_end_vol"];
+        }
+}
+- (void) setup_countdown_sound
+{
+    NSUserDefaults *dict = [NSUserDefaults standardUserDefaults];
+    
+    if (![dict objectForKey:@"countdown_music_sound_path"])
+    {
+        [dict setObject:[NSString stringWithFormat:@"default"] forKey:@"countdown_music_sound_path"];
+    }
+    if (![dict objectForKey:@"countdown_music_sound"])
+    {
+        [dict setObject:[NSString stringWithFormat:@"default"] forKey:@"countdown_music_sound"];
+    }
+    if (![dict objectForKey:@"countdown_music_vol"])
+    {
+        [dict setObject:[NSNumber numberWithInteger:20] forKey:@"countdown_music_vol"];
+    }
+    
+    
+    if (![dict objectForKey:@"count_down_minutes"])
+    {
+        [dict setObject:[NSNumber numberWithInt:60] forKey:@"count_down_minutes"];
+    }
+    
+    if (![dict objectForKey:@"count_down_playOnce"])
+    {
+        [dict setObject:[NSNumber numberWithBool:NO] forKey:@"count_down_playOnce"];
+    }
+
+}
 /**
  *  load preferences from disk
  */
@@ -759,12 +863,20 @@
     }
     else
     {
+         NSUserDefaults *dict = [NSUserDefaults standardUserDefaults];
+      
+        self.countdown_minutes = [[dict objectForKey:@"count_down_minutes"] intValue];
         self.minutes =  [[[NSUserDefaults standardUserDefaults] objectForKey:@"pomodor_interval"] integerValue];
         self.totalSecondsToStay = self.minutes * 60;
         self.seconds = 0;
     }
 }
 
+- (void) update
+{
+    self.countdown_minutes = [[[NSUserDefaults standardUserDefaults] objectForKey:@"count_down_minutes"] intValue];
+    
+}
 /**
  *  resets Pomo Timer
  */
@@ -824,6 +936,7 @@
 - (void) startNextPomo:(BOOL)startMemo
 {
     NSLog(@"Next Pomo Started");
+    
     if ([self.mute state] == NSOffState)
     {
         [Utilities playSound:@"start_promo_sound" volumeKey:@"start_promo_vol" default:@"start"];
@@ -831,6 +944,8 @@
     
     self.minutes = [[[NSUserDefaults standardUserDefaults] objectForKey:@"pomodor_interval"] integerValue];
     self.totalSecondsToStay = self.minutes * 60;
+    self.countdown_music = NO;
+    self.countdown_playcount = 0;
     self.seconds = 0;
     //if (!self.timer_updater)
    // self.timer_updater = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updatePomoTimer:) userInfo:nil repeats:YES];
@@ -849,15 +964,20 @@
 	[self.timerStatusItem setImage:self.timerStatusImage];
 
     if (startMemo)
+    {
+        self.playpopupSound = NO;
         [self alertMemoBox];
+        self.playpopupSound = YES;
+    }
 }
-                                     
+
 /**
  *  when short break starts
  */
 - (void) shortBreakStarted
 {
     NSLog(@"Short Break Started.");
+    
     self.currentStatus = kShortBreak;
     self.timerStatusImage = [NSImage imageNamed:@"break"];
 	self.timerStatusHighlightImage =  self.timerStatusImage;
@@ -879,6 +999,9 @@
     self.minutes = [[[NSUserDefaults standardUserDefaults] objectForKey:@"short_break"] integerValue];
     self.seconds = 0;
     self.totalSecondsToStay = self.minutes * 60;
+    self.countdown_music = NO;
+    self.countdown_playcount = 0;
+    
     self.breakTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
  
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"show_timer" ] boolValue])
@@ -916,6 +1039,9 @@
     self.minutes = [[[NSUserDefaults standardUserDefaults] objectForKey:@"long_break"] integerValue];
     self.seconds = 0;
     self.totalSecondsToStay = self.minutes * 60;
+    self.countdown_music = NO;
+    self.countdown_playcount = 0;
+    
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"show_timer" ] boolValue])
         [self.timerStatusItem setTitle:self.breakTimerStr];
     else
@@ -926,6 +1052,15 @@
     
     
    // self.short_timer = [NSTimer scheduledTimerWithTimeInterval:[[[NSUserDefaults standardUserDefaults] objectForKey:@"long_break"] intValue] * 60 target:self selector:@selector(BreakEnded) userInfo:nil repeats:NO];
+}
+
+-(void) playBreakEndSound
+{
+    if ([self.mute state] == NSOffState)
+    {
+        
+        [Utilities playSound:@"break_end_sound_path" volumeKey:@"break_end_vol" default:@"break_end"];
+    }
 }
 
 //when long break ends.
@@ -942,6 +1077,7 @@
     else
     {
         //pop up break ended.
+        [self performSelectorOnMainThread:@selector(playBreakEndSound) withObject:nil waitUntilDone:YES];
         self.break_ended = [BreakEnded getWindow];
         [self.break_ended center];
         [self.break_ended setLevel:NSFloatingWindowLevel];
@@ -1017,7 +1153,6 @@
 - (void) setupApp
 {
     self.currentStatus = kDoingNothing;
-    self.currentStatus = kDoingNothing;
     [self performSelectorInBackground:@selector(playTick) withObject:nil];
     [self performSelectorInBackground:@selector(backgroundThread) withObject:nil];
     //setup default time interval for poping up memo window, if not set by user in preferences window.
@@ -1059,7 +1194,9 @@
         NSEvent *result = theEvent;
         return result;
     };
-    
+    [self setupPopupSound];
+    [self setup_countdown_sound];
+    [self setupBreakEndSound];
     NSDictionary *recent_Values = [[NSUserDefaults standardUserDefaults] persistentDomainForName:[[NSBundle mainBundle] bundleIdentifier ]];
     
     for (id key in recent_Values)
@@ -1067,6 +1204,9 @@
         NSLog(@"%@ = %@", key, [recent_Values objectForKey:key]);
     }
     
+    
+    self.preferencesWindowClosed = YES;
+    self.countdown_music = NO;
     self.eventMonitor = [NSEvent addLocalMonitorForEventsMatchingMask:NSKeyDownMask handler:handler];
     [self.mute setState:NSOffState];
     [self loadPreferences];

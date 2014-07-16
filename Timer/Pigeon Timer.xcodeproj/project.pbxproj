@@ -49,6 +49,9 @@
 		A68FE13F1954B28A004B98AA /* NSFormatter+NumberOnlyFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A68FE13E1954B28A004B98AA /* NSFormatter+NumberOnlyFormatter.m */; };
 		A6ADB926196D1DE7003F3487 /* CustomNSField.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ADB924196D1DE7003F3487 /* CustomNSField.m */; };
 		A6ADB9DE1971B00C003F3487 /* Logging.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ADB9DC1971B00C003F3487 /* Logging.m */; };
+		A6ADB9E61975B54A003F3487 /* memo.wav in Resources */ = {isa = PBXBuildFile; fileRef = A6ADB9E31975B54A003F3487 /* memo.wav */; };
+		A6ADB9E71975B54A003F3487 /* countdown.wav in Resources */ = {isa = PBXBuildFile; fileRef = A6ADB9E41975B54A003F3487 /* countdown.wav */; };
+		A6ADB9E81975B54A003F3487 /* break_end.wav in Resources */ = {isa = PBXBuildFile; fileRef = A6ADB9E51975B54A003F3487 /* break_end.wav */; };
 		A6CD25CC1955784F001D3A79 /* SelectableTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD25CB1955784F001D3A79 /* SelectableTextView.m */; };
 		A6CD25CE19557D07001D3A79 /* red.icns in Resources */ = {isa = PBXBuildFile; fileRef = A6CD25CD19557D07001D3A79 /* red.icns */; };
 		A6CD25D119557DD5001D3A79 /* PreferenceWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD25D019557DD5001D3A79 /* PreferenceWindow.m */; };
@@ -129,6 +132,9 @@
 		A6ADB925196D1DE7003F3487 /* CustomNSField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNSField.h; sourceTree = "<group>"; };
 		A6ADB9DC1971B00C003F3487 /* Logging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logging.m; sourceTree = "<group>"; };
 		A6ADB9DD1971B00C003F3487 /* Logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logging.h; sourceTree = "<group>"; };
+		A6ADB9E31975B54A003F3487 /* memo.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = memo.wav; sourceTree = "<group>"; };
+		A6ADB9E41975B54A003F3487 /* countdown.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = countdown.wav; sourceTree = "<group>"; };
+		A6ADB9E51975B54A003F3487 /* break_end.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = break_end.wav; sourceTree = "<group>"; };
 		A6CD25CA1955784F001D3A79 /* SelectableTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectableTextView.h; sourceTree = "<group>"; };
 		A6CD25CB1955784F001D3A79 /* SelectableTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectableTextView.m; sourceTree = "<group>"; };
 		A6CD25CD19557D07001D3A79 /* red.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = red.icns; path = Timer/red.icns; sourceTree = "<group>"; };
@@ -175,6 +181,9 @@
 		A614097B195B1B4E00A6229B /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				A6ADB9E31975B54A003F3487 /* memo.wav */,
+				A6ADB9E41975B54A003F3487 /* countdown.wav */,
+				A6ADB9E51975B54A003F3487 /* break_end.wav */,
 				A614097C195B1B4E00A6229B /* long.mp3 */,
 				A614097D195B1B4E00A6229B /* short.mp3 */,
 				A614097E195B1B4E00A6229B /* start.mp3 */,
@@ -464,6 +473,7 @@
 				A68FE0FD1953D45A004B98AA /* InfoPlist.strings in Resources */,
 				A61409C21961BA9500A6229B /* stop.png in Resources */,
 				A6140986195B9A8400A6229B /* BreakStarted.xib in Resources */,
+				A6ADB9E71975B54A003F3487 /* countdown.wav in Resources */,
 				A61409C71961D8C300A6229B /* pomo@2x.png in Resources */,
 				A614090B1957D4B800A6229B /* NewClient.xib in Resources */,
 				A68FE10B1953D45A004B98AA /* Images.xcassets in Resources */,
@@ -478,8 +488,10 @@
 				A61409C01961BA9500A6229B /* break.png in Resources */,
 				A61409C11961BA9500A6229B /* pomo.png in Resources */,
 				A6140981195B1B4E00A6229B /* short.mp3 in Resources */,
+				A6ADB9E61975B54A003F3487 /* memo.wav in Resources */,
 				A6CD25CE19557D07001D3A79 /* red.icns in Resources */,
 				A6140982195B1B4E00A6229B /* start.mp3 in Resources */,
+				A6ADB9E81975B54A003F3487 /* break_end.wav in Resources */,
 				A68FE1091953D45A004B98AA /* MainMenu.xib in Resources */,
 				A68FE1291953D626004B98AA /* timer.png in Resources */,
 				A68FE12C1953DD04004B98AA /* MemoWindow.xib in Resources */,

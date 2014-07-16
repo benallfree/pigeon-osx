@@ -36,7 +36,10 @@ static PomodoroSound *soundPlay=nil;
     
         self.volKey = volKey;
         NSNumber *volume = [[NSUserDefaults standardUserDefaults] objectForKey:volKey];
-        self.sound = [NSSound soundNamed:fileName];
+        if ([[fileName pathComponents] count] > 1)
+            self.sound = [[NSSound alloc] initWithContentsOfURL:[NSURL fileURLWithPath:fileName] byReference:YES];
+        else
+            self.sound = [NSSound soundNamed:fileName];
         [self.sound setDelegate:self];
         [self.sound setVolume:[volume floatValue]/100];
         [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:self.volKey options:NSKeyValueObservingOptionNew context:nil];

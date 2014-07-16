@@ -51,10 +51,16 @@
 @property (atomic, readwrite)  NSInteger totalPomodoro;
 @property (atomic, readwrite)  NSInteger currentStatus;
 @property (atomic, readwrite)  NSInteger oldStatus;
+@property (atomic, readwrite)  BOOL countdown_music;
+@property (atomic, readwrite)  int countdown_playcount;
+@property (atomic, readwrite)  BOOL preferencesWindowClosed;
+@property (atomic, readwrite)  int countdown_minutes;
+@property (atomic, readwrite)  BOOL playpopupSound;
 
 @property (retain) id eventMonitor;
 
 
+- (void) update;
 //setsup status item related stuff.
 - (void) setupStatusItem;
 - (IBAction) menuClicked:(id)sender;
