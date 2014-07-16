@@ -816,12 +816,12 @@
     
     if (![dict objectForKey:@"count_down_minutes"])
     {
-        [dict setObject:[NSNumber numberWithInt:60] forKey:@"count_down_minutes"];
+        [dict setObject:[NSNumber numberWithInt:1] forKey:@"count_down_minutes"];
     }
     
     if (![dict objectForKey:@"count_down_playOnce"])
     {
-        [dict setObject:[NSNumber numberWithBool:NO] forKey:@"count_down_playOnce"];
+        [dict setObject:[NSNumber numberWithBool:YES] forKey:@"count_down_playOnce"];
     }
 
 }
