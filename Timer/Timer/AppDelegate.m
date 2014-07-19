@@ -83,7 +83,7 @@
  */
 - (void) startTimer
 {
-    if ([self.active state] == NSOffState)
+  /*  if ([self.active state] == NSOffState)
     {
         
     
@@ -91,7 +91,7 @@
         [self.active setState:NSOnState];
         [self startNextPomo:NO];
     }//Allocates and loads the images into the application which will be used for our NSStatusItem
-    
+    */
     if (self.currentStatus == kPomoInProgress)
     {
         self.timerStatusImage = [NSImage imageNamed:@"pomo"];
@@ -141,6 +141,7 @@
     }
     else
     {
+        [Utilities stopSound];
         [self.mute setState:NSOnState];
         
     }
@@ -156,6 +157,7 @@
     if (self.active.state == NSOnState)
     {
         NSLog(@"User set off Activity");
+        [Utilities stopSound];
         [self uncheckActive];
         [self resetPomoTimer];
         
@@ -284,6 +286,7 @@
             [ ((MemoWindow *)self.window).Tablecontroller deselectAll:self];
     }
     
+    
     [self.window center];
     [self.window makeKeyAndOrderFront:self];
     [self.window setLevel:NSFloatingWindowLevel];
@@ -373,6 +376,8 @@
 -(void) handlePause
 {
     NSLog(@"Activity Paused");
+    [Utilities stopSound];
+    
     if (self.currentStatus != kPomoPaused)
     {
         self.oldStatus = self.currentStatus;
@@ -382,6 +387,11 @@
         [self.timerStatusItem setImage:self.timerStatusImage];
         [self.pause setTitle:@"Resume..."];
         [self.timerStatusItem setAlternateImage:self.timerStatusHighlightImage];
+        [self.breakNow setAction:nil];
+        [self.active setAction:nil];
+        [self.breakNow setTarget:nil];
+        [self.active setTarget:nil];
+        
     }
     else
     {
@@ -393,6 +403,8 @@
             [self.timerStatusItem setImage:self.timerStatusImage];
             [self.pause setTitle:@"Pause..."];
         }
+        [self.active setAction:@selector(menuClicked:)];
+        [self.breakNow setAction:@selector(menuClicked:)];
         [self.timerStatusItem setAlternateImage:self.timerStatusHighlightImage];
     }
 }
@@ -468,6 +480,8 @@
         [self startTimer];
         return;
     }
+    if ([self.active state] == NSOffState)
+        return;
     
     if ([self.window isVisible])
     {
@@ -510,6 +524,7 @@
             [ ((MemoWindow *)self.window).Tablecontroller deselectAll:self];
     }
    
+    
         [self.window center];
         [self.window makeKeyAndOrderFront:self];
         [self.window setLevel:NSFloatingWindowLevel];
@@ -531,25 +546,27 @@
     {
         if ([self.mute state] == NSOffState)
         {
-        if (self.currentStatus == kPomoInProgress && !self.countdown_music)
-        {
-           [Utilities playSoundStripped:@"tick_sound_path" volumeKey:@"tick_vol" default:@"tick"];
+            if (self.currentStatus == kPomoInProgress && !self.countdown_music)
+            {
+                [Utilities playSoundStripped:@"tick_sound_path" volumeKey:@"tick_vol" default:@"tick"];
+            }
+            else
+            {
+                if (self.countdown_music && [self.active state] == NSOnState)
+                {
+                    BOOL playOnce = [[[NSUserDefaults standardUserDefaults] objectForKey:@"count_down_playOnce"] boolValue];
+                    if (!(playOnce && self.countdown_playcount >= 1))
+                        [Utilities playSound:@"countdown_music_sound_path" volumeKey:@"countdown_music_vol" default:@"countdown"];
+                    else  if ([self.mute state] == NSOffState && self.currentStatus == kPomoInProgress )
+                        [Utilities playSoundStripped:@"tick_sound_path" volumeKey:@"tick_vol" default:@"tick"];
+
+                    self.countdown_playcount++;
+                }
+            }
+            sleep(1);
         }
         else
-        {
-            if (self.countdown_music)
-            {
-                BOOL playOnce = [[[NSUserDefaults standardUserDefaults] objectForKey:@"count_down_playOnce"] boolValue];
-                if (!(playOnce && self.countdown_playcount >= 1))
-                    [Utilities playSound:@"countdown_music_sound_path" volumeKey:@"countdown_music_vol" default:@"countdown"];
-                else  if ([self.mute state] == NSOffState && self.currentStatus == kPomoInProgress )
-                    [Utilities playSoundStripped:@"tick_sound_path" volumeKey:@"tick_vol" default:@"tick"];
-
-                self.countdown_playcount++;
-            }
-        }
-        sleep(1);
-        }
+        usleep(500000);
 }
 }
 
@@ -680,7 +697,7 @@
 -(void) popup:(id)sender
 {
   //  self.window = nil;
-    if (self.currentStatus == kShortBreak || self.currentStatus == kLongBreak)
+    if (self.currentStatus == kShortBreak || self.currentStatus == kLongBreak || self.currentStatus == kPomoPaused)
     {
         [self.breakNow setAction:nil];
     }
@@ -1034,7 +1051,8 @@
     [self.break_started center];
     [self.break_started setLevel:NSFloatingWindowLevel];
     [self.break_started makeKeyAndOrderFront:self];
-
+    
+    
     [self.timer_updater invalidate];
     self.minutes = [[[NSUserDefaults standardUserDefaults] objectForKey:@"long_break"] integerValue];
     self.seconds = 0;
@@ -1072,10 +1090,12 @@
     if (([[[NSUserDefaults standardUserDefaults] objectForKey:@"start_auto"] boolValue]))
     {
         [self.break_started close];
+        [NSApp hide:self];
         [self startNextPomo:YES];
     }
     else
     {
+        
         //pop up break ended.
         [self performSelectorOnMainThread:@selector(playBreakEndSound) withObject:nil waitUntilDone:YES];
         self.break_ended = [BreakEnded getWindow];
@@ -1168,20 +1188,24 @@
         if (theEvent.keyCode == 53) {
             if (targetWindow == self.window) {
                 [self.window orderOut:self];
+                [NSApp hide:self];
                 return theEvent;
             }
             else if (targetWindow == self.pref_window)
             {
                 [self.pref_window orderOut:self];
+                [NSApp hide:self];
             }
             else if (targetWindow == self.moreClient)
             {
                 [self.moreClient close];
+                [NSApp hide:self];
                 self.moreClient = nil;
             }
             else if (targetWindow == self.break_ended)
             {
                 [(BreakEnded *)self.break_ended stop:self];
+                [NSApp hide:self];
             }
             else
             {

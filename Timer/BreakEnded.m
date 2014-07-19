@@ -37,6 +37,8 @@
     [delegate uncheckActive];
     [delegate resetPomoTimer];
     [self close];
+    [NSApp hide:self];
+    
 }
 /**
  *  handler when start Next Pomodoro is pressed
@@ -51,6 +53,8 @@
 
     [delegate startNextPomo:YES];
     [self close];
+    [NSApp hide:self];
+    
 }
 
 @end

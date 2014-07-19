@@ -322,6 +322,8 @@
         if (returnCode != NSAlertDefaultReturn)
         {
            [self close];
+            [NSApp hide:self];
+            
             return;
         }
         else
@@ -338,6 +340,8 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     self.recent_Values = nil;
     [self orderOut:self];
+    [NSApp hide:self];
+    
 }
 
 /**
@@ -384,6 +388,7 @@
     for (id key in self.recent_Values)
         [defaults setObject:[self.recent_Values objectForKey:key] forKey:key];
     [self orderOut:self];
+    [NSApp hide:self];
+    
 }
 @end
- 

@@ -23,6 +23,16 @@ static PomodoroSound *soundPlay=nil;
     return soundPlay;
 }
 
+-(void) stop
+{
+    if (self.sound && [self.sound isPlaying])
+    {
+        [self.sound stop];
+        self.sound = nil;
+    // [self removeObserver:self forKeyPath:self.volKey context:nil];
+    }
+}
+
 -(void) playSong:(NSString *)fileName volKey:(NSString *)volKey
 {
    @synchronized(self)

@@ -19,13 +19,16 @@
     if ([[NSBundle mainBundle] isLoginItem])
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:@"load_onStart"];
     [del setupApp];
+    [NSApp hide:self];
+    
 }
 - (IBAction)doNO:(id)sender
 {
     [self close];
     AppDelegate *del = [NSApp delegate];
     [del setupApp];
-
+    [NSApp hide:self];
+    
 }
 
 @end

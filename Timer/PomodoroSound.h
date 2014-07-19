@@ -15,4 +15,5 @@
 +(id) shared;
 -(void) playSong:(NSString *)fileName volKey:(NSString *)volKey;
 -(BOOL) isFinished:(NSString *)volKey;
+-(void)stop;
 @end

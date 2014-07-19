@@ -140,6 +140,13 @@
     [sound playSong:file volKey:volKey];
 }
 
++(void) stopSound
+{
+    PomodoroSound *sound = [PomodoroSound shared];
+    [sound stop];
+    
+}
+
 +(void) playSound:(NSString *)filekey volumeKey:(NSString *)volKey default:(NSString *)defaultSound running:(BOOL)playIfNotrunning
 {
     PomodoroSound *sound = [PomodoroSound shared];

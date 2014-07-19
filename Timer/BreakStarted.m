@@ -32,6 +32,8 @@
 -(IBAction) dismiss:(id)sender
 {
     [self close];
+    [NSApp hide:self];
+    
 }
 /**
  *  handler when stop button is pressed
@@ -46,6 +48,8 @@
     [delegate uncheckActive];
     [delegate resetPomoTimer];
     [self close];
+    [NSApp hide:self];
+    
 }
 /**
  *  handler when start Next Pomodoro is pressed
@@ -60,6 +64,8 @@
     [delegate.short_timer invalidate];
     [delegate startNextPomo:YES];
     [self close];
+    [NSApp hide:self];
+    
 }
 
 @end

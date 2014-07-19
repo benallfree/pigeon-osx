@@ -28,6 +28,7 @@
         delegate.moreClient = (NSWindow *)controller.window;
     }
 
+    
     [delegate.moreClient center];
     [delegate.moreClient makeKeyAndOrderFront:self];
     [delegate.moreClient setLevel:NSFloatingWindowLevel];
@@ -79,6 +80,7 @@
   //  [delegate uncheckActive];
   //  [delegate resetPomoTimer];
     [self orderOut:sender];
+    [NSApp hide:self];
     [delegate startTimer];
 }
 
@@ -110,7 +112,7 @@
         [alert runModal];
         return;
     }
-    
+  
     NSString *client =  nil;
     client = self.selectedClient;
     
@@ -125,8 +127,10 @@
     //insert log into database
     [[TimerDatabase sharedInstance] insertLog:[self.memo  stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] forClient:clientID];
     
+    //  delegate.windowsCount--;
      //close window.
     [self orderOut:sender];
+    [NSApp hide:self];
     
     //make app delegate to reset the timer.
     AppDelegate *delegate = (AppDelegate *) [NSApp delegate];
