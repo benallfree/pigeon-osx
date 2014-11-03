@@ -1095,7 +1095,7 @@
     }
     else
     {
-        
+         [self.break_started close];
         //pop up break ended.
         [self performSelectorOnMainThread:@selector(playBreakEndSound) withObject:nil waitUntilDone:YES];
         self.break_ended = [BreakEnded getWindow];
