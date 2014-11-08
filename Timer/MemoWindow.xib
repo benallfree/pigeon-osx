@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
@@ -20,7 +20,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="410" height="467"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OsV-96-l2A" customClass="MemoWindowButtonView">
+                    <button verticalHuggingPriority="750" id="OsV-96-l2A" customClass="MemoWindowButtonView">
                         <rect key="frame" x="205" y="10" width="180" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="RVV-ef-j6k">
@@ -34,7 +34,7 @@ DQ
                             <action selector="OK:" target="QvC-M9-y7g" id="SQU-1y-uhb"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sGd-th-qU2">
+                    <button verticalHuggingPriority="750" id="sGd-th-qU2">
                         <rect key="frame" x="25" y="10" width="180" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Snooze" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="AXa-dp-y5a">
@@ -45,7 +45,7 @@ DQ
                             <action selector="Cancel:" target="QvC-M9-y7g" id="yff-Q2-SsE"/>
                         </connections>
                     </button>
-                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WLN-ty-Yol">
+                    <popUpButton verticalHuggingPriority="750" id="WLN-ty-Yol">
                         <rect key="frame" x="24" y="384" width="318" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingMiddle" truncatesLastVisibleLine="YES" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="22J-TV-5Ex" id="5rN-2s-KvN">
@@ -75,7 +75,7 @@ DQ
                             </binding>
                         </connections>
                     </popUpButton>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dHX-6w-UCg" customClass="SelectableTextView">
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="dHX-6w-UCg" customClass="SelectableTextView">
                         <rect key="frame" x="26" y="51" width="358" height="69"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" selectable="YES" editable="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="UBI-FJ-iom">
@@ -97,7 +97,7 @@ DQ
                             <outlet property="delegate" destination="QvC-M9-y7g" id="mVd-Xz-PE6"/>
                         </connections>
                     </textField>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kX4-pI-w6q">
+                    <button verticalHuggingPriority="750" id="kX4-pI-w6q">
                         <rect key="frame" x="337" y="380" width="53" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Igd-CE-ukb">
@@ -108,7 +108,7 @@ DQ
                             <action selector="newClient:" target="QvC-M9-y7g" id="2f9-1y-PGf"/>
                         </connections>
                     </button>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R3Y-zJ-K3E">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="R3Y-zJ-K3E">
                         <rect key="frame" x="-2" y="421" width="414" height="34"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="T9J-tt-Oqx">
@@ -120,10 +120,10 @@ DQ
                             <binding destination="-3" name="value" keyPath="self.delegate.pomodoroTimerStr" id="KkI-mW-v9M"/>
                         </connections>
                     </textField>
-                    <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cNA-zR-x0u">
+                    <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="cNA-zR-x0u">
                         <rect key="frame" x="26" y="142" width="358" height="225"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <clipView key="contentView" ambiguous="YES" misplaced="YES" id="e4M-ht-6Pa">
+                        <clipView key="contentView" id="e4M-ht-6Pa">
                             <rect key="frame" x="1" y="1" width="356" height="223"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
@@ -169,7 +169,7 @@ DQ
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t6P-cU-ld9">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="t6P-cU-ld9">
                         <rect key="frame" x="31" y="369" width="120" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Recently used memos" id="kE4-pl-wMJ">
@@ -178,7 +178,7 @@ DQ
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FwL-Eg-C2g">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="FwL-Eg-C2g">
                         <rect key="frame" x="31" y="124" width="116" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="..or input new memo" id="a0c-BL-JAH">

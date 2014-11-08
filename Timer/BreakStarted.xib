@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
@@ -20,7 +20,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="423" height="89"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rur-x6-hpZ">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Rur-x6-hpZ">
                         <rect key="frame" x="-2" y="48" width="427" height="34"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="niN-tI-si3">
@@ -32,7 +32,7 @@
                             <binding destination="-3" name="value" keyPath="self.delegate.breakTimerStr" id="SVF-5u-G5I"/>
                         </connections>
                     </textField>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GfN-Xb-kX3">
+                    <button verticalHuggingPriority="750" id="GfN-Xb-kX3">
                         <rect key="frame" x="277" y="3" width="138" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Next Pomodoro" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2M7-MC-VRN">
@@ -43,7 +43,7 @@
                             <action selector="startNextPomodoro:" target="QvC-M9-y7g" id="nDz-rM-5PT"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lN6-hy-oBQ">
+                    <button verticalHuggingPriority="750" id="lN6-hy-oBQ">
                         <rect key="frame" x="142" y="3" width="138" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Dismiss" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Nmu-qf-PO2">
@@ -57,7 +57,7 @@ DQ
                             <action selector="dismiss:" target="QvC-M9-y7g" id="xOO-8d-lQ9"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9N1-nR-cod">
+                    <button verticalHuggingPriority="750" id="9N1-nR-cod">
                         <rect key="frame" x="7" y="3" width="138" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Stop" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nub-mA-LkQ">

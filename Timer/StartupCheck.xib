@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
@@ -20,7 +20,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="335" height="141"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IWW-26-vBm">
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="IWW-26-vBm">
                         <rect key="frame" x="3" y="116" width="329" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="Pigeon can load everytime you start your computer.             " id="0zW-FM-BJh">
@@ -29,7 +29,7 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2V9-U3-UJs">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="2V9-U3-UJs">
                         <rect key="frame" x="25" y="96" width="285" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Would you like to automatically load Pigeon?" id="kxc-zD-MYq">
@@ -38,7 +38,7 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="if0-yV-TPT">
+                    <button id="if0-yV-TPT">
                         <rect key="frame" x="25" y="60" width="132" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Don't ask again" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="tlL-ef-7FL">
@@ -49,7 +49,7 @@
                             <binding destination="h6r-63-jVs" name="value" keyPath="values.dont_ask" id="Fpf-T0-fLL"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n60-bo-Fpg">
+                    <button verticalHuggingPriority="750" id="n60-bo-Fpg">
                         <rect key="frame" x="21" y="12" width="145" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="No" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Gow-Wv-Nbn">
@@ -60,7 +60,7 @@
                             <action selector="doNO:" target="QvC-M9-y7g" id="ffa-if-lnZ"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ymk-R8-Hq8">
+                    <button verticalHuggingPriority="750" id="ymk-R8-Hq8">
                         <rect key="frame" x="166" y="12" width="145" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Yes" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DVJ-MI-hT6">
