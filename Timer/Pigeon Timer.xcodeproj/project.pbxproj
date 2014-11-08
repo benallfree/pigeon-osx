@@ -34,10 +34,6 @@
 		A68FE1061953D45A004B98AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A68FE1051953D45A004B98AA /* AppDelegate.m */; };
 		A68FE1091953D45A004B98AA /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A68FE1071953D45A004B98AA /* MainMenu.xib */; };
 		A68FE10B1953D45A004B98AA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A68FE10A1953D45A004B98AA /* Images.xcassets */; };
-		A68FE1121953D45A004B98AA /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A68FE1111953D45A004B98AA /* XCTest.framework */; };
-		A68FE1131953D45A004B98AA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A68FE0F21953D45A004B98AA /* Cocoa.framework */; };
-		A68FE11B1953D45A004B98AA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A68FE1191953D45A004B98AA /* InfoPlist.strings */; };
-		A68FE11D1953D45A004B98AA /* TimerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A68FE11C1953D45A004B98AA /* TimerTests.m */; };
 		A68FE1271953D48E004B98AA /* timer.icns in Resources */ = {isa = PBXBuildFile; fileRef = A68FE1261953D48E004B98AA /* timer.icns */; };
 		A68FE1291953D626004B98AA /* timer.png in Resources */ = {isa = PBXBuildFile; fileRef = A68FE1281953D626004B98AA /* timer.png */; };
 		A68FE12C1953DD04004B98AA /* MemoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = A68FE12B1953DD04004B98AA /* MemoWindow.xib */; };
@@ -59,16 +55,6 @@
 		A6CD25D4195582BF001D3A79 /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD25D3195582BF001D3A79 /* CHCSVParser.m */; };
 		A6CD25DE1956C8E2001D3A79 /* MemoWindowButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD25DD1956C8E2001D3A79 /* MemoWindowButtonView.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		A68FE1141953D45A004B98AA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A68FE0E71953D45A004B98AA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A68FE0EE1953D45A004B98AA;
-			remoteInfo = Timer;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		A614090A1957D4B800A6229B /* NewClient.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewClient.xib; sourceTree = "<group>"; };
@@ -111,7 +97,6 @@
 		A68FE1051953D45A004B98AA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		A68FE1081953D45A004B98AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		A68FE10A1953D45A004B98AA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		A68FE1101953D45A004B98AA /* Pigeon TimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pigeon TimerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A68FE1111953D45A004B98AA /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		A68FE1181953D45A004B98AA /* Pigeon TimerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pigeon TimerTests-Info.plist"; sourceTree = "<group>"; };
 		A68FE11A1953D45A004B98AA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -156,15 +141,6 @@
 			files = (
 				A68FE139195492A4004B98AA /* libsqlite3.dylib in Frameworks */,
 				A68FE0F31953D45A004B98AA /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A68FE10D1953D45A004B98AA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A68FE1131953D45A004B98AA /* Cocoa.framework in Frameworks */,
-				A68FE1121953D45A004B98AA /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,7 +232,6 @@
 			isa = PBXGroup;
 			children = (
 				A68FE0EF1953D45A004B98AA /* Pigeon Timer.app */,
-				A68FE1101953D45A004B98AA /* Pigeon TimerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -418,24 +393,6 @@
 			productReference = A68FE0EF1953D45A004B98AA /* Pigeon Timer.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A68FE10F1953D45A004B98AA /* Pigeon TimerTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A68FE1231953D45A004B98AA /* Build configuration list for PBXNativeTarget "Pigeon TimerTests" */;
-			buildPhases = (
-				A68FE10C1953D45A004B98AA /* Sources */,
-				A68FE10D1953D45A004B98AA /* Frameworks */,
-				A68FE10E1953D45A004B98AA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A68FE1151953D45A004B98AA /* PBXTargetDependency */,
-			);
-			name = "Pigeon TimerTests";
-			productName = TimerTests;
-			productReference = A68FE1101953D45A004B98AA /* Pigeon TimerTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -444,11 +401,6 @@
 			attributes = {
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = GreatBasinGroup;
-				TargetAttributes = {
-					A68FE10F1953D45A004B98AA = {
-						TestTargetID = A68FE0EE1953D45A004B98AA;
-					};
-				};
 			};
 			buildConfigurationList = A68FE0EA1953D45A004B98AA /* Build configuration list for PBXProject "Pigeon Timer" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -464,7 +416,6 @@
 			projectRoot = "";
 			targets = (
 				A68FE0EE1953D45A004B98AA /* Pigeon Timer */,
-				A68FE10F1953D45A004B98AA /* Pigeon TimerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -503,14 +454,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A68FE10E1953D45A004B98AA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A68FE11B1953D45A004B98AA /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -540,23 +483,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A68FE10C1953D45A004B98AA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A68FE11D1953D45A004B98AA /* TimerTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A68FE1151953D45A004B98AA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A68FE0EE1953D45A004B98AA /* Pigeon Timer */;
-			targetProxy = A68FE1141953D45A004B98AA /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A68FE0FB1953D45A004B98AA /* InfoPlist.strings */ = {
@@ -690,46 +617,6 @@
 			};
 			name = Release;
 		};
-		A68FE1241953D45A004B98AA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Timer.app/Contents/MacOS/Timer";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Timer/Timer-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "TimerTests/Pigeon TimerTests-Info.plist";
-				PRODUCT_NAME = "Pigeon TimerTests";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		A68FE1251953D45A004B98AA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Timer.app/Contents/MacOS/Timer";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Timer/Timer-Prefix.pch";
-				INFOPLIST_FILE = "TimerTests/Pigeon TimerTests-Info.plist";
-				PRODUCT_NAME = "Pigeon TimerTests";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -747,15 +634,6 @@
 			buildConfigurations = (
 				A68FE1211953D45A004B98AA /* Debug */,
 				A68FE1221953D45A004B98AA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A68FE1231953D45A004B98AA /* Build configuration list for PBXNativeTarget "Pigeon TimerTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A68FE1241953D45A004B98AA /* Debug */,
-				A68FE1251953D45A004B98AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
