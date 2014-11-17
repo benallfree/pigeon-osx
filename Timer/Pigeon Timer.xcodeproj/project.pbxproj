@@ -7,131 +7,129 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A614090B1957D4B800A6229B /* NewClient.xib in Resources */ = {isa = PBXBuildFile; fileRef = A614090A1957D4B800A6229B /* NewClient.xib */; };
-		A614090E1957D5C600A6229B /* NewWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = A614090D1957D5C600A6229B /* NewWindow.m */; };
-		A6140980195B1B4E00A6229B /* long.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A614097C195B1B4E00A6229B /* long.mp3 */; };
-		A6140981195B1B4E00A6229B /* short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A614097D195B1B4E00A6229B /* short.mp3 */; };
-		A6140982195B1B4E00A6229B /* start.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A614097E195B1B4E00A6229B /* start.mp3 */; };
-		A6140983195B1B4E00A6229B /* tick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A614097F195B1B4E00A6229B /* tick.mp3 */; };
-		A6140986195B9A8400A6229B /* BreakStarted.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6140985195B9A8400A6229B /* BreakStarted.xib */; };
-		A6140989195B9CC700A6229B /* BreakStarted.m in Sources */ = {isa = PBXBuildFile; fileRef = A6140988195B9CC700A6229B /* BreakStarted.m */; };
-		A614098B195B9E0F00A6229B /* BreakEnded.xib in Resources */ = {isa = PBXBuildFile; fileRef = A614098A195B9E0F00A6229B /* BreakEnded.xib */; };
-		A614098E195B9EC700A6229B /* BreakEnded.m in Sources */ = {isa = PBXBuildFile; fileRef = A614098D195B9EC700A6229B /* BreakEnded.m */; };
-		A61409A1195E2BDD00A6229B /* StartupCheck.xib in Resources */ = {isa = PBXBuildFile; fileRef = A61409A0195E2BDD00A6229B /* StartupCheck.xib */; };
-		A61409A4195E2D7A00A6229B /* LaunchUpWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = A61409A3195E2D7A00A6229B /* LaunchUpWindow.m */; };
-		A61409A7195E382F00A6229B /* NSBundle+LoginItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A61409A6195E382F00A6229B /* NSBundle+LoginItem.m */; };
-		A61409AB195F407800A6229B /* PomodoroSound.m in Sources */ = {isa = PBXBuildFile; fileRef = A61409AA195F407800A6229B /* PomodoroSound.m */; };
-		A61409C01961BA9500A6229B /* break.png in Resources */ = {isa = PBXBuildFile; fileRef = A61409BD1961BA9500A6229B /* break.png */; };
-		A61409C11961BA9500A6229B /* pomo.png in Resources */ = {isa = PBXBuildFile; fileRef = A61409BE1961BA9500A6229B /* pomo.png */; };
-		A61409C21961BA9500A6229B /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = A61409BF1961BA9500A6229B /* stop.png */; };
-		A61409C61961D8C300A6229B /* break@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A61409C31961D8C300A6229B /* break@2x.png */; };
-		A61409C71961D8C300A6229B /* pomo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A61409C41961D8C300A6229B /* pomo@2x.png */; };
-		A61409C81961D8C300A6229B /* stop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A61409C51961D8C300A6229B /* stop@2x.png */; };
+		A672E8C51A19C0B400BE3B2F /* Logging.m in Sources */ = {isa = PBXBuildFile; fileRef = A672E8C41A19C0B400BE3B2F /* Logging.m */; };
+		A672E8C81A19C0C000BE3B2F /* CustomNSField.m in Sources */ = {isa = PBXBuildFile; fileRef = A672E8C71A19C0C000BE3B2F /* CustomNSField.m */; };
+		A672E8CB1A19C0CE00BE3B2F /* PomodoroSound.m in Sources */ = {isa = PBXBuildFile; fileRef = A672E8CA1A19C0CE00BE3B2F /* PomodoroSound.m */; };
+		A672E8CF1A19C0DC00BE3B2F /* LaunchUpWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = A672E8CD1A19C0DC00BE3B2F /* LaunchUpWindow.m */; };
+		A672E8D01A19C0DC00BE3B2F /* StartupCheck.xib in Resources */ = {isa = PBXBuildFile; fileRef = A672E8CE1A19C0DC00BE3B2F /* StartupCheck.xib */; };
+		A672E8D71A19C0EC00BE3B2F /* BreakEnded.m in Sources */ = {isa = PBXBuildFile; fileRef = A672E8D21A19C0EC00BE3B2F /* BreakEnded.m */; };
+		A672E8D81A19C0EC00BE3B2F /* BreakEnded.xib in Resources */ = {isa = PBXBuildFile; fileRef = A672E8D31A19C0EC00BE3B2F /* BreakEnded.xib */; };
+		A672E8D91A19C0EC00BE3B2F /* BreakStarted.m in Sources */ = {isa = PBXBuildFile; fileRef = A672E8D51A19C0EC00BE3B2F /* BreakStarted.m */; };
+		A672E8DA1A19C0EC00BE3B2F /* BreakStarted.xib in Resources */ = {isa = PBXBuildFile; fileRef = A672E8D61A19C0EC00BE3B2F /* BreakStarted.xib */; };
+		A672E8E21A19C11300BE3B2F /* break_end.wav in Resources */ = {isa = PBXBuildFile; fileRef = A672E8DB1A19C11300BE3B2F /* break_end.wav */; };
+		A672E8E31A19C11300BE3B2F /* countdown.wav in Resources */ = {isa = PBXBuildFile; fileRef = A672E8DC1A19C11300BE3B2F /* countdown.wav */; };
+		A672E8E41A19C11300BE3B2F /* long.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A672E8DD1A19C11300BE3B2F /* long.mp3 */; };
+		A672E8E51A19C11300BE3B2F /* memo.wav in Resources */ = {isa = PBXBuildFile; fileRef = A672E8DE1A19C11300BE3B2F /* memo.wav */; };
+		A672E8E61A19C11300BE3B2F /* short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A672E8DF1A19C11300BE3B2F /* short.mp3 */; };
+		A672E8E71A19C11300BE3B2F /* start.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A672E8E01A19C11300BE3B2F /* start.mp3 */; };
+		A672E8E81A19C11300BE3B2F /* tick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A672E8E11A19C11300BE3B2F /* tick.mp3 */; };
+		A672E8EC1A19C12E00BE3B2F /* NewClient.xib in Resources */ = {isa = PBXBuildFile; fileRef = A672E8E91A19C12E00BE3B2F /* NewClient.xib */; };
+		A672E8ED1A19C12E00BE3B2F /* NewWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = A672E8EB1A19C12E00BE3B2F /* NewWindow.m */; };
+		A672E8F81A19C13D00BE3B2F /* break.png in Resources */ = {isa = PBXBuildFile; fileRef = A672E8EF1A19C13D00BE3B2F /* break.png */; };
+		A672E8F91A19C13D00BE3B2F /* break@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A672E8F01A19C13D00BE3B2F /* break@2x.png */; };
+		A672E8FA1A19C13D00BE3B2F /* pomo.png in Resources */ = {isa = PBXBuildFile; fileRef = A672E8F11A19C13D00BE3B2F /* pomo.png */; };
+		A672E8FB1A19C13D00BE3B2F /* pomo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A672E8F21A19C13D00BE3B2F /* pomo@2x.png */; };
+		A672E8FC1A19C13D00BE3B2F /* red.icns in Resources */ = {isa = PBXBuildFile; fileRef = A672E8F31A19C13D00BE3B2F /* red.icns */; };
+		A672E8FD1A19C13D00BE3B2F /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = A672E8F41A19C13D00BE3B2F /* stop.png */; };
+		A672E8FE1A19C13D00BE3B2F /* stop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A672E8F51A19C13D00BE3B2F /* stop@2x.png */; };
+		A672E8FF1A19C13D00BE3B2F /* timer.icns in Resources */ = {isa = PBXBuildFile; fileRef = A672E8F61A19C13D00BE3B2F /* timer.icns */; };
+		A672E9001A19C13D00BE3B2F /* timer.png in Resources */ = {isa = PBXBuildFile; fileRef = A672E8F71A19C13D00BE3B2F /* timer.png */; };
+		A672E9061A19C14B00BE3B2F /* NSFormatter+NumberOnlyFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A672E9021A19C14B00BE3B2F /* NSFormatter+NumberOnlyFormatter.m */; };
+		A672E9071A19C14B00BE3B2F /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = A672E9031A19C14B00BE3B2F /* Preferences.xib */; };
+		A672E9081A19C14B00BE3B2F /* PreferenceWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = A672E9051A19C14B00BE3B2F /* PreferenceWindow.m */; };
+		A672E90D1A19C16300BE3B2F /* NSBundle+LoginItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A672E90A1A19C16300BE3B2F /* NSBundle+LoginItem.m */; };
+		A672E90E1A19C16300BE3B2F /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = A672E90C1A19C16300BE3B2F /* Utilities.m */; };
+		A672E9111A19C17400BE3B2F /* TimerDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = A672E9101A19C17400BE3B2F /* TimerDatabase.m */; };
+		A672E9191A19C18800BE3B2F /* MemoWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = A672E9131A19C18800BE3B2F /* MemoWindow.m */; };
+		A672E91A1A19C18800BE3B2F /* MemoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = A672E9141A19C18800BE3B2F /* MemoWindow.xib */; };
+		A672E91B1A19C18800BE3B2F /* MemoWindowButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = A672E9161A19C18800BE3B2F /* MemoWindowButtonView.m */; };
+		A672E91C1A19C18800BE3B2F /* SelectableTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A672E9181A19C18800BE3B2F /* SelectableTextView.m */; };
+		A672E9201A19C1A900BE3B2F /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A672E91F1A19C1A900BE3B2F /* CHCSVParser.m */; };
+		A672E93C1A19C57D00BE3B2F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A672E92D1A19C57D00BE3B2F /* MainMenu.xib */; };
+		A672E93D1A19C57D00BE3B2F /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A672E9301A19C57D00BE3B2F /* Credits.rtf */; };
+		A672E93E1A19C57D00BE3B2F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A672E9321A19C57D00BE3B2F /* InfoPlist.strings */; };
+		A672E93F1A19C57D00BE3B2F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A672E9361A19C57D00BE3B2F /* AppDelegate.m */; };
+		A672E9401A19C57D00BE3B2F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A672E9371A19C57D00BE3B2F /* main.m */; };
+		A672E9411A19C57D00BE3B2F /* Pigeon Timer-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A672E9381A19C57D00BE3B2F /* Pigeon Timer-Info.plist */; };
+		A672E9421A19C57D00BE3B2F /* TimerApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = A672E93B1A19C57D00BE3B2F /* TimerApplication.m */; };
+		A672E9441A19C63F00BE3B2F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A672E9431A19C63F00BE3B2F /* Images.xcassets */; };
 		A68FE0F31953D45A004B98AA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A68FE0F21953D45A004B98AA /* Cocoa.framework */; };
-		A68FE0FD1953D45A004B98AA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A68FE0FB1953D45A004B98AA /* InfoPlist.strings */; };
-		A68FE0FF1953D45A004B98AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A68FE0FE1953D45A004B98AA /* main.m */; };
-		A68FE1031953D45A004B98AA /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A68FE1011953D45A004B98AA /* Credits.rtf */; };
-		A68FE1061953D45A004B98AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A68FE1051953D45A004B98AA /* AppDelegate.m */; };
-		A68FE1091953D45A004B98AA /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A68FE1071953D45A004B98AA /* MainMenu.xib */; };
-		A68FE10B1953D45A004B98AA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A68FE10A1953D45A004B98AA /* Images.xcassets */; };
-		A68FE1271953D48E004B98AA /* timer.icns in Resources */ = {isa = PBXBuildFile; fileRef = A68FE1261953D48E004B98AA /* timer.icns */; };
-		A68FE1291953D626004B98AA /* timer.png in Resources */ = {isa = PBXBuildFile; fileRef = A68FE1281953D626004B98AA /* timer.png */; };
-		A68FE12C1953DD04004B98AA /* MemoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = A68FE12B1953DD04004B98AA /* MemoWindow.xib */; };
-		A68FE12F1953DEC4004B98AA /* MemoWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = A68FE12E1953DEC4004B98AA /* MemoWindow.m */; };
-		A68FE133195441BD004B98AA /* TimerDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = A68FE132195441BD004B98AA /* TimerDatabase.m */; };
-		A68FE13719548CA8004B98AA /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = A68FE13619548CA8004B98AA /* Utilities.m */; };
 		A68FE139195492A4004B98AA /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A68FE138195492A4004B98AA /* libsqlite3.dylib */; };
-		A68FE13C1954B1E9004B98AA /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = A68FE13B1954B1E9004B98AA /* Preferences.xib */; };
-		A68FE13F1954B28A004B98AA /* NSFormatter+NumberOnlyFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A68FE13E1954B28A004B98AA /* NSFormatter+NumberOnlyFormatter.m */; };
-		A6ADAC46197B00120005B8A8 /* TimerApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ADAC45197B00120005B8A8 /* TimerApplication.m */; };
-		A6ADB926196D1DE7003F3487 /* CustomNSField.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ADB924196D1DE7003F3487 /* CustomNSField.m */; };
-		A6ADB9DE1971B00C003F3487 /* Logging.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ADB9DC1971B00C003F3487 /* Logging.m */; };
-		A6ADB9E61975B54A003F3487 /* memo.wav in Resources */ = {isa = PBXBuildFile; fileRef = A6ADB9E31975B54A003F3487 /* memo.wav */; };
-		A6ADB9E71975B54A003F3487 /* countdown.wav in Resources */ = {isa = PBXBuildFile; fileRef = A6ADB9E41975B54A003F3487 /* countdown.wav */; };
-		A6ADB9E81975B54A003F3487 /* break_end.wav in Resources */ = {isa = PBXBuildFile; fileRef = A6ADB9E51975B54A003F3487 /* break_end.wav */; };
-		A6CD25CC1955784F001D3A79 /* SelectableTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD25CB1955784F001D3A79 /* SelectableTextView.m */; };
-		A6CD25CE19557D07001D3A79 /* red.icns in Resources */ = {isa = PBXBuildFile; fileRef = A6CD25CD19557D07001D3A79 /* red.icns */; };
-		A6CD25D119557DD5001D3A79 /* PreferenceWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD25D019557DD5001D3A79 /* PreferenceWindow.m */; };
-		A6CD25D4195582BF001D3A79 /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD25D3195582BF001D3A79 /* CHCSVParser.m */; };
-		A6CD25DE1956C8E2001D3A79 /* MemoWindowButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CD25DD1956C8E2001D3A79 /* MemoWindowButtonView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A614090A1957D4B800A6229B /* NewClient.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewClient.xib; sourceTree = "<group>"; };
-		A614090C1957D5C600A6229B /* NewWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewWindow.h; sourceTree = "<group>"; };
-		A614090D1957D5C600A6229B /* NewWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewWindow.m; sourceTree = "<group>"; };
-		A614097C195B1B4E00A6229B /* long.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = long.mp3; sourceTree = "<group>"; };
-		A614097D195B1B4E00A6229B /* short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = short.mp3; sourceTree = "<group>"; };
-		A614097E195B1B4E00A6229B /* start.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = start.mp3; sourceTree = "<group>"; };
-		A614097F195B1B4E00A6229B /* tick.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tick.mp3; sourceTree = "<group>"; };
-		A6140985195B9A8400A6229B /* BreakStarted.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BreakStarted.xib; sourceTree = "<group>"; };
-		A6140987195B9CC700A6229B /* BreakStarted.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BreakStarted.h; sourceTree = "<group>"; };
-		A6140988195B9CC700A6229B /* BreakStarted.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BreakStarted.m; sourceTree = "<group>"; };
-		A614098A195B9E0F00A6229B /* BreakEnded.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BreakEnded.xib; sourceTree = "<group>"; };
-		A614098C195B9EC700A6229B /* BreakEnded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BreakEnded.h; sourceTree = "<group>"; };
-		A614098D195B9EC700A6229B /* BreakEnded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BreakEnded.m; sourceTree = "<group>"; };
-		A61409A0195E2BDD00A6229B /* StartupCheck.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartupCheck.xib; sourceTree = "<group>"; };
-		A61409A2195E2D7A00A6229B /* LaunchUpWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchUpWindow.h; sourceTree = "<group>"; };
-		A61409A3195E2D7A00A6229B /* LaunchUpWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchUpWindow.m; sourceTree = "<group>"; };
-		A61409A5195E382F00A6229B /* NSBundle+LoginItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+LoginItem.h"; sourceTree = SOURCE_ROOT; };
-		A61409A6195E382F00A6229B /* NSBundle+LoginItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+LoginItem.m"; sourceTree = SOURCE_ROOT; };
-		A61409A9195F407800A6229B /* PomodoroSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomodoroSound.h; sourceTree = "<group>"; };
-		A61409AA195F407800A6229B /* PomodoroSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PomodoroSound.m; sourceTree = "<group>"; };
-		A61409BD1961BA9500A6229B /* break.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = break.png; path = Timer/break.png; sourceTree = "<group>"; };
-		A61409BE1961BA9500A6229B /* pomo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pomo.png; path = Timer/pomo.png; sourceTree = "<group>"; };
-		A61409BF1961BA9500A6229B /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stop.png; path = Timer/stop.png; sourceTree = "<group>"; };
-		A61409C31961D8C300A6229B /* break@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "break@2x.png"; path = "Timer/break@2x.png"; sourceTree = "<group>"; };
-		A61409C41961D8C300A6229B /* pomo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pomo@2x.png"; path = "Timer/pomo@2x.png"; sourceTree = "<group>"; };
-		A61409C51961D8C300A6229B /* stop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "stop@2x.png"; path = "Timer/stop@2x.png"; sourceTree = "<group>"; };
+		A672E8C31A19C0B400BE3B2F /* Logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Logging.h; path = "Pigeon Timer/Logging/Logging.h"; sourceTree = "<group>"; };
+		A672E8C41A19C0B400BE3B2F /* Logging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Logging.m; path = "Pigeon Timer/Logging/Logging.m"; sourceTree = "<group>"; };
+		A672E8C61A19C0C000BE3B2F /* CustomNSField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomNSField.h; path = "Pigeon Timer/CustomTextField/CustomNSField.h"; sourceTree = "<group>"; };
+		A672E8C71A19C0C000BE3B2F /* CustomNSField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomNSField.m; path = "Pigeon Timer/CustomTextField/CustomNSField.m"; sourceTree = "<group>"; };
+		A672E8C91A19C0CE00BE3B2F /* PomodoroSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PomodoroSound.h; path = "Pigeon Timer/PomodoroSound/PomodoroSound.h"; sourceTree = "<group>"; };
+		A672E8CA1A19C0CE00BE3B2F /* PomodoroSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PomodoroSound.m; path = "Pigeon Timer/PomodoroSound/PomodoroSound.m"; sourceTree = "<group>"; };
+		A672E8CC1A19C0DC00BE3B2F /* LaunchUpWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LaunchUpWindow.h; path = "Pigeon Timer/LaunchUp/LaunchUpWindow.h"; sourceTree = "<group>"; };
+		A672E8CD1A19C0DC00BE3B2F /* LaunchUpWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LaunchUpWindow.m; path = "Pigeon Timer/LaunchUp/LaunchUpWindow.m"; sourceTree = "<group>"; };
+		A672E8CE1A19C0DC00BE3B2F /* StartupCheck.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StartupCheck.xib; path = "Pigeon Timer/LaunchUp/StartupCheck.xib"; sourceTree = "<group>"; };
+		A672E8D11A19C0EC00BE3B2F /* BreakEnded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BreakEnded.h; path = "Pigeon Timer/Break/BreakEnded.h"; sourceTree = "<group>"; };
+		A672E8D21A19C0EC00BE3B2F /* BreakEnded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BreakEnded.m; path = "Pigeon Timer/Break/BreakEnded.m"; sourceTree = "<group>"; };
+		A672E8D31A19C0EC00BE3B2F /* BreakEnded.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BreakEnded.xib; path = "Pigeon Timer/Break/BreakEnded.xib"; sourceTree = "<group>"; };
+		A672E8D41A19C0EC00BE3B2F /* BreakStarted.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BreakStarted.h; path = "Pigeon Timer/Break/BreakStarted.h"; sourceTree = "<group>"; };
+		A672E8D51A19C0EC00BE3B2F /* BreakStarted.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BreakStarted.m; path = "Pigeon Timer/Break/BreakStarted.m"; sourceTree = "<group>"; };
+		A672E8D61A19C0EC00BE3B2F /* BreakStarted.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BreakStarted.xib; path = "Pigeon Timer/Break/BreakStarted.xib"; sourceTree = "<group>"; };
+		A672E8DB1A19C11300BE3B2F /* break_end.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = break_end.wav; path = "Pigeon Timer/sounds/break_end.wav"; sourceTree = SOURCE_ROOT; };
+		A672E8DC1A19C11300BE3B2F /* countdown.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = countdown.wav; path = "Pigeon Timer/sounds/countdown.wav"; sourceTree = SOURCE_ROOT; };
+		A672E8DD1A19C11300BE3B2F /* long.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = long.mp3; path = "Pigeon Timer/sounds/long.mp3"; sourceTree = SOURCE_ROOT; };
+		A672E8DE1A19C11300BE3B2F /* memo.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = memo.wav; path = "Pigeon Timer/sounds/memo.wav"; sourceTree = SOURCE_ROOT; };
+		A672E8DF1A19C11300BE3B2F /* short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = short.mp3; path = "Pigeon Timer/sounds/short.mp3"; sourceTree = SOURCE_ROOT; };
+		A672E8E01A19C11300BE3B2F /* start.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = start.mp3; path = "Pigeon Timer/sounds/start.mp3"; sourceTree = SOURCE_ROOT; };
+		A672E8E11A19C11300BE3B2F /* tick.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = tick.mp3; path = "Pigeon Timer/sounds/tick.mp3"; sourceTree = SOURCE_ROOT; };
+		A672E8E91A19C12E00BE3B2F /* NewClient.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewClient.xib; path = "Pigeon Timer/newClientWindow/NewClient.xib"; sourceTree = "<group>"; };
+		A672E8EA1A19C12E00BE3B2F /* NewWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewWindow.h; path = "Pigeon Timer/newClientWindow/NewWindow.h"; sourceTree = "<group>"; };
+		A672E8EB1A19C12E00BE3B2F /* NewWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewWindow.m; path = "Pigeon Timer/newClientWindow/NewWindow.m"; sourceTree = "<group>"; };
+		A672E8EF1A19C13D00BE3B2F /* break.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = break.png; sourceTree = "<group>"; };
+		A672E8F01A19C13D00BE3B2F /* break@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "break@2x.png"; sourceTree = "<group>"; };
+		A672E8F11A19C13D00BE3B2F /* pomo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pomo.png; sourceTree = "<group>"; };
+		A672E8F21A19C13D00BE3B2F /* pomo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pomo@2x.png"; sourceTree = "<group>"; };
+		A672E8F31A19C13D00BE3B2F /* red.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = red.icns; sourceTree = "<group>"; };
+		A672E8F41A19C13D00BE3B2F /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
+		A672E8F51A19C13D00BE3B2F /* stop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stop@2x.png"; sourceTree = "<group>"; };
+		A672E8F61A19C13D00BE3B2F /* timer.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = timer.icns; sourceTree = "<group>"; };
+		A672E8F71A19C13D00BE3B2F /* timer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timer.png; sourceTree = "<group>"; };
+		A672E9011A19C14B00BE3B2F /* NSFormatter+NumberOnlyFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSFormatter+NumberOnlyFormatter.h"; path = "Pigeon Timer/Preferences/NSFormatter+NumberOnlyFormatter.h"; sourceTree = "<group>"; };
+		A672E9021A19C14B00BE3B2F /* NSFormatter+NumberOnlyFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSFormatter+NumberOnlyFormatter.m"; path = "Pigeon Timer/Preferences/NSFormatter+NumberOnlyFormatter.m"; sourceTree = "<group>"; };
+		A672E9031A19C14B00BE3B2F /* Preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Preferences.xib; path = "Pigeon Timer/Preferences/Preferences.xib"; sourceTree = "<group>"; };
+		A672E9041A19C14B00BE3B2F /* PreferenceWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferenceWindow.h; path = "Pigeon Timer/Preferences/PreferenceWindow.h"; sourceTree = "<group>"; };
+		A672E9051A19C14B00BE3B2F /* PreferenceWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferenceWindow.m; path = "Pigeon Timer/Preferences/PreferenceWindow.m"; sourceTree = "<group>"; };
+		A672E9091A19C16300BE3B2F /* NSBundle+LoginItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSBundle+LoginItem.h"; path = "Pigeon Timer/Utilities/NSBundle+LoginItem.h"; sourceTree = "<group>"; };
+		A672E90A1A19C16300BE3B2F /* NSBundle+LoginItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+LoginItem.m"; path = "Pigeon Timer/Utilities/NSBundle+LoginItem.m"; sourceTree = "<group>"; };
+		A672E90B1A19C16300BE3B2F /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utilities.h; path = "Pigeon Timer/Utilities/Utilities.h"; sourceTree = "<group>"; };
+		A672E90C1A19C16300BE3B2F /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utilities.m; path = "Pigeon Timer/Utilities/Utilities.m"; sourceTree = "<group>"; };
+		A672E90F1A19C17400BE3B2F /* TimerDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimerDatabase.h; path = "Pigeon Timer/TimerDatabase/TimerDatabase.h"; sourceTree = "<group>"; };
+		A672E9101A19C17400BE3B2F /* TimerDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimerDatabase.m; path = "Pigeon Timer/TimerDatabase/TimerDatabase.m"; sourceTree = "<group>"; };
+		A672E9121A19C18800BE3B2F /* MemoWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MemoWindow.h; path = "Pigeon Timer/MemoWindow/MemoWindow.h"; sourceTree = "<group>"; };
+		A672E9131A19C18800BE3B2F /* MemoWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MemoWindow.m; path = "Pigeon Timer/MemoWindow/MemoWindow.m"; sourceTree = "<group>"; };
+		A672E9141A19C18800BE3B2F /* MemoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MemoWindow.xib; path = "Pigeon Timer/MemoWindow/MemoWindow.xib"; sourceTree = "<group>"; };
+		A672E9151A19C18800BE3B2F /* MemoWindowButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MemoWindowButtonView.h; path = "Pigeon Timer/MemoWindow/MemoWindowButtonView.h"; sourceTree = "<group>"; };
+		A672E9161A19C18800BE3B2F /* MemoWindowButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MemoWindowButtonView.m; path = "Pigeon Timer/MemoWindow/MemoWindowButtonView.m"; sourceTree = "<group>"; };
+		A672E9171A19C18800BE3B2F /* SelectableTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectableTextView.h; path = "Pigeon Timer/MemoWindow/SelectableTextView.h"; sourceTree = "<group>"; };
+		A672E9181A19C18800BE3B2F /* SelectableTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectableTextView.m; path = "Pigeon Timer/MemoWindow/SelectableTextView.m"; sourceTree = "<group>"; };
+		A672E91E1A19C1A900BE3B2F /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = "<group>"; };
+		A672E91F1A19C1A900BE3B2F /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
+		A672E92E1A19C57D00BE3B2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = MainMenu.xib; sourceTree = "<group>"; };
+		A672E9311A19C57D00BE3B2F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = Credits.rtf; sourceTree = "<group>"; };
+		A672E9331A19C57D00BE3B2F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
+		A672E9351A19C57D00BE3B2F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A672E9361A19C57D00BE3B2F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A672E9371A19C57D00BE3B2F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A672E9381A19C57D00BE3B2F /* Pigeon Timer-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pigeon Timer-Info.plist"; sourceTree = "<group>"; };
+		A672E9391A19C57D00BE3B2F /* Pigeon Timer-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Pigeon Timer-Prefix.pch"; sourceTree = "<group>"; };
+		A672E93A1A19C57D00BE3B2F /* TimerApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerApplication.h; sourceTree = "<group>"; };
+		A672E93B1A19C57D00BE3B2F /* TimerApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerApplication.m; sourceTree = "<group>"; };
+		A672E9431A19C63F00BE3B2F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Pigeon Timer/Images.xcassets"; sourceTree = "<group>"; };
 		A68FE0EF1953D45A004B98AA /* Pigeon Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pigeon Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A68FE0F21953D45A004B98AA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		A68FE0F51953D45A004B98AA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		A68FE0F61953D45A004B98AA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A68FE0F71953D45A004B98AA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		A68FE0FA1953D45A004B98AA /* Pigeon Timer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pigeon Timer-Info.plist"; sourceTree = "<group>"; };
-		A68FE0FC1953D45A004B98AA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		A68FE0FE1953D45A004B98AA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		A68FE1001953D45A004B98AA /* Pigeon Timer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pigeon Timer-Prefix.pch"; sourceTree = "<group>"; };
-		A68FE1021953D45A004B98AA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		A68FE1041953D45A004B98AA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		A68FE1051953D45A004B98AA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A68FE1081953D45A004B98AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		A68FE10A1953D45A004B98AA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A68FE1111953D45A004B98AA /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		A68FE1181953D45A004B98AA /* Pigeon TimerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pigeon TimerTests-Info.plist"; sourceTree = "<group>"; };
-		A68FE11A1953D45A004B98AA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		A68FE11C1953D45A004B98AA /* TimerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimerTests.m; sourceTree = "<group>"; };
-		A68FE1261953D48E004B98AA /* timer.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = timer.icns; path = Timer/timer.icns; sourceTree = "<group>"; };
-		A68FE1281953D626004B98AA /* timer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = timer.png; path = Timer/timer.png; sourceTree = "<group>"; };
-		A68FE12B1953DD04004B98AA /* MemoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MemoWindow.xib; sourceTree = "<group>"; };
-		A68FE12D1953DEC4004B98AA /* MemoWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MemoWindow.h; path = Timer/MemoWindow.h; sourceTree = "<group>"; };
-		A68FE12E1953DEC4004B98AA /* MemoWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MemoWindow.m; path = Timer/MemoWindow.m; sourceTree = "<group>"; };
-		A68FE131195441BD004B98AA /* TimerDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimerDatabase.h; path = Timer/TimerDatabase.h; sourceTree = "<group>"; };
-		A68FE132195441BD004B98AA /* TimerDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimerDatabase.m; path = Timer/TimerDatabase.m; sourceTree = "<group>"; };
-		A68FE13519548CA8004B98AA /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
-		A68FE13619548CA8004B98AA /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		A68FE138195492A4004B98AA /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		A68FE13B1954B1E9004B98AA /* Preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
-		A68FE13D1954B28A004B98AA /* NSFormatter+NumberOnlyFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSFormatter+NumberOnlyFormatter.h"; path = "Timer/NSFormatter+NumberOnlyFormatter.h"; sourceTree = "<group>"; };
-		A68FE13E1954B28A004B98AA /* NSFormatter+NumberOnlyFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSFormatter+NumberOnlyFormatter.m"; path = "Timer/NSFormatter+NumberOnlyFormatter.m"; sourceTree = "<group>"; };
-		A6ADAC44197B00120005B8A8 /* TimerApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerApplication.h; sourceTree = "<group>"; };
-		A6ADAC45197B00120005B8A8 /* TimerApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerApplication.m; sourceTree = "<group>"; };
-		A6ADB924196D1DE7003F3487 /* CustomNSField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNSField.m; sourceTree = "<group>"; };
-		A6ADB925196D1DE7003F3487 /* CustomNSField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNSField.h; sourceTree = "<group>"; };
-		A6ADB9DC1971B00C003F3487 /* Logging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logging.m; sourceTree = "<group>"; };
-		A6ADB9DD1971B00C003F3487 /* Logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logging.h; sourceTree = "<group>"; };
-		A6ADB9E31975B54A003F3487 /* memo.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = memo.wav; sourceTree = "<group>"; };
-		A6ADB9E41975B54A003F3487 /* countdown.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = countdown.wav; sourceTree = "<group>"; };
-		A6ADB9E51975B54A003F3487 /* break_end.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = break_end.wav; sourceTree = "<group>"; };
-		A6CD25CA1955784F001D3A79 /* SelectableTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectableTextView.h; sourceTree = "<group>"; };
-		A6CD25CB1955784F001D3A79 /* SelectableTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectableTextView.m; sourceTree = "<group>"; };
-		A6CD25CD19557D07001D3A79 /* red.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = red.icns; path = Timer/red.icns; sourceTree = "<group>"; };
-		A6CD25CF19557DD5001D3A79 /* PreferenceWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceWindow.h; sourceTree = "<group>"; };
-		A6CD25D019557DD5001D3A79 /* PreferenceWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceWindow.m; sourceTree = "<group>"; };
-		A6CD25D2195582BF001D3A79 /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = SOURCE_ROOT; };
-		A6CD25D3195582BF001D3A79 /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = SOURCE_ROOT; };
-		A6CD25DC1956C8E2001D3A79 /* MemoWindowButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoWindowButtonView.h; sourceTree = "<group>"; };
-		A6CD25DD1956C8E2001D3A79 /* MemoWindowButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoWindowButtonView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,9 +148,9 @@
 		A61409091957D49900A6229B /* newClientWindow */ = {
 			isa = PBXGroup;
 			children = (
-				A614090A1957D4B800A6229B /* NewClient.xib */,
-				A614090C1957D5C600A6229B /* NewWindow.h */,
-				A614090D1957D5C600A6229B /* NewWindow.m */,
+				A672E8E91A19C12E00BE3B2F /* NewClient.xib */,
+				A672E8EA1A19C12E00BE3B2F /* NewWindow.h */,
+				A672E8EB1A19C12E00BE3B2F /* NewWindow.m */,
 			);
 			name = newClientWindow;
 			sourceTree = "<group>";
@@ -160,13 +158,13 @@
 		A614097B195B1B4E00A6229B /* sounds */ = {
 			isa = PBXGroup;
 			children = (
-				A6ADB9E31975B54A003F3487 /* memo.wav */,
-				A6ADB9E41975B54A003F3487 /* countdown.wav */,
-				A6ADB9E51975B54A003F3487 /* break_end.wav */,
-				A614097C195B1B4E00A6229B /* long.mp3 */,
-				A614097D195B1B4E00A6229B /* short.mp3 */,
-				A614097E195B1B4E00A6229B /* start.mp3 */,
-				A614097F195B1B4E00A6229B /* tick.mp3 */,
+				A672E8DB1A19C11300BE3B2F /* break_end.wav */,
+				A672E8DC1A19C11300BE3B2F /* countdown.wav */,
+				A672E8DD1A19C11300BE3B2F /* long.mp3 */,
+				A672E8DE1A19C11300BE3B2F /* memo.wav */,
+				A672E8DF1A19C11300BE3B2F /* short.mp3 */,
+				A672E8E01A19C11300BE3B2F /* start.mp3 */,
+				A672E8E11A19C11300BE3B2F /* tick.mp3 */,
 			);
 			name = sounds;
 			path = Timer/sounds;
@@ -175,12 +173,12 @@
 		A6140984195B9A7000A6229B /* Break */ = {
 			isa = PBXGroup;
 			children = (
-				A6140985195B9A8400A6229B /* BreakStarted.xib */,
-				A6140987195B9CC700A6229B /* BreakStarted.h */,
-				A6140988195B9CC700A6229B /* BreakStarted.m */,
-				A614098A195B9E0F00A6229B /* BreakEnded.xib */,
-				A614098C195B9EC700A6229B /* BreakEnded.h */,
-				A614098D195B9EC700A6229B /* BreakEnded.m */,
+				A672E8D11A19C0EC00BE3B2F /* BreakEnded.h */,
+				A672E8D21A19C0EC00BE3B2F /* BreakEnded.m */,
+				A672E8D31A19C0EC00BE3B2F /* BreakEnded.xib */,
+				A672E8D41A19C0EC00BE3B2F /* BreakStarted.h */,
+				A672E8D51A19C0EC00BE3B2F /* BreakStarted.m */,
+				A672E8D61A19C0EC00BE3B2F /* BreakStarted.xib */,
 			);
 			name = Break;
 			sourceTree = "<group>";
@@ -188,9 +186,9 @@
 		A614099F195E2B6D00A6229B /* LaunchUp */ = {
 			isa = PBXGroup;
 			children = (
-				A61409A0195E2BDD00A6229B /* StartupCheck.xib */,
-				A61409A2195E2D7A00A6229B /* LaunchUpWindow.h */,
-				A61409A3195E2D7A00A6229B /* LaunchUpWindow.m */,
+				A672E8CC1A19C0DC00BE3B2F /* LaunchUpWindow.h */,
+				A672E8CD1A19C0DC00BE3B2F /* LaunchUpWindow.m */,
+				A672E8CE1A19C0DC00BE3B2F /* StartupCheck.xib */,
 			);
 			name = LaunchUp;
 			sourceTree = "<group>";
@@ -198,15 +196,82 @@
 		A61409A8195F405100A6229B /* PomodoroSound */ = {
 			isa = PBXGroup;
 			children = (
-				A61409A9195F407800A6229B /* PomodoroSound.h */,
-				A61409AA195F407800A6229B /* PomodoroSound.m */,
+				A672E8C91A19C0CE00BE3B2F /* PomodoroSound.h */,
+				A672E8CA1A19C0CE00BE3B2F /* PomodoroSound.m */,
 			);
 			name = PomodoroSound;
+			sourceTree = "<group>";
+		};
+		A672E8EE1A19C13D00BE3B2F /* images */ = {
+			isa = PBXGroup;
+			children = (
+				A672E8EF1A19C13D00BE3B2F /* break.png */,
+				A672E8F01A19C13D00BE3B2F /* break@2x.png */,
+				A672E8F11A19C13D00BE3B2F /* pomo.png */,
+				A672E8F21A19C13D00BE3B2F /* pomo@2x.png */,
+				A672E8F31A19C13D00BE3B2F /* red.icns */,
+				A672E8F41A19C13D00BE3B2F /* stop.png */,
+				A672E8F51A19C13D00BE3B2F /* stop@2x.png */,
+				A672E8F61A19C13D00BE3B2F /* timer.icns */,
+				A672E8F71A19C13D00BE3B2F /* timer.png */,
+			);
+			name = images;
+			path = "Pigeon Timer/images";
+			sourceTree = "<group>";
+		};
+		A672E91D1A19C1A900BE3B2F /* CHCSVParser */ = {
+			isa = PBXGroup;
+			children = (
+				A672E91E1A19C1A900BE3B2F /* CHCSVParser.h */,
+				A672E91F1A19C1A900BE3B2F /* CHCSVParser.m */,
+			);
+			name = CHCSVParser;
+			path = "Pigeon Timer/CHCSVParser";
+			sourceTree = "<group>";
+		};
+		A672E92C1A19C57D00BE3B2F /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				A672E92D1A19C57D00BE3B2F /* MainMenu.xib */,
+			);
+			name = Base.lproj;
+			path = "Pigeon Timer/Base.lproj";
+			sourceTree = "<group>";
+		};
+		A672E92F1A19C57D00BE3B2F /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				A672E9301A19C57D00BE3B2F /* Credits.rtf */,
+				A672E9321A19C57D00BE3B2F /* InfoPlist.strings */,
+			);
+			name = en.lproj;
+			path = "Pigeon Timer/en.lproj";
+			sourceTree = "<group>";
+		};
+		A672E9341A19C57D00BE3B2F /* TimerApplication */ = {
+			isa = PBXGroup;
+			children = (
+				A672E9351A19C57D00BE3B2F /* AppDelegate.h */,
+				A672E9361A19C57D00BE3B2F /* AppDelegate.m */,
+				A672E9371A19C57D00BE3B2F /* main.m */,
+				A672E9381A19C57D00BE3B2F /* Pigeon Timer-Info.plist */,
+				A672E9391A19C57D00BE3B2F /* Pigeon Timer-Prefix.pch */,
+				A672E93A1A19C57D00BE3B2F /* TimerApplication.h */,
+				A672E93B1A19C57D00BE3B2F /* TimerApplication.m */,
+			);
+			name = TimerApplication;
+			path = "Pigeon Timer/TimerApplication";
 			sourceTree = "<group>";
 		};
 		A68FE0E61953D45A004B98AA = {
 			isa = PBXGroup;
 			children = (
+				A672E9431A19C63F00BE3B2F /* Images.xcassets */,
+				A672E92C1A19C57D00BE3B2F /* Base.lproj */,
+				A672E92F1A19C57D00BE3B2F /* en.lproj */,
+				A672E9341A19C57D00BE3B2F /* TimerApplication */,
+				A672E91D1A19C1A900BE3B2F /* CHCSVParser */,
+				A672E8EE1A19C13D00BE3B2F /* images */,
 				A6ADB9DB1971AFFB003F3487 /* Logging */,
 				A6ADB923196D1DD8003F3487 /* CustomTextField */,
 				A61409A8195F405100A6229B /* PomodoroSound */,
@@ -214,15 +279,11 @@
 				A6140984195B9A7000A6229B /* Break */,
 				A614097B195B1B4E00A6229B /* sounds */,
 				A61409091957D49900A6229B /* newClientWindow */,
-				A6CD25CD19557D07001D3A79 /* red.icns */,
 				A68FE13A1954B1D7004B98AA /* Preferences */,
 				A68FE13419548C94004B98AA /* Utilities */,
 				A68FE13019543D71004B98AA /* TimerDatabase */,
 				A68FE12A1953DCEB004B98AA /* MemoWindow */,
-				A68FE1281953D626004B98AA /* timer.png */,
-				A68FE1261953D48E004B98AA /* timer.icns */,
 				A68FE0F81953D45A004B98AA /* Timer */,
-				A68FE1161953D45A004B98AA /* TimerTests */,
 				A68FE0F11953D45A004B98AA /* Frameworks */,
 				A68FE0F01953D45A004B98AA /* Products */,
 			);
@@ -260,17 +321,7 @@
 		A68FE0F81953D45A004B98AA /* Timer */ = {
 			isa = PBXGroup;
 			children = (
-				A61409A5195E382F00A6229B /* NSBundle+LoginItem.h */,
-				A61409A6195E382F00A6229B /* NSBundle+LoginItem.m */,
-				A6CD25D2195582BF001D3A79 /* CHCSVParser.h */,
-				A6CD25D3195582BF001D3A79 /* CHCSVParser.m */,
-				A68FE1041953D45A004B98AA /* AppDelegate.h */,
-				A68FE1051953D45A004B98AA /* AppDelegate.m */,
-				A68FE1071953D45A004B98AA /* MainMenu.xib */,
-				A68FE10A1953D45A004B98AA /* Images.xcassets */,
 				A68FE0F91953D45A004B98AA /* Supporting Files */,
-				A6ADAC44197B00120005B8A8 /* TimerApplication.h */,
-				A6ADAC45197B00120005B8A8 /* TimerApplication.m */,
 			);
 			path = Timer;
 			sourceTree = "<group>";
@@ -278,29 +329,6 @@
 		A68FE0F91953D45A004B98AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				A68FE0FA1953D45A004B98AA /* Pigeon Timer-Info.plist */,
-				A68FE0FB1953D45A004B98AA /* InfoPlist.strings */,
-				A68FE0FE1953D45A004B98AA /* main.m */,
-				A68FE1001953D45A004B98AA /* Pigeon Timer-Prefix.pch */,
-				A68FE1011953D45A004B98AA /* Credits.rtf */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		A68FE1161953D45A004B98AA /* TimerTests */ = {
-			isa = PBXGroup;
-			children = (
-				A68FE11C1953D45A004B98AA /* TimerTests.m */,
-				A68FE1171953D45A004B98AA /* Supporting Files */,
-			);
-			path = TimerTests;
-			sourceTree = "<group>";
-		};
-		A68FE1171953D45A004B98AA /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				A68FE1181953D45A004B98AA /* Pigeon TimerTests-Info.plist */,
-				A68FE1191953D45A004B98AA /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -308,19 +336,13 @@
 		A68FE12A1953DCEB004B98AA /* MemoWindow */ = {
 			isa = PBXGroup;
 			children = (
-				A61409C31961D8C300A6229B /* break@2x.png */,
-				A61409C41961D8C300A6229B /* pomo@2x.png */,
-				A61409C51961D8C300A6229B /* stop@2x.png */,
-				A61409BD1961BA9500A6229B /* break.png */,
-				A61409BE1961BA9500A6229B /* pomo.png */,
-				A61409BF1961BA9500A6229B /* stop.png */,
-				A68FE12D1953DEC4004B98AA /* MemoWindow.h */,
-				A68FE12E1953DEC4004B98AA /* MemoWindow.m */,
-				A68FE12B1953DD04004B98AA /* MemoWindow.xib */,
-				A6CD25CA1955784F001D3A79 /* SelectableTextView.h */,
-				A6CD25CB1955784F001D3A79 /* SelectableTextView.m */,
-				A6CD25DC1956C8E2001D3A79 /* MemoWindowButtonView.h */,
-				A6CD25DD1956C8E2001D3A79 /* MemoWindowButtonView.m */,
+				A672E9121A19C18800BE3B2F /* MemoWindow.h */,
+				A672E9131A19C18800BE3B2F /* MemoWindow.m */,
+				A672E9141A19C18800BE3B2F /* MemoWindow.xib */,
+				A672E9151A19C18800BE3B2F /* MemoWindowButtonView.h */,
+				A672E9161A19C18800BE3B2F /* MemoWindowButtonView.m */,
+				A672E9171A19C18800BE3B2F /* SelectableTextView.h */,
+				A672E9181A19C18800BE3B2F /* SelectableTextView.m */,
 			);
 			name = MemoWindow;
 			sourceTree = "<group>";
@@ -328,8 +350,8 @@
 		A68FE13019543D71004B98AA /* TimerDatabase */ = {
 			isa = PBXGroup;
 			children = (
-				A68FE131195441BD004B98AA /* TimerDatabase.h */,
-				A68FE132195441BD004B98AA /* TimerDatabase.m */,
+				A672E90F1A19C17400BE3B2F /* TimerDatabase.h */,
+				A672E9101A19C17400BE3B2F /* TimerDatabase.m */,
 			);
 			name = TimerDatabase;
 			sourceTree = "<group>";
@@ -337,8 +359,10 @@
 		A68FE13419548C94004B98AA /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				A68FE13519548CA8004B98AA /* Utilities.h */,
-				A68FE13619548CA8004B98AA /* Utilities.m */,
+				A672E9091A19C16300BE3B2F /* NSBundle+LoginItem.h */,
+				A672E90A1A19C16300BE3B2F /* NSBundle+LoginItem.m */,
+				A672E90B1A19C16300BE3B2F /* Utilities.h */,
+				A672E90C1A19C16300BE3B2F /* Utilities.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -346,11 +370,11 @@
 		A68FE13A1954B1D7004B98AA /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
-				A68FE13B1954B1E9004B98AA /* Preferences.xib */,
-				A68FE13D1954B28A004B98AA /* NSFormatter+NumberOnlyFormatter.h */,
-				A68FE13E1954B28A004B98AA /* NSFormatter+NumberOnlyFormatter.m */,
-				A6CD25CF19557DD5001D3A79 /* PreferenceWindow.h */,
-				A6CD25D019557DD5001D3A79 /* PreferenceWindow.m */,
+				A672E9011A19C14B00BE3B2F /* NSFormatter+NumberOnlyFormatter.h */,
+				A672E9021A19C14B00BE3B2F /* NSFormatter+NumberOnlyFormatter.m */,
+				A672E9031A19C14B00BE3B2F /* Preferences.xib */,
+				A672E9041A19C14B00BE3B2F /* PreferenceWindow.h */,
+				A672E9051A19C14B00BE3B2F /* PreferenceWindow.m */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";
@@ -358,8 +382,8 @@
 		A6ADB923196D1DD8003F3487 /* CustomTextField */ = {
 			isa = PBXGroup;
 			children = (
-				A6ADB924196D1DE7003F3487 /* CustomNSField.m */,
-				A6ADB925196D1DE7003F3487 /* CustomNSField.h */,
+				A672E8C61A19C0C000BE3B2F /* CustomNSField.h */,
+				A672E8C71A19C0C000BE3B2F /* CustomNSField.m */,
 			);
 			name = CustomTextField;
 			sourceTree = "<group>";
@@ -367,8 +391,8 @@
 		A6ADB9DB1971AFFB003F3487 /* Logging */ = {
 			isa = PBXGroup;
 			children = (
-				A6ADB9DC1971B00C003F3487 /* Logging.m */,
-				A6ADB9DD1971B00C003F3487 /* Logging.h */,
+				A672E8C31A19C0B400BE3B2F /* Logging.h */,
+				A672E8C41A19C0B400BE3B2F /* Logging.m */,
 			);
 			name = Logging;
 			sourceTree = "<group>";
@@ -425,32 +449,33 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A61409C81961D8C300A6229B /* stop@2x.png in Resources */,
-				A68FE0FD1953D45A004B98AA /* InfoPlist.strings in Resources */,
-				A61409C21961BA9500A6229B /* stop.png in Resources */,
-				A6140986195B9A8400A6229B /* BreakStarted.xib in Resources */,
-				A6ADB9E71975B54A003F3487 /* countdown.wav in Resources */,
-				A61409C71961D8C300A6229B /* pomo@2x.png in Resources */,
-				A614090B1957D4B800A6229B /* NewClient.xib in Resources */,
-				A68FE10B1953D45A004B98AA /* Images.xcassets in Resources */,
-				A61409A1195E2BDD00A6229B /* StartupCheck.xib in Resources */,
-				A614098B195B9E0F00A6229B /* BreakEnded.xib in Resources */,
-				A68FE13C1954B1E9004B98AA /* Preferences.xib in Resources */,
-				A68FE1031953D45A004B98AA /* Credits.rtf in Resources */,
-				A61409C61961D8C300A6229B /* break@2x.png in Resources */,
-				A6140980195B1B4E00A6229B /* long.mp3 in Resources */,
-				A68FE1271953D48E004B98AA /* timer.icns in Resources */,
-				A6140983195B1B4E00A6229B /* tick.mp3 in Resources */,
-				A61409C01961BA9500A6229B /* break.png in Resources */,
-				A61409C11961BA9500A6229B /* pomo.png in Resources */,
-				A6140981195B1B4E00A6229B /* short.mp3 in Resources */,
-				A6ADB9E61975B54A003F3487 /* memo.wav in Resources */,
-				A6CD25CE19557D07001D3A79 /* red.icns in Resources */,
-				A6140982195B1B4E00A6229B /* start.mp3 in Resources */,
-				A6ADB9E81975B54A003F3487 /* break_end.wav in Resources */,
-				A68FE1091953D45A004B98AA /* MainMenu.xib in Resources */,
-				A68FE1291953D626004B98AA /* timer.png in Resources */,
-				A68FE12C1953DD04004B98AA /* MemoWindow.xib in Resources */,
+				A672E8E51A19C11300BE3B2F /* memo.wav in Resources */,
+				A672E8FD1A19C13D00BE3B2F /* stop.png in Resources */,
+				A672E8F91A19C13D00BE3B2F /* break@2x.png in Resources */,
+				A672E9411A19C57D00BE3B2F /* Pigeon Timer-Info.plist in Resources */,
+				A672E9441A19C63F00BE3B2F /* Images.xcassets in Resources */,
+				A672E8D81A19C0EC00BE3B2F /* BreakEnded.xib in Resources */,
+				A672E8EC1A19C12E00BE3B2F /* NewClient.xib in Resources */,
+				A672E8FE1A19C13D00BE3B2F /* stop@2x.png in Resources */,
+				A672E8E41A19C11300BE3B2F /* long.mp3 in Resources */,
+				A672E93C1A19C57D00BE3B2F /* MainMenu.xib in Resources */,
+				A672E8E81A19C11300BE3B2F /* tick.mp3 in Resources */,
+				A672E91A1A19C18800BE3B2F /* MemoWindow.xib in Resources */,
+				A672E8FC1A19C13D00BE3B2F /* red.icns in Resources */,
+				A672E93E1A19C57D00BE3B2F /* InfoPlist.strings in Resources */,
+				A672E9071A19C14B00BE3B2F /* Preferences.xib in Resources */,
+				A672E8FF1A19C13D00BE3B2F /* timer.icns in Resources */,
+				A672E8D01A19C0DC00BE3B2F /* StartupCheck.xib in Resources */,
+				A672E8F81A19C13D00BE3B2F /* break.png in Resources */,
+				A672E8FA1A19C13D00BE3B2F /* pomo.png in Resources */,
+				A672E93D1A19C57D00BE3B2F /* Credits.rtf in Resources */,
+				A672E8DA1A19C0EC00BE3B2F /* BreakStarted.xib in Resources */,
+				A672E8E71A19C11300BE3B2F /* start.mp3 in Resources */,
+				A672E8E61A19C11300BE3B2F /* short.mp3 in Resources */,
+				A672E8E21A19C11300BE3B2F /* break_end.wav in Resources */,
+				A672E8E31A19C11300BE3B2F /* countdown.wav in Resources */,
+				A672E9001A19C13D00BE3B2F /* timer.png in Resources */,
+				A672E8FB1A19C13D00BE3B2F /* pomo@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,59 +486,51 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A68FE133195441BD004B98AA /* TimerDatabase.m in Sources */,
-				A6ADB9DE1971B00C003F3487 /* Logging.m in Sources */,
-				A6140989195B9CC700A6229B /* BreakStarted.m in Sources */,
-				A61409AB195F407800A6229B /* PomodoroSound.m in Sources */,
-				A68FE13F1954B28A004B98AA /* NSFormatter+NumberOnlyFormatter.m in Sources */,
-				A68FE1061953D45A004B98AA /* AppDelegate.m in Sources */,
-				A6CD25CC1955784F001D3A79 /* SelectableTextView.m in Sources */,
-				A6ADB926196D1DE7003F3487 /* CustomNSField.m in Sources */,
-				A6ADAC46197B00120005B8A8 /* TimerApplication.m in Sources */,
-				A61409A4195E2D7A00A6229B /* LaunchUpWindow.m in Sources */,
-				A614098E195B9EC700A6229B /* BreakEnded.m in Sources */,
-				A6CD25D119557DD5001D3A79 /* PreferenceWindow.m in Sources */,
-				A61409A7195E382F00A6229B /* NSBundle+LoginItem.m in Sources */,
-				A614090E1957D5C600A6229B /* NewWindow.m in Sources */,
-				A68FE0FF1953D45A004B98AA /* main.m in Sources */,
-				A68FE12F1953DEC4004B98AA /* MemoWindow.m in Sources */,
-				A68FE13719548CA8004B98AA /* Utilities.m in Sources */,
-				A6CD25DE1956C8E2001D3A79 /* MemoWindowButtonView.m in Sources */,
-				A6CD25D4195582BF001D3A79 /* CHCSVParser.m in Sources */,
+				A672E9061A19C14B00BE3B2F /* NSFormatter+NumberOnlyFormatter.m in Sources */,
+				A672E91C1A19C18800BE3B2F /* SelectableTextView.m in Sources */,
+				A672E8CB1A19C0CE00BE3B2F /* PomodoroSound.m in Sources */,
+				A672E93F1A19C57D00BE3B2F /* AppDelegate.m in Sources */,
+				A672E8ED1A19C12E00BE3B2F /* NewWindow.m in Sources */,
+				A672E9421A19C57D00BE3B2F /* TimerApplication.m in Sources */,
+				A672E8CF1A19C0DC00BE3B2F /* LaunchUpWindow.m in Sources */,
+				A672E8D91A19C0EC00BE3B2F /* BreakStarted.m in Sources */,
+				A672E9201A19C1A900BE3B2F /* CHCSVParser.m in Sources */,
+				A672E8D71A19C0EC00BE3B2F /* BreakEnded.m in Sources */,
+				A672E9191A19C18800BE3B2F /* MemoWindow.m in Sources */,
+				A672E90E1A19C16300BE3B2F /* Utilities.m in Sources */,
+				A672E8C51A19C0B400BE3B2F /* Logging.m in Sources */,
+				A672E9111A19C17400BE3B2F /* TimerDatabase.m in Sources */,
+				A672E90D1A19C16300BE3B2F /* NSBundle+LoginItem.m in Sources */,
+				A672E91B1A19C18800BE3B2F /* MemoWindowButtonView.m in Sources */,
+				A672E8C81A19C0C000BE3B2F /* CustomNSField.m in Sources */,
+				A672E9401A19C57D00BE3B2F /* main.m in Sources */,
+				A672E9081A19C14B00BE3B2F /* PreferenceWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		A68FE0FB1953D45A004B98AA /* InfoPlist.strings */ = {
+		A672E92D1A19C57D00BE3B2F /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				A68FE0FC1953D45A004B98AA /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		A68FE1011953D45A004B98AA /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A68FE1021953D45A004B98AA /* en */,
-			);
-			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
-		A68FE1071953D45A004B98AA /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A68FE1081953D45A004B98AA /* Base */,
+				A672E92E1A19C57D00BE3B2F /* Base */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
-		A68FE1191953D45A004B98AA /* InfoPlist.strings */ = {
+		A672E9301A19C57D00BE3B2F /* Credits.rtf */ = {
 			isa = PBXVariantGroup;
 			children = (
-				A68FE11A1953D45A004B98AA /* en */,
+				A672E9311A19C57D00BE3B2F /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		A672E9321A19C57D00BE3B2F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A672E9331A19C57D00BE3B2F /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -597,8 +614,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Timer/Pigeon Timer-Prefix.pch";
-				INFOPLIST_FILE = "Timer/Pigeon Timer-Info.plist";
+				GCC_PREFIX_HEADER = "Pigeon Timer/TimerApplication/Pigeon Timer-Prefix.pch";
+				INFOPLIST_FILE = "Pigeon Timer/TimerApplication/Pigeon Timer-Info.plist";
 				PRODUCT_NAME = "Pigeon Timer";
 				WRAPPER_EXTENSION = app;
 			};
@@ -610,8 +627,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Timer/Pigeon Timer-Prefix.pch";
-				INFOPLIST_FILE = "Timer/Pigeon Timer-Info.plist";
+				GCC_PREFIX_HEADER = "Pigeon Timer/TimerApplication/Pigeon Timer-Prefix.pch";
+				INFOPLIST_FILE = "Pigeon Timer/TimerApplication/Pigeon Timer-Info.plist";
 				PRODUCT_NAME = "Pigeon Timer";
 				WRAPPER_EXTENSION = app;
 			};
