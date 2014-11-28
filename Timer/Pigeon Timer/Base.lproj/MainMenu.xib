@@ -27,6 +27,13 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu id="pam-P4-OCF">
             <items>
+                <menuItem title="Open..." id="AkJ-o0-SAr">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="menuClicked:" target="Voe-Tx-rLC" id="AOM-w2-oPY"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="0t9-S8-Kr7"/>
                 <menuItem title="Mute" id="vth-Mb-hvs">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -56,13 +63,6 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="menuClicked:" target="Voe-Tx-rLC" id="Ix9-tI-zkV"/>
-                    </connections>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="0t9-S8-Kr7"/>
-                <menuItem title="Enter logs..." id="AkJ-o0-SAr">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="menuClicked:" target="Voe-Tx-rLC" id="AOM-w2-oPY"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="T0z-jR-36R"/>

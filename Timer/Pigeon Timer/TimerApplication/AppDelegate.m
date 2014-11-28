@@ -157,6 +157,8 @@
     if (self.active.state == NSOnState)
     {
         NSLog(@"User set off Activity");
+        [self.enterLog setEnabled:NO];
+        [self.enterLog setAction:nil];
         [Utilities stopSound];
         [self uncheckActive];
         [self resetPomoTimer];
@@ -165,6 +167,8 @@
     else
     {
         NSLog(@"User set Activity On");
+        [self.enterLog setEnabled:YES];
+        [self.enterLog setAction:@selector(menuClicked:)];
         //otherewise activate the memo box
         [self.active setState:NSOnState];
         //Allocates and loads the images into the application which will be used for our NSStatusItem
@@ -247,7 +251,19 @@
  */
 -(void) handleEnterLogs
 {
-    NSLog(@"user clicked on Enter Logs.");
+    NSLog(@"user clicked on Open.");
+    
+    if (self.currentStatus == kLongBreak || self.currentStatus == kShortBreak)
+    {
+        if (self.break_started)
+        {
+            [self.break_started center];
+            [self.break_started setLevel:NSFloatingWindowLevel];
+            [self.break_started makeKeyAndOrderFront:self];
+        }
+        return;
+    }
+    
     if ([self.window isVisible])
     {
         [self.window makeKeyAndOrderFront:self];
