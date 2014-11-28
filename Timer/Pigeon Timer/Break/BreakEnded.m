@@ -36,6 +36,7 @@
     
     [delegate uncheckActive];
     [delegate resetPomoTimer];
+    [delegate.enterLog setAction:nil];
     [self close];
     [NSApp hide:self];
     
