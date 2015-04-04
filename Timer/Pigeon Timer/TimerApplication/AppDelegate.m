@@ -193,56 +193,28 @@
  */
 -(void) handleReportMenuItem
 {
-    //popup save panel.
-    NSSavePanel *save = [NSSavePanel savePanel];
-    NSString *lastPath = [[NSUserDefaults standardUserDefaults] objectForKey:@"directory_selected"];
-    if (lastPath)
+    NSArray *toplevel;
+    
+    if (self.reportWindow) return;
+    [[NSBundle mainBundle] loadNibNamed:@"ClientSelectDialog" owner:self topLevelObjects:&toplevel];
+    [self willChangeValueForKey:@"clientFromDB"];
+    NSMutableArray *clients = (NSMutableArray *)[[TimerDatabase sharedInstance] getClients];
+    
+    self.clientFromDB = [[NSMutableArray alloc] init];
+    
+    for (NSString *client in clients)
     {
-        [save setDirectoryURL:[NSURL fileURLWithPath:lastPath]];
-    }
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"YYYY-MM-dd hhmma"];
-    
-    //Optionally for time zone converstions
-    [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"..."]];
-    
-    NSString *stringFromDate = [formatter stringFromDate:[NSDate date]];
-    
-    [save setNameFieldStringValue:[NSString stringWithFormat:@"Activity Report %@", stringFromDate]];
-    long result = [save runModal];
-    
-    //user made a selection
-    if (result == NSOKButton){
-        NSError *err;
-        NSString *selectedFile = [[[save URL] path] stringByAppendingPathExtension:@"csv"];
-        
-        [[NSUserDefaults standardUserDefaults] setObject:[selectedFile stringByDeletingLastPathComponent] forKey:@"directory_selected"];
-        //get the CSV string from database
-        NSArray *logs = [[TimerDatabase sharedInstance] getLogsAsCSV];
-        
-        NSLog(@"Saving report to file %@", selectedFile);
-        //write to the file.
-        NSOutputStream *output = [NSOutputStream outputStreamToFileAtPath:selectedFile append:NO];
-        
-        CHCSVWriter *writer = [[CHCSVWriter alloc] initWithOutputStream:output encoding:NSUTF8StringEncoding delimiter:','];
-        for (NSArray *line in logs) {
-            [writer writeLineOfFields:line];
-        }
-        [writer closeStream];
-        
-        //error?
-        if (err)
-        {
-            NSAlert *alert = [[NSAlert alloc] init];
-            [alert setMessageText:[NSString stringWithFormat:@"Logs couldn't be saved. %@", [err description]]];
-            [alert runModal];
-            return;
-        }
-        
-        //success? clear database
-        [[TimerDatabase sharedInstance] removeLogs];
+        NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+        [dict setObject:client forKey:@"title"];
+        [dict setObject:@NO forKey:@"selected"];
+        [self.clientFromDB addObject:dict];
         
     }
+    [self didChangeValueForKey:@"clientFromDB"];
+    [self.reportWindow center];
+    [self.reportWindow setLevel:NSFloatingWindowLevel];
+    [self.reportWindow makeKeyAndOrderFront:nil];
+    [NSApp activateIgnoringOtherApps:YES];
     
 }
 
@@ -1125,6 +1097,11 @@
     
 }
 
+-(void) windowWillClose:(NSNotification *)notification
+{
+    if (notification.object == self.reportWindow)
+        self.reportWindow = nil;
+}
 
 /**
  *  checks if egnyte Drive was added login items
@@ -1259,6 +1236,85 @@
     // [NSTimer scheduledTimerWithTimeInterval:1.1 target:self selector:@selector(launchAlertMemoOnStartup:) userInfo:nil repeats:NO];
     
     [self startNextPomo:YES];
+    
+}
+
+-(void) saveReportForClients:(NSArray *)arr
+{
+    //popup save panel.
+    NSSavePanel *save = [NSSavePanel savePanel];
+    NSString *lastPath = [[NSUserDefaults standardUserDefaults] objectForKey:@"directory_selected"];
+    if (lastPath)
+    {
+        [save setDirectoryURL:[NSURL fileURLWithPath:lastPath]];
+    }
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY-MM-dd hhmma"];
+    
+    //Optionally for time zone converstions
+    [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"..."]];
+    
+    NSString *stringFromDate = [formatter stringFromDate:[NSDate date]];
+    
+    [save setNameFieldStringValue:[NSString stringWithFormat:@"Activity Report %@", stringFromDate]];
+    long result = [save runModal];
+    
+    //user made a selection
+    if (result == NSOKButton){
+        NSError *err;
+        NSString *selectedFile = [[[save URL] path] stringByAppendingPathExtension:@"csv"];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:[selectedFile stringByDeletingLastPathComponent] forKey:@"directory_selected"];
+        //get the CSV string from database
+        NSArray *logs = [[TimerDatabase sharedInstance] getLogsAsCSV:arr];
+        
+        NSLog(@"Saving report to file %@", selectedFile);
+        //write to the file.
+        NSOutputStream *output = [NSOutputStream outputStreamToFileAtPath:selectedFile append:NO];
+        
+        CHCSVWriter *writer = [[CHCSVWriter alloc] initWithOutputStream:output encoding:NSUTF8StringEncoding delimiter:','];
+        for (NSArray *line in logs) {
+            [writer writeLineOfFields:line];
+        }
+        [writer closeStream];
+        
+        //error?
+        if (err)
+        {
+            NSAlert *alert = [[NSAlert alloc] init];
+            [alert setMessageText:[NSString stringWithFormat:@"Logs couldn't be saved. %@", [err description]]];
+            [alert runModal];
+            return;
+        }
+        
+        //success? clear database
+        [[TimerDatabase sharedInstance] removeLogs];
+        
+    }
+}
+
+-(IBAction) ReportOK:(id)sender
+{
+    //prepare a report
+    NSMutableArray *selectedClients = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary *dict in self.clientFromDB)
+    {
+        if ([[dict objectForKey:@"selected"] boolValue])
+        {
+            [selectedClients addObject:[dict objectForKey:@"title"]];
+        }
+    }
+    
+    if ([selectedClients count])
+        [self saveReportForClients:selectedClients];
+    
+    [self.reportWindow close];
+}
+-(IBAction) ReportCancel:(id)sender
+{
+    //cancel
+    [self.reportWindow close];
     
 }
 

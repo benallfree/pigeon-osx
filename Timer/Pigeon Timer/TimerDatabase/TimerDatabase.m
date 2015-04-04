@@ -519,13 +519,25 @@ static TimerDatabase *m_sharedInstance = nil;
  *
  *  @return CSV string
  */
--(NSArray *) getLogsAsCSV
+-(NSArray *) getLogsAsCSV:(NSArray *)clients
 {
+    NSString *selectByClients = @"";
+    BOOL first = YES;
+    if (clients && [clients count])
+    {
+        selectByClients = @"and c.name in (";
+        for (NSString *client in clients)
+        {
+            selectByClients = [selectByClients stringByAppendingString:[NSString stringWithFormat:@"%@ '%@'", (first) ? @"": @",", client]];
+            first = NO;
+        }
+        selectByClients = [selectByClients stringByAppendingString:@")"];
+    }
     NSString *select = [NSString stringWithFormat:@"select c.name, count(l.client_id) as count, memo from \
                         clients c join logs l on c.id = l.client_id \
-                        where l.exported_at is null \
+                        where l.exported_at is null %@\
                         group by  l.memo \
-                        order by c.name, l.created_at;"];
+                        order by c.name, l.created_at;", selectByClients];
     sqlite3_stmt *statement;
     NSMutableArray *arr = [[NSMutableArray alloc] init];
     @synchronized(self)

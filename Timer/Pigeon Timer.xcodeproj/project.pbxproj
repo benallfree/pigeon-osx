@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A66A72431AD08CEA002EF61A /* ClientSelectDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = A66A72421AD08CEA002EF61A /* ClientSelectDialog.xib */; };
+		A66A724B1AD09A7E002EF61A /* ReportTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = A66A724A1AD09A7E002EF61A /* ReportTableCellView.m */; };
 		A672E8C51A19C0B400BE3B2F /* Logging.m in Sources */ = {isa = PBXBuildFile; fileRef = A672E8C41A19C0B400BE3B2F /* Logging.m */; };
 		A672E8C81A19C0C000BE3B2F /* CustomNSField.m in Sources */ = {isa = PBXBuildFile; fileRef = A672E8C71A19C0C000BE3B2F /* CustomNSField.m */; };
 		A672E8CB1A19C0CE00BE3B2F /* PomodoroSound.m in Sources */ = {isa = PBXBuildFile; fileRef = A672E8CA1A19C0CE00BE3B2F /* PomodoroSound.m */; };
@@ -58,6 +60,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A66A72421AD08CEA002EF61A /* ClientSelectDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClientSelectDialog.xib; sourceTree = "<group>"; };
+		A66A72491AD09A7E002EF61A /* ReportTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportTableCellView.h; sourceTree = "<group>"; };
+		A66A724A1AD09A7E002EF61A /* ReportTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportTableCellView.m; sourceTree = "<group>"; };
 		A672E8C31A19C0B400BE3B2F /* Logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Logging.h; path = "Pigeon Timer/Logging/Logging.h"; sourceTree = "<group>"; };
 		A672E8C41A19C0B400BE3B2F /* Logging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Logging.m; path = "Pigeon Timer/Logging/Logging.m"; sourceTree = "<group>"; };
 		A672E8C61A19C0C000BE3B2F /* CustomNSField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomNSField.h; path = "Pigeon Timer/CustomTextField/CustomNSField.h"; sourceTree = "<group>"; };
@@ -202,6 +207,17 @@
 			name = PomodoroSound;
 			sourceTree = "<group>";
 		};
+		A66A72411AD08CD1002EF61A /* ClientSelectDialog */ = {
+			isa = PBXGroup;
+			children = (
+				A66A72421AD08CEA002EF61A /* ClientSelectDialog.xib */,
+				A66A72491AD09A7E002EF61A /* ReportTableCellView.h */,
+				A66A724A1AD09A7E002EF61A /* ReportTableCellView.m */,
+			);
+			name = ClientSelectDialog;
+			path = "Pigeon Timer/ClientSelectDialog";
+			sourceTree = "<group>";
+		};
 		A672E8EE1A19C13D00BE3B2F /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -266,6 +282,7 @@
 		A68FE0E61953D45A004B98AA = {
 			isa = PBXGroup;
 			children = (
+				A66A72411AD08CD1002EF61A /* ClientSelectDialog */,
 				A672E9431A19C63F00BE3B2F /* Images.xcassets */,
 				A672E92C1A19C57D00BE3B2F /* Base.lproj */,
 				A672E92F1A19C57D00BE3B2F /* en.lproj */,
@@ -451,6 +468,7 @@
 			files = (
 				A672E8E51A19C11300BE3B2F /* memo.wav in Resources */,
 				A672E8FD1A19C13D00BE3B2F /* stop.png in Resources */,
+				A66A72431AD08CEA002EF61A /* ClientSelectDialog.xib in Resources */,
 				A672E8F91A19C13D00BE3B2F /* break@2x.png in Resources */,
 				A672E9411A19C57D00BE3B2F /* Pigeon Timer-Info.plist in Resources */,
 				A672E9441A19C63F00BE3B2F /* Images.xcassets in Resources */,
@@ -505,6 +523,7 @@
 				A672E8C81A19C0C000BE3B2F /* CustomNSField.m in Sources */,
 				A672E9401A19C57D00BE3B2F /* main.m in Sources */,
 				A672E9081A19C14B00BE3B2F /* PreferenceWindow.m in Sources */,
+				A66A724B1AD09A7E002EF61A /* ReportTableCellView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

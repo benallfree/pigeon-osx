@@ -14,7 +14,7 @@
 #define kPomoPaused 5
 #define kDoingNothing 4
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate>
 
 
 // status item stuff
@@ -56,9 +56,13 @@
 @property (atomic, readwrite)  BOOL preferencesWindowClosed;
 @property (atomic, readwrite)  int countdown_minutes;
 @property (atomic, readwrite)  BOOL playpopupSound;
-
+@property (atomic, strong)  NSMutableArray *clientFromDB;
+@property (atomic, strong)  IBOutlet NSWindow *reportWindow;
 @property (retain) id eventMonitor;
 
+
+-(IBAction) ReportOK:(id)sender;
+-(IBAction) ReportCancel:(id)sender;
 
 - (void) update;
 //setsup status item related stuff.
