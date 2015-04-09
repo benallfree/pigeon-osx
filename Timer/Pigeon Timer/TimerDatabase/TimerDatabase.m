@@ -383,7 +383,7 @@ static TimerDatabase *m_sharedInstance = nil;
  */
 -(NSArray *) getClients
 {
-    NSString *select = [NSString stringWithFormat:@"select name from clients;"];
+    NSString *select = [NSString stringWithFormat:@"select name from clients c order by (select max(created_at) from logs where client_id = c.id)  desc;"];
     sqlite3_stmt *statement;
     NSMutableArray *arr = [[NSMutableArray alloc] init];
     @synchronized(self)
