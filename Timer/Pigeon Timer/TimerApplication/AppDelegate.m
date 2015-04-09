@@ -1288,7 +1288,7 @@
         }
         
         //success? clear database
-        [[TimerDatabase sharedInstance] removeLogs];
+        [[TimerDatabase sharedInstance] removeLogsForclients:arr];
         
     }
 }

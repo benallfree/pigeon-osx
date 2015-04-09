@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pigeon Timer/TimerDatabase/TimerDatabase.m"
-            timestampString = "449881160.778224"
+            timestampString = "450291349.744535"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "542"
-            endingLineNumber = "542"
+            startingLineNumber = "571"
+            endingLineNumber = "571"
             landmarkName = "-getLogsAsCSV:"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pigeon Timer/TimerDatabase/TimerDatabase.m"
-            timestampString = "449881173.381503"
+            timestampString = "450291349.744535"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "524"
-            endingLineNumber = "524"
+            startingLineNumber = "553"
+            endingLineNumber = "553"
             landmarkName = "-getLogsAsCSV:"
             landmarkType = "5">
          </BreakpointContent>
@@ -96,6 +96,38 @@
             startingLineNumber = "1299"
             endingLineNumber = "1299"
             landmarkName = "-ReportOK:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pigeon Timer/TimerDatabase/TimerDatabase.m"
+            timestampString = "450291347.971824"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "502"
+            endingLineNumber = "502"
+            landmarkName = "-removeLogsForclients:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pigeon Timer/TimerDatabase/TimerDatabase.m"
+            timestampString = "450291547.164107"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "515"
+            endingLineNumber = "515"
+            landmarkName = "-removeLogsForclients:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

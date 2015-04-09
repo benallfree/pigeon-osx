@@ -495,6 +495,35 @@ static TimerDatabase *m_sharedInstance = nil;
 
 }
 
+-(void) removeLogsForclients:(NSArray *)clients
+{
+    //update logs set exported_at=1233 where client_id in (select id from clients where name in ('Munir', 'Jamshaid Ahmed'))
+
+    NSString *selectByClients = @"";
+    BOOL first = YES;
+    if (clients && [clients count])
+    {
+        selectByClients = @" and client_id in (select id from clients where name in (";
+        for (NSString *client in clients)
+        {
+            selectByClients = [selectByClients stringByAppendingString:[NSString stringWithFormat:@"%@ '%@'", (first) ? @"": @",", client]];
+            first = NO;
+        }
+        selectByClients = [selectByClients stringByAppendingString:@"))"];
+    }
+
+    NSString *delete = [NSString stringWithFormat:@"update logs set exported_at = %ld where exported_at is NULL%@;", time(0), selectByClients];
+    sqlite3_stmt *statement;
+    @synchronized(self)
+    {
+        if (sqlite3_prepare_v2(m_dbHandle, [delete cStringUsingEncoding:NSUTF8StringEncoding], -1, &statement, NULL) == SQLITE_OK)
+        {
+            
+            sqlite3_step(statement);
+            sqlite3_finalize(statement);
+        }
+    }
+}
 /**
  *  removes logs from database
  */

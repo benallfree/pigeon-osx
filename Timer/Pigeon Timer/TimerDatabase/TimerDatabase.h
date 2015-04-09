@@ -37,4 +37,5 @@
 -(int) bindVariable:(int)index textValue:(NSString *)text int64Value:(long long)intValue context: (sqlite3_stmt *)statement useText:(BOOL)flag useFSR:(BOOL)fsFlag;
 -(void) removeLogs;
 -(BOOL) LogsAvailableToReport;
+-(void) removeLogsForclients:(NSArray *)clients;
 @end
