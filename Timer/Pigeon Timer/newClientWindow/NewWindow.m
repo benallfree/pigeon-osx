@@ -30,7 +30,13 @@
 
     if (clientID <= 0)
     {   //insert or updateclient.
-        [[TimerDatabase sharedInstance] insertClient:clientname];
+        if (![[TimerDatabase sharedInstance] insertClient:clientname])
+        {
+            NSAlert *alert = [NSAlert alertWithMessageText:@"Pigeon was unable to add new client." defaultButton:@"OK" alternateButton:@"" otherButton:@"" informativeTextWithFormat:@"Please try again later."];
+            [alert runModal];
+            return;
+        }
+
         clientID = [[TimerDatabase sharedInstance] getClientID:clientname];
     }
     else

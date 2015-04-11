@@ -121,11 +121,21 @@
     
     if (clientID <= 0)
     {   //insert or updateclient.
-        [[TimerDatabase sharedInstance] insertClient:[client stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
+        if (![[TimerDatabase sharedInstance] insertClient:[client stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]])
+        {
+            NSAlert *alert = [NSAlert alertWithMessageText:@"Pigeon was unable to add new client." defaultButton:@"OK" alternateButton:@"" otherButton:@"" informativeTextWithFormat:@"Database is probably locked by some other application."];
+            [alert runModal];
+            return;
+        }
         clientID = [[TimerDatabase sharedInstance] getClientID:client];
     }
     //insert log into database
-    [[TimerDatabase sharedInstance] insertLog:[self.memo  stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] forClient:clientID];
+    if (![[TimerDatabase sharedInstance] insertLog:[self.memo  stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] forClient:clientID])
+    {
+        NSAlert *alert = [NSAlert alertWithMessageText:@"Pigeon was unable to save memo." defaultButton:@"OK" alternateButton:@"" otherButton:@"" informativeTextWithFormat:@"Database is probably locked by some other application."];
+        [alert runModal];
+        return;
+    }
     
     //  delegate.windowsCount--;
      //close window.

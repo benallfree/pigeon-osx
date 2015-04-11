@@ -16,6 +16,7 @@
 static TimerDatabase *m_sharedInstance = nil;
 
 
+
 /**
  *  initializes timer database object.
  *
@@ -211,23 +212,36 @@ static TimerDatabase *m_sharedInstance = nil;
     {
         // NSLog(@"%@", insertSql);
 		int ret = SQLITE_OK;
+        
+        ret = sqlite3_exec(m_dbHandle, "BEGIN TRANSACTION;", NULL, NULL, NULL);
+        
+        if (ret != SQLITE_OK)
+            return NO;
 		if ((ret = sqlite3_prepare_v2(m_dbHandle, [insertSql cStringUsingEncoding:NSUTF8StringEncoding], -1, &statement, NULL)) == SQLITE_OK)
 		{
             if ([self bindVariable:1 textValue:Client int64Value:0 context:statement useText:YES  useFSR:YES] != SQLITE_OK)
             {
                 //throw an error - will do later not enough time for now
                 sqlite3_finalize(statement);
+                ret = sqlite3_exec(m_dbHandle, "COMMIT;", NULL, NULL, NULL);
+                
                 return NO;
             }
-            sqlite3_step(statement);
+            ret = sqlite3_step(statement);
 			sqlite3_finalize(statement);
+            
+            
+            sqlite3_exec(m_dbHandle, "COMMIT;", NULL, NULL, NULL);
+            if (ret != SQLITE_DONE)
+                return NO;
+            
             return YES;
             
         }
         
+        sqlite3_exec(m_dbHandle, "COMMIT;", NULL, NULL, NULL);
         
     }
-    
     return NO;
 }
 
@@ -354,6 +368,12 @@ static TimerDatabase *m_sharedInstance = nil;
     {
         // NSLog(@"%@", insertSql);
 		int ret = SQLITE_OK;
+        ret = sqlite3_exec(m_dbHandle, "BEGIN TRANSACTION;", NULL, NULL, NULL);
+     
+        if (ret != SQLITE_OK)
+        {
+            return NO;
+        }
 		if ((ret = sqlite3_prepare_v2(m_dbHandle, [insertSql cStringUsingEncoding:NSUTF8StringEncoding], -1, &statement, NULL)) == SQLITE_OK)
 		{
             
@@ -361,15 +381,24 @@ static TimerDatabase *m_sharedInstance = nil;
             {
                 //throw an error - will do later not enough time for now
                 sqlite3_finalize(statement);
+                sqlite3_exec(m_dbHandle, "COMMIT;", NULL, NULL, NULL);
+
                 return NO;
             }
 
-            sqlite3_step(statement);
+            ret = sqlite3_step(statement);
 			sqlite3_finalize(statement);
+            sqlite3_exec(m_dbHandle, "COMMIT;", NULL, NULL, NULL);
+            if (ret != SQLITE_DONE)
+            {
+                return NO;
+            }
+
             return YES;
             
         }
         
+        sqlite3_exec(m_dbHandle, "COMMIT;", NULL, NULL, NULL);
         
     }
 
