@@ -272,7 +272,7 @@
         [app alertMemoBox];
     }
 
-    if ([app.active state] == NSOnState)
+    if ([app.active.title isEqualToString:@"Stop"])
     {
         if (app.timer){
             [app.timer invalidate];

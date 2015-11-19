@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="TimerApplication">
@@ -17,7 +18,6 @@
                 <outlet property="active" destination="Zkn-HH-jb4" id="PdW-tD-0Rs"/>
                 <outlet property="breakNow" destination="TMd-Iz-YDW" id="FaF-rl-RJD"/>
                 <outlet property="enterLog" destination="AkJ-o0-SAr" id="y8u-Cr-EQG"/>
-                <outlet property="mute" destination="vth-Mb-hvs" id="Xkt-tG-zfh"/>
                 <outlet property="pause" destination="2Jf-uq-AwS" id="JcM-oS-I8E"/>
                 <outlet property="quit" destination="ebA-XR-qea" id="wfx-WG-bFt"/>
                 <outlet property="report" destination="iuy-Mf-Qmp" id="F6r-rt-Mbd"/>
@@ -33,30 +33,10 @@
                         <action selector="menuClicked:" target="Voe-Tx-rLC" id="AOM-w2-oPY"/>
                     </connections>
                 </menuItem>
-                <menuItem isSeparatorItem="YES" id="0t9-S8-Kr7"/>
-                <menuItem title="Mute" id="vth-Mb-hvs">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="menuClicked:" target="Voe-Tx-rLC" id="MNC-jC-zMT"/>
-                    </connections>
-                </menuItem>
                 <menuItem title="Active" id="Zkn-HH-jb4">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="menuClicked:" target="Voe-Tx-rLC" id="8mW-F8-G8z"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="Report..." id="iuy-Mf-Qmp">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="menuClicked:" target="Voe-Tx-rLC" id="pfQ-Th-Hnt"/>
-                    </connections>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="8wn-iv-biw"/>
-                <menuItem title="Break Now..." id="TMd-Iz-YDW">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="menuClicked:" target="Voe-Tx-rLC" id="YWj-yF-tTK"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Pause..." id="2Jf-uq-AwS">
@@ -65,14 +45,26 @@
                         <action selector="menuClicked:" target="Voe-Tx-rLC" id="Ix9-tI-zkV"/>
                     </connections>
                 </menuItem>
-                <menuItem isSeparatorItem="YES" id="T0z-jR-36R"/>
+                <menuItem title="Break Now..." id="TMd-Iz-YDW">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="menuClicked:" target="Voe-Tx-rLC" id="YWj-yF-tTK"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="0t9-S8-Kr7"/>
+                <menuItem title="Report..." id="iuy-Mf-Qmp">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="menuClicked:" target="Voe-Tx-rLC" id="pfQ-Th-Hnt"/>
+                    </connections>
+                </menuItem>
                 <menuItem title="Preferences..." id="P4U-xX-t30">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="menuClicked:" target="Voe-Tx-rLC" id="wev-EL-0wW"/>
                     </connections>
                 </menuItem>
-                <menuItem isSeparatorItem="YES" id="oIv-Ce-vwf"/>
+                <menuItem isSeparatorItem="YES" id="8wn-iv-biw"/>
                 <menuItem title="Quit" id="ebA-XR-qea">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>

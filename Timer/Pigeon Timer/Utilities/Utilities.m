@@ -111,7 +111,6 @@
 +(void) playSound:(NSString *)filekey volumeKey:(NSString *)volKey default:(NSString *)defaultSound
 {
     NSString *file = [[NSUserDefaults standardUserDefaults] objectForKey:filekey];
-    NSNumber *volume = [[NSUserDefaults standardUserDefaults] objectForKey:volKey];
     
     if ([file isEqualToString:@"default"])
     {
@@ -249,7 +248,7 @@
 +(NSMutableArray *) unique:(NSMutableArray *)array withIndex:(int)recentIndex
 {
     
-    int count = [array count];
+    int count = (int)[array count];
     
     for (int i = count -1; i > recentIndex; i--)
     {

@@ -12,9 +12,7 @@
 
 -(void) hide:(id)sender
 {
-    AXUIElementRef app = AXUIElementCreateApplication( getpid() );
     AXUIElementRef frontWindow = NULL;
-    AXError err = AXUIElementCopyAttributeValue( app, kAXMainWindowAttribute, &frontWindow );
     // it failed -- maybe no main window (yet)
     if (frontWindow)
     {

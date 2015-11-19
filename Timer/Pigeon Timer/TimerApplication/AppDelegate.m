@@ -112,7 +112,7 @@
     
     [self.timer invalidate];
     self.timer = nil;
-    [self.active setState:NSOffState];
+    [self.active setTitle:@"Start" ];
     
     //Allocates and loads the images into the application which will be used for our NSStatusItem
     
@@ -154,7 +154,7 @@
 -(void) handleActiveMenuItem
 {
     //if it was checked, then uncheck and invalidate the timer
-    if (self.active.state == NSOnState)
+    if ([self.active.title isEqualToString:@"Stop"])
     {
         NSLog(@"User set off Activity");
         [self.enterLog setEnabled:NO];
@@ -170,7 +170,7 @@
         [self.enterLog setEnabled:YES];
         [self.enterLog setAction:@selector(menuClicked:)];
         //otherewise activate the memo box
-        [self.active setState:NSOnState];
+        [self.active setTitle:@"Stop" ];
         //Allocates and loads the images into the application which will be used for our NSStatusItem
         self.timerStatusImage = [NSImage imageNamed:@"pomo"];
         
@@ -264,7 +264,7 @@
         ((MemoWindow *)self.window).recentRowIndex = [arr count];
         [arr addObject:dict];
         [arr addObjectsFromArray:tempArray];
-        arr = [Utilities unique:arr withIndex:((MemoWindow *)self.window).recentRowIndex ];
+        arr = [Utilities unique:arr withIndex:(int)((MemoWindow *)self.window).recentRowIndex ];
         ((MemoWindow *)self.window).values = arr;
         if ( ((MemoWindow *)self.window).recentRowIndex > 1)
             [ ((MemoWindow *)self.window).Tablecontroller selectRowIndexes:[NSIndexSet indexSetWithIndex:1] byExtendingSelection:NO];
@@ -337,7 +337,7 @@
     }
     [self.pref_window center];
     [(PreferenceWindow *)self.pref_window makeCopyOfCurrent];
-    self.pref_window.value = [[NSUserDefaults standardUserDefaults] objectForKey:@"timeInterval"];
+    //self.pref_window.value = [[NSUserDefaults standardUserDefaults] objectForKey:@"timeInterval"];
     [self.pref_window makeKeyAndOrderFront:self];
     [self.pref_window setLevel:NSFloatingWindowLevel];
     [NSApp activateIgnoringOtherApps:YES];
@@ -463,12 +463,12 @@
 - (void) alertMemoBox
 {
     NSLog(@"Launching Memo Box");
-    if (( [self.active state] == NSOnState) && (self.currentStatus != kPomoInProgress))
+    if (( [self.active.title isEqualToString:@"Stop"]) && (self.currentStatus != kPomoInProgress))
     {
         [self startTimer];
         return;
     }
-    if ([self.active state] == NSOffState)
+    if ([self.active.title isEqualToString:@"Start"])
         return;
     
     if ([self.window isVisible])
@@ -500,7 +500,7 @@
         [arr addObject:dict];
         [arr addObjectsFromArray:tempArray];
         
-        arr = [Utilities unique:arr withIndex:((MemoWindow *)self.window).recentRowIndex];
+        arr = [Utilities unique:arr withIndex:(int)((MemoWindow *)self.window).recentRowIndex];
         
         ((MemoWindow *)self.window).values = arr;
         
@@ -528,10 +528,12 @@
 -(void) playTick
 {
     //wait for start mp3 to play
-    sleep(6);
+    //sleep(6);
     
+    //dispatch_async(<#dispatch_queue_t queue#>, <#^(void)block#>)
     while (1)
     {
+        
         
         if ([self.mute state] == NSOffState)
         {
@@ -541,7 +543,7 @@
             }
             else
             {
-                if (self.countdown_music && [self.active state] == NSOnState)
+                if (self.countdown_music && [self.active.title isEqualToString:@"Stop"])
                 {
                     BOOL playOnce = [[[NSUserDefaults standardUserDefaults] objectForKey:@"count_down_playOnce"] boolValue];
                     if (!(playOnce && self.countdown_playcount >= 1))
@@ -552,7 +554,8 @@
                     self.countdown_playcount++;
                 }
             }
-            sleep(1);
+            usleep(980000);
+            
         }
         else
             usleep(500000);
@@ -644,7 +647,7 @@
 -(void) updatePomoTimer:(id)sender
 {
     
-    if ([self.active state] ==NSOffState || self.currentStatus == kDoingNothing)
+    if ([self.active.title isEqualToString:@"Start"] || self.currentStatus == kDoingNothing)
     {
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"show_timer" ] boolValue])
             [self.timerStatusItem setTitle:@""];
@@ -741,7 +744,7 @@
     
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"show_timer" ] boolValue])
         [self.timerStatusItem setTitle:@"Starting..."];
-    [self.active setState:NSOnState];
+    [self.active setTitle:@"Stop"];
     
     
 }
@@ -905,7 +908,7 @@
     self.timer_updater = nil;
     self.totalPomodoro = 1;
     self.currentStatus = kDoingNothing;
-    if ([self.active state ]== NSOnState)
+    if ([self.active.title isEqualToString:@"Stop"])
         [self startNextPomo:YES];
     else
     {
@@ -1075,26 +1078,29 @@
 //when long break ends.
 - (void) BreakEnded
 {
-    NSLog(@"Break Ended.");
-    self.currentStatus = kDoingNothing;
-    
-    if (([[[NSUserDefaults standardUserDefaults] objectForKey:@"start_auto"] boolValue]))
-    {
-        [self.break_started close];
-        [NSApp hide:self];
-        [self startNextPomo:YES];
-    }
-    else
-    {
-        [self.break_started close];
-        //pop up break ended.
-        [self performSelectorOnMainThread:@selector(playBreakEndSound) withObject:nil waitUntilDone:YES];
-        self.break_ended = [BreakEnded getWindow];
-        [self.break_ended center];
-        [self.break_ended setLevel:NSFloatingWindowLevel];
-        [self.break_ended makeKeyAndOrderFront:self];
-    }
-    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        NSLog(@"Break Ended.");
+        self.currentStatus = kDoingNothing;
+        
+        if (([[[NSUserDefaults standardUserDefaults] objectForKey:@"start_auto"] boolValue]))
+        {
+            [self.break_started close];
+            [NSApp hide:self];
+            [self startNextPomo:YES];
+        }
+        else
+        {
+            
+            [self.break_started close];
+            //pop up break ended.
+            [self performSelectorOnMainThread:@selector(playBreakEndSound) withObject:nil waitUntilDone:YES];
+            self.break_ended = [BreakEnded getWindow];
+            [self.break_ended center];
+            [self.break_ended setLevel:NSFloatingWindowLevel];
+            [self.break_ended makeKeyAndOrderFront:self];
+        }
+    });
 }
 
 -(void) windowWillClose:(NSNotification *)notification
@@ -1124,7 +1130,7 @@
         // a NSArray so that it will be easier to iterate.
         NSArray *loginItemsArray = CFBridgingRelease(LSSharedFileListCopySnapshot(loginItems, &seedValue));
         for(int i = 0; i< [loginItemsArray count]; i++){
-            LSSharedFileListItemRef currentItemRef = CFBridgingRetain([loginItemsArray objectAtIndex:i]);
+            LSSharedFileListItemRef currentItemRef = (LSSharedFileListItemRef)CFBridgingRetain([loginItemsArray objectAtIndex:i]);
             //Resolve the item with URL
             if (LSSharedFileListItemResolve(currentItemRef, 0, (CFURLRef*) &url, NULL) == noErr) {
                 NSString * urlPath = [((NSURL *)CFBridgingRelease(url)) path];
@@ -1169,6 +1175,7 @@
 - (void) setupApp
 {
     self.currentStatus = kDoingNothing;
+    
     [self performSelectorInBackground:@selector(playTick) withObject:nil];
     [self performSelectorInBackground:@selector(backgroundThread) withObject:nil];
     //setup default time interval for poping up memo window, if not set by user in preferences window.

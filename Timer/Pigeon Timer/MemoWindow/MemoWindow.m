@@ -88,7 +88,7 @@
 {
     AppDelegate *delegate = (AppDelegate *) [NSApp delegate];
     
-    if ([delegate.active state] == NSOffState)
+    if ([delegate.active.title isEqualToString:@"Start" ])
     {
         [self orderOut:self];
         return;
@@ -168,7 +168,7 @@
     
         [arr addObject:dict];
         [arr addObjectsFromArray:tempArray];
-        arr = [Utilities unique:arr withIndex:self.recentRowIndex];
+        arr = [Utilities unique:arr withIndex:(int)self.recentRowIndex];
     self.values = arr;
 
 
@@ -226,7 +226,7 @@
             
             [arr addObject:dict];
             [arr addObjectsFromArray:tempArray];
-        arr = [Utilities unique:arr withIndex:self.recentRowIndex];
+        arr = [Utilities unique:arr withIndex:(int)self.recentRowIndex];
         self.values = arr;
         [self.windowController didChangeValueForKey:@"window.values"];
         if (self.recentRowIndex > 1)
