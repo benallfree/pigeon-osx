@@ -927,6 +927,8 @@
  */
 - (void) pomoFinished
 {
+    dispatch_async(dispatch_get_main_queue(), ^{
+
     NSLog(@"Current Pomo Finished");
     NSInteger pomo_before_long_Break = [[[NSUserDefaults standardUserDefaults] objectForKey:@"long_break_after"] integerValue];
     if (self.totalPomodoro >= pomo_before_long_Break)
@@ -939,7 +941,7 @@
         self.totalPomodoro++;
         [self shortBreakStarted];
     }
-    
+    });
 }
 /**
  *  starts a new pomo session
