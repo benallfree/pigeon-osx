@@ -213,7 +213,7 @@
     }
     [self didChangeValueForKey:@"clientFromDB"];
     [self.reportWindow center];
-    [self.reportWindow setLevel:NSFloatingWindowLevel];
+    [self.reportWindow setLevel:NSScreenSaverWindowLevel];
     [self.reportWindow makeKeyAndOrderFront:nil];
     [NSApp activateIgnoringOtherApps:YES];
     
