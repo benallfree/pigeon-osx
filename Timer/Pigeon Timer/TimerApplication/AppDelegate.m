@@ -15,6 +15,7 @@
 #import "BreakEnded.h"
 #import "BreakStarted.h"
 #import "NSBundle+LoginItem.h"
+#import "NSString+SpaceAttributes.h"
 
 @implementation AppDelegate
 
@@ -298,7 +299,7 @@
             self.pomodoroTimerStr = [NSString stringWithFormat:@"Paused"];
         
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"show_timer" ] boolValue])
-            [self.timerStatusItem setTitle:self.pomodoroTimerStr];
+            [self.timerStatusItem setAttributedTitle:[self.pomodoroTimerStr stringByAddingSpaceAttributes:2.f]];
         else
             [self.timerStatusItem setTitle:@""];
         
@@ -609,7 +610,7 @@
                 self.pomodoroTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
                 
                 if ([showTitle boolValue])
-                    [self.timerStatusItem setTitle:self.pomodoroTimerStr];
+                    [self.timerStatusItem setAttributedTitle:[self.pomodoroTimerStr stringByAddingSpaceAttributes:2.f]];
                 else
                     [self.timerStatusItem setTitle:@""];
                 
@@ -623,7 +624,7 @@
             {
                 self.breakTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
                 if ([showTitle boolValue])
-                    [self.timerStatusItem setTitle:self.breakTimerStr];
+                    [self.timerStatusItem setAttributedTitle:[self.breakTimerStr stringByAddingSpaceAttributes:2.f]];
                 else
                     [self.timerStatusItem setTitle:@""];
                 
@@ -674,12 +675,12 @@
     if (self.currentStatus == kPomoInProgress)
     {
         //  self.pomodoroTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
-        [self.timerStatusItem setTitle:self.pomodoroTimerStr];
+        [self.timerStatusItem setAttributedTitle:[self.pomodoroTimerStr stringByAddingSpaceAttributes:2.f]];
     }
     else
     {
         //  self.breakTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
-        [self.timerStatusItem setTitle:self.breakTimerStr];
+        [self.timerStatusItem setAttributedTitle:[self.breakTimerStr stringByAddingSpaceAttributes:2.f]];
         
     }
     [[self.timerStatusItem view] setNeedsDisplay:YES];
@@ -718,8 +719,8 @@
 {
     
     //Create the NSStatusBar and set its length
-    self.timerStatusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-    
+    self.timerStatusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:80.f];
+ 
     
     //Allocates and loads the images into the application which will be used for our NSStatusItem
     self.timerStatusImage = [NSImage imageNamed:@"pomo"];
@@ -968,7 +969,7 @@
     
     self.pomodoroTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"show_timer" ] boolValue])
-        [self.timerStatusItem setTitle:self.pomodoroTimerStr];
+        [self.timerStatusItem setAttributedTitle:[self.pomodoroTimerStr stringByAddingSpaceAttributes:2.f]];
     else
         [self.timerStatusItem setTitle:@""];
     
@@ -1019,7 +1020,7 @@
     self.breakTimerStr = [NSString stringWithFormat:@"%02ld:%02ld", (long)self.minutes, (long)self.seconds];
     
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"show_timer" ] boolValue])
-        [self.timerStatusItem setTitle:self.breakTimerStr];
+        [self.timerStatusItem setAttributedTitle:[self.breakTimerStr stringByAddingSpaceAttributes:2.f]];
     else
         [self.timerStatusItem setTitle:@""];
     
@@ -1058,7 +1059,7 @@
     self.countdown_playcount = 0;
     
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"show_timer" ] boolValue])
-        [self.timerStatusItem setTitle:self.breakTimerStr];
+        [self.timerStatusItem setAttributedTitle:[self.breakTimerStr stringByAddingSpaceAttributes:2.f]];
     else
         [self.timerStatusItem setTitle:@""];
     

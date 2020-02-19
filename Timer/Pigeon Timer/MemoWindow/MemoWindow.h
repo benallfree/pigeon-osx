@@ -27,6 +27,7 @@
 @property(strong, atomic) IBOutlet NSMutableArray *values;
 @property(strong, atomic) IBOutlet NSArrayController *controller;
 @property(strong, atomic) IBOutlet NSTableView *Tablecontroller;
+@property(strong, atomic) NSString *memoCountDownTime;
 
 -(IBAction)clientChanged:(id)sender;
 -(IBAction)memoChanged:(id)sender;
