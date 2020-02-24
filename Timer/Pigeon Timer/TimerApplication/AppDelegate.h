@@ -30,7 +30,7 @@
 @property (atomic, strong) IBOutlet NSMenuItem               *quit;
 @property (atomic, strong) IBOutlet NSMenuItem               *breakNow;
 @property (atomic, strong) IBOutlet NSMenuItem               *pause;
-
+@property (atomic, strong) IBOutlet NSTableView              *reportTable;
 @property (atomic, strong)  NSWindow *window;
 @property (atomic, strong)  NSWindow *pref_window;
 @property (atomic, strong)  NSWindow *break_started;

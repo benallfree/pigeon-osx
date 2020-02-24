@@ -212,9 +212,9 @@
         
     }
     [self didChangeValueForKey:@"clientFromDB"];
-    [self.reportWindow center];
-    [self.reportWindow setLevel:NSScreenSaverWindowLevel];
     [self.reportWindow makeKeyAndOrderFront:nil];
+    [self.reportWindow center];
+    [self.reportWindow setLevel:NSStatusWindowLevel];
     [NSApp activateIgnoringOtherApps:YES];
     
 }
@@ -1250,7 +1250,7 @@
     
 }
 
--(void) saveReportForClients:(NSArray *)arr
+-(void) saveReportForClients:(NSString *)clientName
 {
     //popup save panel.
     NSSavePanel *save = [NSSavePanel savePanel];
@@ -1267,7 +1267,7 @@
     
     NSString *stringFromDate = [formatter stringFromDate:[NSDate date]];
     
-    [save setNameFieldStringValue:[NSString stringWithFormat:@"Activity Report %@", stringFromDate]];
+    [save setNameFieldStringValue:[NSString stringWithFormat:@"%@ Activity Report %@", clientName, stringFromDate]];
     long result = [save runModal];
     
     //user made a selection
@@ -1277,7 +1277,7 @@
         
         [[NSUserDefaults standardUserDefaults] setObject:[selectedFile stringByDeletingLastPathComponent] forKey:@"directory_selected"];
         //get the CSV string from database
-        NSArray *logs = [[TimerDatabase sharedInstance] getLogsAsCSV:arr];
+        NSArray *logs = [[TimerDatabase sharedInstance] getLogsAsCSV:@[clientName]];
         
         NSLog(@"Saving report to file %@", selectedFile);
         //write to the file.
@@ -1299,7 +1299,7 @@
         }
         
         //success? clear database
-        [[TimerDatabase sharedInstance] removeLogsForclients:arr];
+        [[TimerDatabase sharedInstance] removeLogsForclients:@[clientName]];
         
     }
 }
@@ -1307,18 +1307,18 @@
 -(IBAction) ReportOK:(id)sender
 {
     //prepare a report
-    NSMutableArray *selectedClients = [[NSMutableArray alloc] init];
     
-    for (NSDictionary *dict in self.clientFromDB)
-    {
-        if ([[dict objectForKey:@"selected"] boolValue])
-        {
-            [selectedClients addObject:[dict objectForKey:@"title"]];
-        }
+    //nothing is selected.
+    if (self.reportTable.selectedRow < 0) {
+        return;
     }
     
-    if ([selectedClients count])
-        [self saveReportForClients:selectedClients];
+    [self.reportWindow setLevel:NSNormalWindowLevel];
+    NSDictionary *dict = self.clientFromDB[self.reportTable.selectedRow];
+    
+    NSString *selectedClient = [dict objectForKey:@"title"];
+    [self saveReportForClients:selectedClient];
+    
     
     [self.reportWindow close];
 }
