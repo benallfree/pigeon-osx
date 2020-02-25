@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5060BBAA23FD40FA00132CA7 /* NSString+SpaceAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 5060BBA923FD40FA00132CA7 /* NSString+SpaceAttributes.m */; };
 		A66A72431AD08CEA002EF61A /* ClientSelectDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = A66A72421AD08CEA002EF61A /* ClientSelectDialog.xib */; };
 		A66A724B1AD09A7E002EF61A /* ReportTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = A66A724A1AD09A7E002EF61A /* ReportTableCellView.m */; };
 		A672E8C51A19C0B400BE3B2F /* Logging.m in Sources */ = {isa = PBXBuildFile; fileRef = A672E8C41A19C0B400BE3B2F /* Logging.m */; };
@@ -60,6 +61,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5060BBA823FD40FA00132CA7 /* NSString+SpaceAttributes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSString+SpaceAttributes.h"; path = "Pigeon Timer/Utilities/NSString+SpaceAttributes.h"; sourceTree = "<group>"; };
+		5060BBA923FD40FA00132CA7 /* NSString+SpaceAttributes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSString+SpaceAttributes.m"; path = "Pigeon Timer/Utilities/NSString+SpaceAttributes.m"; sourceTree = "<group>"; };
 		A66A72421AD08CEA002EF61A /* ClientSelectDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClientSelectDialog.xib; sourceTree = "<group>"; };
 		A66A72491AD09A7E002EF61A /* ReportTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportTableCellView.h; sourceTree = "<group>"; };
 		A66A724A1AD09A7E002EF61A /* ReportTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportTableCellView.m; sourceTree = "<group>"; };
@@ -380,6 +383,8 @@
 				A672E90A1A19C16300BE3B2F /* NSBundle+LoginItem.m */,
 				A672E90B1A19C16300BE3B2F /* Utilities.h */,
 				A672E90C1A19C16300BE3B2F /* Utilities.m */,
+				5060BBA823FD40FA00132CA7 /* NSString+SpaceAttributes.h */,
+				5060BBA923FD40FA00132CA7 /* NSString+SpaceAttributes.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -448,6 +453,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -511,6 +517,7 @@
 				A672E8ED1A19C12E00BE3B2F /* NewWindow.m in Sources */,
 				A672E9421A19C57D00BE3B2F /* TimerApplication.m in Sources */,
 				A672E8CF1A19C0DC00BE3B2F /* LaunchUpWindow.m in Sources */,
+				5060BBAA23FD40FA00132CA7 /* NSString+SpaceAttributes.m in Sources */,
 				A672E8D91A19C0EC00BE3B2F /* BreakStarted.m in Sources */,
 				A672E9201A19C1A900BE3B2F /* CHCSVParser.m in Sources */,
 				A672E8D71A19C0EC00BE3B2F /* BreakEnded.m in Sources */,

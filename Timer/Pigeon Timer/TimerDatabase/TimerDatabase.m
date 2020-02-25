@@ -580,6 +580,12 @@ static TimerDatabase *m_sharedInstance = nil;
 -(NSArray *) getLogsAsCSV:(NSArray *)clients
 {
     NSString *selectByClients = @"";
+    NSString *logLines = @"";
+    BOOL shouldSetClipboard = [[NSUserDefaults standardUserDefaults] objectForKey:@"copyClipboard"];
+    NSString *linePrefix = [[NSUserDefaults standardUserDefaults] objectForKey:@"reportprefix"];
+    if (!linePrefix || linePrefix.length <= 0) {
+        linePrefix = @"* ";
+    }
     BOOL first = YES;
     if (clients && [clients count])
     {
@@ -614,11 +620,17 @@ static TimerDatabase *m_sharedInstance = nil;
                     NSArray *line = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%s", client],
                                      [NSString stringWithFormat:@"%d", sum],
                                      [NSString stringWithFormat:@"%s", log], nil];
+                    logLines = [logLines stringByAppendingString:[NSString stringWithFormat:@"%@%s\n", linePrefix, log]];
                     [arr addObject:line];
                 }
                 
             }
     		sqlite3_finalize(statement);
+            if (shouldSetClipboard) {
+                NSPasteboard *pb = [NSPasteboard generalPasteboard];
+                [pb clearContents];
+                [pb setString:logLines forType:NSPasteboardTypeString];
+            }
             return arr;
 		}
     }
