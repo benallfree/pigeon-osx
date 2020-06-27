@@ -310,8 +310,13 @@
         
         if ([[memoDict objectForKey:@"logs"] hasSuffix:@"Today"] || [[memoDict objectForKey:@"logs"] hasSuffix:@"Recent"])
             return;
-        if ([memoDict objectForKey:@"originalLogs"])
+        if ([memoDict objectForKey:@"originalLogs"]) {
+            [self willChangeValueForKey:@"memo"];
             self.memo = [memoDict objectForKey:@"originalLogs"];
+            [self.memoBox scrollToEndOfDocument:self];
+            [[self.memoBox textStorage] setFont:[NSFont systemFontOfSize:NSFont.systemFontSize]];
+            [self didChangeValueForKey:@"memo"];
+        }
         
     }
     @catch (NSException *exception) {

@@ -26,6 +26,7 @@
     // Drawing code here.
 }
 
+
 /**
  *  this function captures the key actions done on text field, and copy/paste/select all operations
  *

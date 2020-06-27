@@ -21,7 +21,7 @@
 @property(strong, atomic) NSMutableArray *previousLogs;
 @property(atomic, readwrite) NSInteger recentRowIndex;
 @property(strong, atomic) NSString *memo;
-@property(strong, atomic) IBOutlet NSTextField *memoBox;
+@property(strong, atomic) IBOutlet NSTextView *memoBox;
 @property(strong, atomic) IBOutlet NSButton *okbutton;
 @property(strong, atomic) IBOutlet NSComboBox *box;
 @property(strong, atomic) IBOutlet NSMutableArray *values;
