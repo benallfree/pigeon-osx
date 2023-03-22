@@ -1,0 +1,55 @@
+name: Build and Publish to Github Releases and App Store
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build_and_publish:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Xcode
+        run: sudo xcode-select -switch /Applications/Xcode.app
+
+      - name: Install dependencies
+        run: |
+          brew install --cask xcodes
+          xcodes update
+          xcodes install $(xcodes latest)
+
+      - name: Cache RubyGems
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      - name: Install Fastlane
+        run: |
+          gem install bundler
+          bundle config path vendor/bundle
+          bundle install
+
+      - name: Build and export for macOS Intel (x86_64) and Apple Silicon (arm64)
+        run: bundle exec fastlane build
+
+      - name: Publish to the App Store
+        run: bundle exec fastlane publish
+        env:
+          APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          APP_STORE_CONNECT_KEY: ${{ secrets.APP_STORE_CONNECT_KEY }}
+          APP_STORE_CONNECT_PROFILE_ID: ${{ secrets.APP_STORE_CONNECT_PROFILE_ID }}
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            ./fastlane/macos/Pigeon Timer.ipa
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
