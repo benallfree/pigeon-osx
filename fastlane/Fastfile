@@ -8,6 +8,7 @@ platform :mac do
       scheme: "Pigeon Timer",
       configuration: "Release",
       export_method: "app-store",
+      verbose: true,
       export_options: {
         provisioningProfiles: {
           "com.benallfree.pigeon" => "pigeon profile",
