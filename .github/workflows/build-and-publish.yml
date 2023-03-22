@@ -2,8 +2,8 @@ name: Build and Publish to Github Releases and App Store
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - test-github-actions
 
 jobs:
   build_and_publish:
@@ -38,13 +38,13 @@ jobs:
       - name: Build and export for macOS Intel (x86_64) and Apple Silicon (arm64)
         run: bundle exec fastlane build
 
-      - name: Publish to the App Store
-        run: bundle exec fastlane publish
-        env:
-          APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
-          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
-          APP_STORE_CONNECT_KEY: ${{ secrets.APP_STORE_CONNECT_KEY }}
-          APP_STORE_CONNECT_PROFILE_ID: ${{ secrets.APP_STORE_CONNECT_PROFILE_ID }}
+      # - name: Publish to the App Store
+      #   run: bundle exec fastlane publish
+      #   env:
+      #     APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+      #     APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+      #     APP_STORE_CONNECT_KEY: ${{ secrets.APP_STORE_CONNECT_KEY }}
+      #     APP_STORE_CONNECT_PROFILE_ID: ${{ secrets.APP_STORE_CONNECT_PROFILE_ID }}
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
