@@ -652,6 +652,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Pigeon Timer/TimerApplication/Pigeon Timer-Prefix.pch";
 				INFOPLIST_FILE = "Pigeon Timer/TimerApplication/Pigeon Timer-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.benallfree.pigeon;
 				PRODUCT_NAME = "Pigeon Timer";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -671,6 +672,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Pigeon Timer/TimerApplication/Pigeon Timer-Prefix.pch";
 				INFOPLIST_FILE = "Pigeon Timer/TimerApplication/Pigeon Timer-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.benallfree.pigeon;
 				PRODUCT_NAME = "Pigeon Timer";
 				PROVISIONING_PROFILE_SPECIFIER = "";
