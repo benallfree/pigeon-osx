@@ -4,7 +4,7 @@ platform :mac do
   desc "Build and export the app for macOS Intel (x86_64) and Apple Silicon (arm64)"
   lane :build do
     build_mac_app(
-      workspace: "Timer/Pigeon Timer.xcodeproj/project.xcworkspace",
+      project: "Timer/Pigeon Timer.xcodeproj",
       scheme: "Pigeon Timer",
       configuration: "Release",
       export_method: "app-store",
