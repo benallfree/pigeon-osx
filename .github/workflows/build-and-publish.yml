@@ -29,6 +29,14 @@ jobs:
           bundle config path vendor/bundle
           bundle install
 
+      - name: Import certificate
+        run: |
+          echo ${{ secrets.CERTIFICATE_P12_BASE64 }} | base64 --decode > certificate.p12
+          security create-keychain -p "temp_password" build.keychain
+          security default-keychain -s build.keychain
+          security import certificate.p12 -k build.keychain -T /usr/bin/codesign
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "temp_password" build.keychain
+
       - name: Build and export for macOS Intel (x86_64) and Apple Silicon (arm64)
         run: bundle exec fastlane build
         env:
