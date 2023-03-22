@@ -30,9 +30,10 @@ jobs:
           bundle install
 
       - name: Build and export for macOS Intel (x86_64) and Apple Silicon (arm64)
-        APPLE_ID: ${{ secrets.APPLE_ID }}
-        APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
         run: bundle exec fastlane build
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
 
       # - name: Publish to the App Store
       #   run: bundle exec fastlane publish
