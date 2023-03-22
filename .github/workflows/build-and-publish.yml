@@ -15,12 +15,6 @@ jobs:
       - name: Set up Xcode
         run: sudo xcode-select -switch /Applications/Xcode.app
 
-      - name: Install dependencies
-        run: |
-          brew install --cask xcodes
-          xcodes update
-          xcodes install $(xcodes latest)
-
       - name: Cache RubyGems
         uses: actions/cache@v2
         with:
