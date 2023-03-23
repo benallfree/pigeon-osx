@@ -1,0 +1,67 @@
+default_platform(:osx)
+
+platform :osx do
+  lane :build_dev do
+    # Clean the build directory
+    clean_build_artifacts
+
+    # Build the app for i9 (Intel-based) architecture
+    build_app(
+      project: "Pigeon Timer.xcodeproj",
+      scheme: "Pigeon Timer",
+      configuration: "Release",
+      export_method: "development",
+      export_options: {
+        compileBitcode: false
+      },
+      output_directory: "./build-dev/intel",
+      derived_data_path: "./DerivedData",
+      xcargs: "EXCLUDED_ARCHS=arm64"
+    )
+
+    # Build the app for M1 (Apple Silicon) architecture
+    build_app(
+      project: "Pigeon Timer.xcodeproj",
+      scheme: "Pigeon Timer",
+      configuration: "Release",
+      export_method: "development",
+      export_options: {
+        compileBitcode: false
+      },
+      output_directory: "./build-dev/arm64",
+      derived_data_path: "./DerivedData",
+      xcargs: "EXCLUDED_ARCHS=x86_64"
+    )
+  end
+  lane :build_release do
+    # Clean the build directory
+    clean_build_artifacts
+
+    # Build the app for i9 (Intel-based) architecture
+    build_app(
+      project: "Pigeon Timer.xcodeproj",
+      scheme: "Pigeon Timer",
+      configuration: "Release",
+      export_method: "app-store",
+      export_options: {
+        compileBitcode: false
+      },
+      output_directory: "./build-release/intel",
+      derived_data_path: "./DerivedData",
+      xcargs: "EXCLUDED_ARCHS=arm64"
+    )
+
+    # Build the app for M1 (Apple Silicon) architecture
+    build_app(
+      project: "Pigeon Timer.xcodeproj",
+      scheme: "Pigeon Timer",
+      configuration: "Release",
+      export_method: "app-store",
+      export_options: {
+        compileBitcode: false
+      },
+      output_directory: "./build-release/arm64",
+      derived_data_path: "./DerivedData",
+      xcargs: "EXCLUDED_ARCHS=x86_64"
+    )
+  endend

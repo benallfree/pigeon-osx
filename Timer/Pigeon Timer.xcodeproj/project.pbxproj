@@ -447,6 +447,12 @@
 			attributes = {
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = GreatBasinGroup;
+				TargetAttributes = {
+					A68FE0EE1953D45A004B98AA = {
+						DevelopmentTeam = ATU33QTMPM;
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = A68FE0EA1953D45A004B98AA /* Build configuration list for PBXProject "Pigeon Timer" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -638,11 +644,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = ATU33QTMPM;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Pigeon Timer/TimerApplication/Pigeon Timer-Prefix.pch";
 				INFOPLIST_FILE = "Pigeon Timer/TimerApplication/Pigeon Timer-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.benallfree.pigeon;
 				PRODUCT_NAME = "Pigeon Timer";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -651,11 +663,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = ATU33QTMPM;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Pigeon Timer/TimerApplication/Pigeon Timer-Prefix.pch";
 				INFOPLIST_FILE = "Pigeon Timer/TimerApplication/Pigeon Timer-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.benallfree.pigeon;
 				PRODUCT_NAME = "Pigeon Timer";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
