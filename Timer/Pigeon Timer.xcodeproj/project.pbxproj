@@ -645,12 +645,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = ATU33QTMPM;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Pigeon Timer/TimerApplication/Pigeon Timer-Prefix.pch";
 				INFOPLIST_FILE = "Pigeon Timer/TimerApplication/Pigeon Timer-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Pigeon Timer";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.benallfree.pigeon;
 				PRODUCT_NAME = "Pigeon Timer";
@@ -664,12 +667,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = ATU33QTMPM;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Pigeon Timer/TimerApplication/Pigeon Timer-Prefix.pch";
 				INFOPLIST_FILE = "Pigeon Timer/TimerApplication/Pigeon Timer-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Pigeon Timer";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.benallfree.pigeon;
 				PRODUCT_NAME = "Pigeon Timer";
